@@ -41,7 +41,7 @@ class ConfigurationRepository
     public function getAll()
     {
         $query = new DbQuery();
-        $query->select(AxeptioConfiguration::$definition['primary'], 'c');
+        $query->select(AxeptioConfiguration::$definition['primary']);
         $query->from(AxeptioConfiguration::$definition['table']);
 
         return Db::getInstance()->executeS($query);

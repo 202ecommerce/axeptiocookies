@@ -31,7 +31,7 @@ use AxeptiocookiesAddon\API\Response\ProjectResponse;
 class Client
 {
     /**
-     * @param $request ProjectRequest
+     * @param ProjectRequest $request
      *
      * @return Project|bool
      */

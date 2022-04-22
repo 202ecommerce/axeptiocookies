@@ -44,6 +44,9 @@ class Axeptiocookies extends Module
     /** @var string This module requires at least PHP version */
     public $php_version_required = '5.6';
 
+    /**
+     * @var Context
+     */
     public $context;
 
     /**
@@ -114,7 +117,7 @@ class Axeptiocookies extends Module
             'min' => '1.7',
             'max' => _PS_VERSION_,
         ];
-        $this->need_instance = false;
+        $this->need_instance = 0;
         $this->module_key = '699938714719e6f3e6e697c82c6ccff7';
 
         $this->__mConstruct();

@@ -70,7 +70,7 @@ class EditConfigurationModel implements \JsonSerializable
     protected $title;
 
     /**
-     * @var
+     * @var string
      */
     protected $subtitle;
 

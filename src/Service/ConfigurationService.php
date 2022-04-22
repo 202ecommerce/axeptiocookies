@@ -168,7 +168,7 @@ class ConfigurationService
 
         $this->hookService->purgeCache();
 
-        return $result;
+        return (bool) $result;
     }
 
     public function getAll()

@@ -50,6 +50,9 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
      */
     protected $hookService;
 
+    /**
+     * @var int
+     */
     public $multishop_context = 0;
 
     public function __construct()

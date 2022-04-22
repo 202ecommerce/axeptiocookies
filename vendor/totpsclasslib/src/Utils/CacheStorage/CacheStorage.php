@@ -48,7 +48,7 @@ class CacheStorage
     /**
      * Expired in seconds
      *
-     * @var null
+     * @var null|int
      */
     protected $expiry = null;
 
@@ -124,7 +124,7 @@ class CacheStorage
     /**
      * Check cache exist with given key
      *
-     * @param string|array $key
+     * @param string|array|object $key
      *
      * @return bool
      */
@@ -148,7 +148,7 @@ class CacheStorage
     /**
      * Check cache is expired
      *
-     * @param string|array $key
+     * @param string|array|object $key
      *
      * @return bool
      */
@@ -171,8 +171,8 @@ class CacheStorage
     /**
      * Save content in cache by key
      *
-     * @param string|array $key
-     * @param string|array $content
+     * @param string|array|object $key
+     * @param string|array|object $content
      * @param array $params
      */
     public function set($key, $content, $params = [], $optional = [])
@@ -189,7 +189,7 @@ class CacheStorage
     /**
      * Get cache content from key
      *
-     * @param string|array $key
+     * @param string|array|object $key
      *
      * @return mixed
      */
@@ -201,7 +201,7 @@ class CacheStorage
     /**
      * Remove cache file by key/parameters
      *
-     * @param string|array $key
+     * @param string|array|object $key
      */
     public function remove($key)
     {

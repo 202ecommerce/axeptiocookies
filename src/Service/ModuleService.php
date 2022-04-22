@@ -28,7 +28,7 @@ use AxeptiocookiesAddon\Entity\AxeptioModuleConfiguration;
 use AxeptiocookiesAddon\Model\Constant\WhiteListModules;
 use AxeptiocookiesAddon\Repository\ModuleRepository;
 use Context;
-use Lcobucci\JWT\Exception;
+use Exception;
 use Module;
 use PrestaShop\PrestaShop\Adapter\ServiceLocator;
 use Tools;
@@ -84,6 +84,7 @@ class ModuleService
 
                 $file = _PS_MODULE_DIR_ . $module['name'] . '/' . Context::getContext()->language->iso_code . '.php';
                 if (Tools::file_exists_cache($file) && include_once($file)) {
+                    global $_MODULE;
                     if (isset($_MODULE) && is_array($_MODULE)) {
                         $_MODULES = !empty($_MODULES) ? array_merge($_MODULES, $_MODULE) : $_MODULE;
                     }

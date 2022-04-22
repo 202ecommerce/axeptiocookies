@@ -44,7 +44,7 @@ class AxeptioModuleConfiguration extends ObjectModel
     public $module_name;
 
     /**
-     * @see ObjectModel::$definition
+     * @var array
      */
     public static $definition = [
         'table' => 'axeptiocookies_module_configuration',

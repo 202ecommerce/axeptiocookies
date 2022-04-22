@@ -78,7 +78,7 @@ class ModuleRepository
         }
 
         if (!is_null($isActive)) {
-            $query->where('active = ' . (int) $isActive);
+            $query->where('m.active = ' . (int) $isActive);
         }
 
         if (!is_null($selectedModules)) {

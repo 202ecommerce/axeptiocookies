@@ -74,7 +74,7 @@ class ProjectService
     {
         $project = $this->getCookiesByProjectId($idProject);
 
-        if (empty($project)) {
+        if ($project === false) {
             return null;
         }
 

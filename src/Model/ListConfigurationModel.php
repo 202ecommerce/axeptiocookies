@@ -51,7 +51,7 @@ class ListConfigurationModel implements \JsonSerializable
     protected $idShops;
 
     /**
-     * @var
+     * @var int
      */
     protected $idLanguage;
 
@@ -156,7 +156,7 @@ class ListConfigurationModel implements \JsonSerializable
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getIdLanguage()
     {
@@ -164,7 +164,7 @@ class ListConfigurationModel implements \JsonSerializable
     }
 
     /**
-     * @param mixed $idLanguage
+     * @param int $idLanguage
      *
      * @return ListConfigurationModel
      */

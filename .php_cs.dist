@@ -6,6 +6,6 @@ $config
     ->setUsingCache(true)
     ->getFinder()
     ->in(__DIR__)
-    ->exclude(['vendor', 'node_modules', '202', 'translations', 'config']);
+    ->exclude(['vendor', 'node_modules', '202', 'translations', 'config', 'upgrade']);
 
 return $config;

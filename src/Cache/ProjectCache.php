@@ -24,6 +24,7 @@
 
 namespace AxeptiocookiesAddon\Cache;
 
+use AxeptiocookiesAddon\Model\Integration\IntegrationModel;
 use AxeptiocookiesClasslib\Utils\CacheStorage\CacheStorage;
 
 class ProjectCache extends CacheStorage
@@ -42,7 +43,7 @@ class ProjectCache extends CacheStorage
 
     /**
      * @param CacheParams $key
-     * @param $content
+     * @param IntegrationModel $content
      * @param array $params
      * @param array $optional
      */

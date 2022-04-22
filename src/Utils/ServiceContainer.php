@@ -32,7 +32,7 @@ class ServiceContainer
 
     private $container;
 
-    protected function __construct()
+    final protected function __construct()
     {
         $this->container = new Container(
             'axeptiocookies',

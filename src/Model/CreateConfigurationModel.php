@@ -57,7 +57,7 @@ class CreateConfigurationModel
     protected $title;
 
     /**
-     * @var
+     * @var string
      */
     protected $subtitle;
 

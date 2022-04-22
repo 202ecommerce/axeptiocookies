@@ -37,9 +37,14 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
     /** @var string Associated table name */
     public $table = 'configuration';
 
-    /** @var string Associated table name */
+    /**
+     * @var bool
+     */
     public $bootstrap = false;
 
+    /**
+     * @var int
+     */
     public $multishop_context = 0;
 
     /**

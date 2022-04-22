@@ -29,7 +29,7 @@ abstract class AbstractObject implements \JsonSerializable
     /**
      * @param array $json
      *
-     * @return AbstractObject
+     * @return AbstractObject|null
      */
     abstract public function build($json);
 
