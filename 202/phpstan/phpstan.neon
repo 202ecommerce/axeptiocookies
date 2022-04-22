@@ -7,10 +7,10 @@ parameters:
   # From Phpstan 0.12, paths are relative to the .neon file.
       - ../../../../var/cache/prod/class_index.php
       - ../../axeptiocookies.php
-      - ../../classes
       - ../../controllers
+      - ../../override
       - ../../src
       - ../../upgrade
 
   reportUnmatchedIgnoredErrors: false
-  level: 1
+  level: 3

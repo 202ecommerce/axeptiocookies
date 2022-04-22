@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  prestashop:
+    build: $PWD/202/docker
+    environment:
+      PS_DOMAIN: "axeptiocookies"
+      RUN_USER: www-data
+    ports:
+      - 8080:80
+    volumes:
+      - $PWD:/var/www/html/modules/axeptiocookies
+       # Ignore vendor folder (prevent modify vendor actually in folder and mount it "empty" in container)
+      - /var/www/html/modules/axeptiocookies/vendor
+      # Mount only classlib for 202 librairies
+      - $PWD/vendor/totpsclasslib:/var/www/html/modules/axeptiocookies/vendor/totpsclasslib
+volumes:
+  data:
