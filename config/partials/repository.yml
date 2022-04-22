@@ -1,0 +1,7 @@
+services:
+  AxeptiocookiesAddon\Repository\ConfigurationRepository:
+    class: AxeptiocookiesAddon\Repository\ConfigurationRepository
+
+  AxeptiocookiesAddon\Repository\ModuleRepository:
+    class: AxeptiocookiesAddon\Repository\ModuleRepository
+

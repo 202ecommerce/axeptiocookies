@@ -1,0 +1,6 @@
+*.xml
+*.log
+.php_cs.cache
+/vendor/*
+!/vendor/totpsclasslib
+node_modules

@@ -1,0 +1,100 @@
+/*!
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to a commercial license from SARL 202 ecommerce
+ * Use, copy, modification or distribution of this source file without written
+ * license agreement from the SARL 202 ecommerce is strictly forbidden.
+ * In order to obtain a license, please contact us: tech@202-ecommerce.com
+ * ...........................................................................
+ * INFORMATION SUR LA LICENCE D'UTILISATION
+ *
+ * L'utilisation de ce fichier source est soumise a une licence commerciale
+ * concedee par la societe 202 ecommerce
+ * Toute utilisation, reproduction, modification ou distribution du present
+ * fichier source sans contrat de licence ecrit de la part de la SARL 202 ecommerce est
+ * expressement interdite.
+ * Pour obtenir une licence, veuillez contacter 202-ecommerce <tech@202-ecommerce.com>
+ * ...........................................................................
+ *
+ * @author    202-ecommerce <tech@202-ecommerce.com>
+ * @copyright Copyright (c) 202-ecommerce
+ * @license   Commercial license
+ */
+
+.list-configuration-card {
+  img {
+    max-width: 150px;
+    pointer-events: none;
+  }
+
+  .card-text {
+    color: #000000;
+    text-decoration: none !important;
+  }
+
+  a {
+    &.card-text {
+      &:hover {
+        color: var(--primary);
+      }
+    }
+
+  }
+
+  &-wrapper-create {
+    cursor: pointer;
+  }
+
+  .configuration-warning {
+    color: #f44336;
+  }
+}
+
+.modal-open .modal {
+  background: #0000006b;
+}
+
+.modules-wrapper {
+  img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .module-item {
+    cursor: pointer;
+  }
+}
+
+.form-group {
+  .loader-wrapper {
+    right: 5px;
+    top: 5px;
+    width: auto;
+    height: auto;
+
+    .lds-ring {
+      width: 20px;
+      height: 20px;
+
+      div {
+        width: 20px;
+        height: 20px;
+        margin: 2px;
+        border: 2px solid #7cd5e7;
+        border-color: #7cd5e7 transparent transparent transparent;
+      }
+    }
+  }
+}
+
+.edit-wrapper {
+  .card-block {
+    min-height: 300px;
+  }
+}
+
+.axeptioApp {
+  a {
+    color: var(--primary);
+  }
+}

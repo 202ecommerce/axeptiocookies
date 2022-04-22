@@ -1,0 +1,45 @@
+services:
+
+  AxeptiocookiesAddon\API\Client\Client:
+    class: AxeptiocookiesAddon\API\Client\Client
+
+  AxeptiocookiesAddon\Service\ProjectService:
+    class: AxeptiocookiesAddon\Service\ProjectService
+    arguments:
+      - '@AxeptiocookiesAddon\API\Client\Client'
+
+  AxeptiocookiesAddon\Service\ModuleService:
+    class: AxeptiocookiesAddon\Service\ModuleService
+    arguments:
+      - '@AxeptiocookiesAddon\Repository\ModuleRepository'
+
+  AxeptiocookiesAddon\Validator\ConfigurationValidator:
+    class: AxeptiocookiesAddon\Validator\ConfigurationValidator
+    arguments:
+      - '@AxeptiocookiesAddon\Repository\ConfigurationRepository'
+
+  AxeptiocookiesAddon\Service\ConfigurationService:
+    class: AxeptiocookiesAddon\Service\ConfigurationService
+    arguments:
+      - '@AxeptiocookiesAddon\Repository\ConfigurationRepository'
+      - '@AxeptiocookiesAddon\Service\ProjectService'
+      - '@AxeptiocookiesAddon\Service\ModuleService'
+      - '@AxeptiocookiesAddon\Validator\ConfigurationValidator'
+      - '@AxeptiocookiesAddon\Service\HookService'
+
+  AxeptiocookiesAddon\Cache\ProjectCache:
+    class: AxeptiocookiesAddon\Cache\ProjectCache
+
+  AxeptiocookiesAddon\Service\HookService:
+    class: AxeptiocookiesAddon\Service\HookService
+    arguments:
+      - '@AxeptiocookiesAddon\Cache\ProjectCache'
+      - '@AxeptiocookiesAddon\Service\ProjectService'
+      - '@AxeptiocookiesAddon\Repository\ConfigurationRepository'
+      - '@AxeptiocookiesAddon\Service\ModuleService'
+
+  AxeptiocookiesAddon\Service\CookieService:
+    class: AxeptiocookiesAddon\Service\CookieService
+    arguments:
+      - '@AxeptiocookiesAddon\Service\HookService'
+

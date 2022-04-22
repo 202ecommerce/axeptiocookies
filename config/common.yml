@@ -1,0 +1,10 @@
+imports:
+  - { resource: partials/repository.yml }
+  - { resource: partials/service.yml }
+
+services:
+  axeptiocookies:
+    class: 'Axeptiocookies'
+    factory: ['Module', 'getInstanceByName']
+    arguments:
+      - 'axeptiocookies'
