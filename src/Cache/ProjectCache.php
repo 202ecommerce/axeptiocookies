@@ -32,7 +32,7 @@ class ProjectCache extends CacheStorage
     /**
      * @var int
      */
-    protected $expiry = 0; //604800;
+    protected $expiry = 604800;
 
     /**
      * @param CacheParams $key
