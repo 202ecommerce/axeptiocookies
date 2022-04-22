@@ -26,7 +26,6 @@ namespace AxeptiocookiesAddon\Model\Integration;
 
 class StepModel implements \JsonSerializable
 {
-
     /**
      * @var bool
      */
@@ -84,11 +83,13 @@ class StepModel implements \JsonSerializable
 
     /**
      * @param bool $hasVendors
+     *
      * @return StepModel
      */
     public function setHasVendors($hasVendors)
     {
         $this->hasVendors = $hasVendors;
+
         return $this;
     }
 
@@ -102,11 +103,13 @@ class StepModel implements \JsonSerializable
 
     /**
      * @param string $image
+     *
      * @return StepModel
      */
     public function setImage($image)
     {
         $this->image = $image;
+
         return $this;
     }
 
@@ -120,11 +123,13 @@ class StepModel implements \JsonSerializable
 
     /**
      * @param string $layout
+     *
      * @return StepModel
      */
     public function setLayout($layout)
     {
         $this->layout = $layout;
+
         return $this;
     }
 
@@ -138,11 +143,13 @@ class StepModel implements \JsonSerializable
 
     /**
      * @param string $message
+     *
      * @return StepModel
      */
     public function setMessage($message)
     {
         $this->message = $message;
+
         return $this;
     }
 
@@ -156,11 +163,13 @@ class StepModel implements \JsonSerializable
 
     /**
      * @param string $name
+     *
      * @return StepModel
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -174,11 +183,13 @@ class StepModel implements \JsonSerializable
 
     /**
      * @param bool $onlyOnce
+     *
      * @return StepModel
      */
     public function setOnlyOnce($onlyOnce)
     {
         $this->onlyOnce = $onlyOnce;
+
         return $this;
     }
 
@@ -192,11 +203,13 @@ class StepModel implements \JsonSerializable
 
     /**
      * @param bool $showToggleAllSwitch
+     *
      * @return StepModel
      */
     public function setShowToggleAllSwitch($showToggleAllSwitch)
     {
         $this->showToggleAllSwitch = $showToggleAllSwitch;
+
         return $this;
     }
 
@@ -210,11 +223,13 @@ class StepModel implements \JsonSerializable
 
     /**
      * @param string $title
+     *
      * @return StepModel
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -228,11 +243,13 @@ class StepModel implements \JsonSerializable
 
     /**
      * @param string $subTitle
+     *
      * @return StepModel
      */
     public function setSubTitle($subTitle)
     {
         $this->subTitle = $subTitle;
+
         return $this;
     }
 
@@ -246,24 +263,26 @@ class StepModel implements \JsonSerializable
 
     /**
      * @param VendorModel[] $vendors
+     *
      * @return StepModel
      */
     public function setVendors($vendors)
     {
         $this->vendors = $vendors;
+
         return $this;
     }
 
     public static function __set_state($array)
     {
         $obj = new StepModel();
-        $obj->setHasVendors((bool)$array['hasVendors']);
+        $obj->setHasVendors((bool) $array['hasVendors']);
         $obj->setImage($array['image']);
         $obj->setLayout($array['layout']);
         $obj->setMessage($array['message']);
         $obj->setName($array['name']);
-        $obj->setOnlyOnce((bool)$array['onlyOnce']);
-        $obj->setShowToggleAllSwitch((bool)$array['showToggleAllSwitch']);
+        $obj->setOnlyOnce((bool) $array['onlyOnce']);
+        $obj->setShowToggleAllSwitch((bool) $array['showToggleAllSwitch']);
         $obj->setSubTitle($array['subTitle']);
         $obj->setTitle($array['title']);
         $obj->setVendors($array['vendors']);

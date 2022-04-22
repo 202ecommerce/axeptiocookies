@@ -90,12 +90,12 @@ class ModuleService
                 }
 
                 $module['displayName'] = stripslashes(
-                    Translate::getModuleTranslation((string)$xmlModule->name,
-                        Module::configXmlStringFormat($xmlModule->displayName), (string)$xmlModule->name)
+                    Translate::getModuleTranslation((string) $xmlModule->name,
+                        Module::configXmlStringFormat($xmlModule->displayName), (string) $xmlModule->name)
                 );
                 $module['description'] = stripslashes(
-                    Translate::getModuleTranslation((string)$xmlModule->name,
-                        Module::configXmlStringFormat($xmlModule->description), (string)$xmlModule->name));
+                    Translate::getModuleTranslation((string) $xmlModule->name,
+                        Module::configXmlStringFormat($xmlModule->description), (string) $xmlModule->name));
                 $module['authorUri'] = (isset($xmlModule->author_uri) && $xmlModule->author_uri)
                     ? stripslashes($xmlModule->author_uri)
                     : false;
@@ -167,7 +167,7 @@ class ModuleService
 
         foreach ($modules as $moduleName) {
             $moduleAssociation = new AxeptioModuleConfiguration();
-            $moduleAssociation->id_axeptiocookies_configuration = (int)$idObject;
+            $moduleAssociation->id_axeptiocookies_configuration = (int) $idObject;
             $moduleAssociation->module_name = $moduleName;
             $result &= $moduleAssociation->save();
         }

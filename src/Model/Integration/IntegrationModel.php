@@ -81,7 +81,6 @@ class IntegrationModel implements \JsonSerializable
         return $this;
     }
 
-
     /**
      * @return mixed
      */
@@ -152,11 +151,13 @@ class IntegrationModel implements \JsonSerializable
 
     /**
      * @param StepModel $moduleStep
+     *
      * @return IntegrationModel
      */
     public function setModuleStep($moduleStep)
     {
         $this->moduleStep = $moduleStep;
+
         return $this;
     }
 

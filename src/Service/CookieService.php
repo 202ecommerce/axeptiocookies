@@ -25,7 +25,6 @@
 namespace AxeptiocookiesAddon\Service;
 
 use AxeptiocookiesAddon\Model\Constant\WhiteListModules;
-use AxeptiocookiesAddon\Model\Integration\VendorModel;
 use Context;
 
 class CookieService

@@ -47,7 +47,6 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
 
     /**
      * @var HookService
-     *
      */
     protected $hookService;
 
@@ -139,7 +138,7 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
             if ($result) {
                 $response = (new SuccessNotificationResponse())
                     ->setMessage('Association is created successfully')
-                    ->setData((int)$result);
+                    ->setData((int) $result);
                 $this->ajaxDie(json_encode($response));
             } else {
                 throw new PrestaShopException('Failed to create configuration');

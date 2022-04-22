@@ -69,10 +69,10 @@ class ConfigurationService
      * @param HookService $hookService
      */
     public function __construct(ConfigurationRepository $configurationRepository,
-                                ProjectService          $projectService,
-                                ModuleService           $moduleService,
-                                ConfigurationValidator  $configurationValidator,
-                                HookService             $hookService)
+                                ProjectService $projectService,
+                                ModuleService $moduleService,
+                                ConfigurationValidator $configurationValidator,
+                                HookService $hookService)
     {
         $this->configurationRepository = $configurationRepository;
         $this->projectService = $projectService;
@@ -210,7 +210,7 @@ class ConfigurationService
      */
     public function getById($idObject)
     {
-        $moduleConfiguration = new AxeptioConfiguration((int)$idObject);
+        $moduleConfiguration = new AxeptioConfiguration((int) $idObject);
         if (!Validate::isLoadedObject($moduleConfiguration)) {
             throw new PrestaShopException('Undefined configuration id');
         }
@@ -227,7 +227,7 @@ class ConfigurationService
         });
 
         return (new EditConfigurationModel())
-            ->setIdObject((int)$idObject)
+            ->setIdObject((int) $idObject)
             ->setLanguage(\Language::getLanguage($moduleConfiguration->id_lang))
             ->setIdProject($moduleConfiguration->id_project)
             ->setMessage($moduleConfiguration->message)
