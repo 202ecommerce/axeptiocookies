@@ -10,7 +10,6 @@ parameters:
       - ../../controllers
       - ../../override
       - ../../src
-      - ../../upgrade
 
   reportUnmatchedIgnoredErrors: false
   level: 3

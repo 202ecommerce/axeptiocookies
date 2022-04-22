@@ -16,7 +16,8 @@
     "require-dev": {
         "prestashop/php-dev-tools": "^3.4",
         "prestashop/header-stamp": "^1.7",
-        "phpunit/phpunit": "6"
+        "phpunit/phpunit": "^5",
+        "phpstan/phpstan": "^0.12"
     },
     "autoload-dev": {
         "psr-4": {
