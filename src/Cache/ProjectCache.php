@@ -29,6 +29,9 @@ use AxeptiocookiesClasslib\Utils\CacheStorage\CacheStorage;
 
 class ProjectCache extends CacheStorage
 {
+    /**
+     * @var int
+     */
     protected $expiry = 0; //604800;
 
     /**
