@@ -49,7 +49,8 @@
         <echo>Cleaning out the build artifacts</echo>
         <delete dir="${build-dir}/packages"/>
         <delete dir="${build-dir}/logs"/>
-        <delete dir="views/_dev"/>
+        <delete dir="${build-dir}/views/_dev"/>
+        <delete dir="${build-dir}/tests/"/>
     </target>
     <target name="prepare" depends="clean-build" description="Prepare for build">
         <echo>Making the build artifact folders</echo>
