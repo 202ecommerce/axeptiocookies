@@ -48,4 +48,14 @@ class ClientTest extends TestCase
 
         $this->assertEmpty($response->getIdProject());
     }
+
+    public function testCallUrlEmpty()
+    {
+        $client = new Client();
+        $request = new ProjectRequest();
+        $request->setIdProject('');
+        $response = $client->call($request);
+
+        $this->assertFalse($response);
+    }
 }

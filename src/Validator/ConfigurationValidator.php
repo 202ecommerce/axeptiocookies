@@ -82,6 +82,10 @@ class ConfigurationValidator
 
     public function validateEditConfiguration(EditConfigurationModel $configurationModel)
     {
+        if (empty($configurationModel->getIdObject())) {
+            throw new ConfigurationValidatorException($this->l('Object ID is not valid', $this->getClassShortName()));
+        }
+
         if (empty($configurationModel->getIdProject())) {
             throw new ConfigurationValidatorException($this->l('Project ID is not valid', $this->getClassShortName()));
         }

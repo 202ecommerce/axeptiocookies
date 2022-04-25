@@ -10,4 +10,9 @@
             <directory suffix=".php">test</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">../src</directory>
+        </whitelist>
+    </filter>
 </phpunit>

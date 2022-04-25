@@ -130,4 +130,9 @@ class CookieService
 
         return $isNotDisplayBO && $isNotDisplayAdmin && $isNotAction && $isNotInWhiteList;
     }
+
+    public function clearContextRequestCache()
+    {
+        static::$contextModules = [];
+    }
 }

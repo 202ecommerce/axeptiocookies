@@ -67,7 +67,11 @@ class Client
         $response = curl_exec($curl);
         curl_close($curl);
 
-        $response = new ProjectResponse(json_decode($response, true));
+        if (empty($response)) {
+            $response = new ProjectResponse([]);
+        } else {
+            $response = new ProjectResponse(json_decode($response, true));
+        }
 
         return $response->getResponse();
     }

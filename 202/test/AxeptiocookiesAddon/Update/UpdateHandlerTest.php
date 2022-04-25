@@ -24,6 +24,8 @@
 
 namespace AxeptiocookiesAddon\Update;
 
+use AxeptiocookiesAddon\Entity\AxeptioConfiguration;
+use AxeptiocookiesAddon\Entity\AxeptioModuleConfiguration;
 use AxeptiocookiesAddon\Utils\ServiceContainer;
 use PHPUnit\Framework\TestCase;
 
@@ -72,5 +74,32 @@ class UpdateHandlerTest extends TestCase
         );
 
         $this->assertEmpty($result);
+    }
+
+    public function testCreateLangShopConfigurationFromParamsVersionNotValid()
+    {
+        /** @var UpdateHandler $updateHandler */
+        $updateHandler = ServiceContainer::getInstance()->get(UpdateHandler::class);
+
+        $result = $updateHandler->createLangShopConfigurationFromParams(
+            '62500feea925ec04460954a9',
+            'unknown',
+            1,
+            1
+        );
+
+        $this->assertEmpty($result);
+    }
+
+    public static function setUpBeforeClass()
+    {
+        parent::setUpBeforeClass();
+        self::truncateTables();
+    }
+
+    private static function truncateTables()
+    {
+        \Db::getInstance()->delete(AxeptioConfiguration::$definition['table'], 1);
+        \Db::getInstance()->delete(AxeptioModuleConfiguration::$definition['table'], 1);
     }
 }
