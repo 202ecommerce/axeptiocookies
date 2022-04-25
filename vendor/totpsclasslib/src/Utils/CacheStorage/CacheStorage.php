@@ -48,7 +48,7 @@ class CacheStorage
     /**
      * Expired in seconds
      *
-     * @var null|int
+     * @var int|null
      */
     protected $expiry = null;
 
@@ -94,9 +94,8 @@ class CacheStorage
     }
 
     /**
+     * @param string|null $condition
      * Clean all files in cache directory according to condition
-     *
-     * @param null $condition
      *
      * @return bool
      */
@@ -122,9 +121,8 @@ class CacheStorage
     }
 
     /**
+     * @param object|string|array $key
      * Check cache exist with given key
-     *
-     * @param string|array|object $key
      *
      * @return bool
      */
@@ -134,9 +132,8 @@ class CacheStorage
     }
 
     /**
-     * Build cache file name from parameters
-     *
      * @param array $params
+     * Build cache file name from parameters
      *
      * @return string
      */
@@ -146,9 +143,8 @@ class CacheStorage
     }
 
     /**
+     * @param object|string|array $key
      * Check cache is expired
-     *
-     * @param string|array|object $key
      *
      * @return bool
      */
@@ -169,11 +165,15 @@ class CacheStorage
     }
 
     /**
+     *
+     * @param object|string|array $key
+     * @param object|string|array $content
+     * @param array $params
+     * @param array $optional
+     *
      * Save content in cache by key
      *
-     * @param string|array|object $key
-     * @param string|array|object $content
-     * @param array $params
+     * @return void
      */
     public function set($key, $content, $params = [], $optional = [])
     {
@@ -187,9 +187,10 @@ class CacheStorage
     }
 
     /**
-     * Get cache content from key
      *
-     * @param string|array|object $key
+     * @param object|string|array $key
+     *
+     * Get cache content from key
      *
      * @return mixed
      */
@@ -199,9 +200,10 @@ class CacheStorage
     }
 
     /**
-     * Remove cache file by key/parameters
      *
-     * @param string|array|object $key
+     * @param object|string|array $key
+     *
+     * Remove cache file by key/parameters
      */
     public function remove($key)
     {
@@ -211,9 +213,10 @@ class CacheStorage
     }
 
     /**
-     * Build cache path from array or string
      *
-     * @param string|array $key
+     * @param object|string|array $key
+     *
+     * Build cache path from array or string
      *
      * @return string
      */
@@ -231,10 +234,12 @@ class CacheStorage
     }
 
     /**
-     * Build cache array from content (adding expiry date)
      *
-     * @param string|array $content
+     *
+     * @param object|string|array $content
      * @param array $params
+     *
+     * Build cache array from content (adding expiry date)
      *
      * @return string|string[]
      */
