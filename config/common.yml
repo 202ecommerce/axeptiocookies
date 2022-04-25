@@ -1,6 +1,7 @@
 imports:
   - { resource: partials/repository.yml }
   - { resource: partials/service.yml }
+  - { resource: partials/update.yml }
 
 services:
   axeptiocookies:

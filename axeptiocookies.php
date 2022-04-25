@@ -147,6 +147,11 @@ class Axeptiocookies extends Module
         return $result;
     }
 
+    public function uninstall()
+    {
+        return Module::uninstall();
+    }
+
     /**
      * Handle Hooks loaded on extension
      *

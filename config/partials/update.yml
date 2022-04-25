@@ -1,0 +1,6 @@
+services:
+  AxeptiocookiesAddon\Update\UpdateHandler:
+    class: AxeptiocookiesAddon\Update\UpdateHandler
+    arguments:
+      - '@AxeptiocookiesAddon\Service\ProjectService'
+      - '@AxeptiocookiesAddon\Service\ConfigurationService'

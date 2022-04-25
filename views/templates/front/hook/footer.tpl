@@ -29,6 +29,7 @@
 
     (_axcb = window._axcb || []).push(function (sdk) {
       var currentCookiesConfig = window.axeptioSDK.userPreferencesManager.choices;
+      var isCookiesSet = true;
       sdk.on('cookies:complete', function(choices) {
         currentCookiesConfig = Object.assign({
         }, choices);
@@ -38,6 +39,11 @@
           }
         }
       });
+      sdk.on('ready', function() {
+        if (Object.keys(window.axeptioSDK.userPreferencesManager.choices).length === 0) {
+          isCookiesSet = false;
+        }
+      });
       sdk.on('close', function(choices) {
         for (const [key, value] of Object.entries(choices)) {
           if (typeof value === 'undefined') {
@@ -45,7 +51,7 @@
           }
         }
         for (const [key, value] of Object.entries(choices)) {
-          if (typeof currentCookiesConfig[key] === 'undefined' || currentCookiesConfig[key] !== value) {
+          if (!isCookiesSet || (typeof currentCookiesConfig[key] === 'undefined' || currentCookiesConfig[key] !== value)) {
             window.location.reload();
             break;
           }

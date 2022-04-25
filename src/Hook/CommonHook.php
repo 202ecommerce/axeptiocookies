@@ -28,11 +28,14 @@ use AxeptiocookiesAddon\Service\HookService;
 use AxeptiocookiesAddon\Utils\ServiceContainer;
 use AxeptiocookiesClasslib\Hook\AbstractHook;
 use Context;
+use Dispatcher;
+use Language;
 
 class CommonHook extends AbstractHook
 {
     const AVAILABLE_HOOKS = [
         'displayFooter',
+        'actionDispatcherBefore',
     ];
 
     public function displayFooter($params)
@@ -54,5 +57,61 @@ class CommonHook extends AbstractHook
         ]);
 
         return $tpl->fetch();
+    }
+
+    public function actionDispatcherBefore($params)
+    {
+        if ($params['controller_type'] != Dispatcher::FC_FRONT) {
+            return;
+        }
+
+        if (empty($_COOKIE[HookService::DEFAULT_COOKIE_NAME])) {
+            return;
+        }
+
+        $idShop = Context::getContext()->shop->id;
+        $languages = Language::getLanguages(true, $idShop);
+
+        foreach ($languages as $language) {
+            if (isset($_COOKIE[HookService::DEFAULT_COOKIE_NAME])) {
+                setcookie(
+                    HookService::DEFAULT_COOKIE_NAME . '_' . $language['iso_code'],
+                    $_COOKIE[HookService::DEFAULT_COOKIE_NAME],
+                    strtotime('+1 year'),
+                    '/',
+                    '',
+                    true
+                );
+            }
+            if (isset($_COOKIE[HookService::DEFAULT_COOKIE_AUTHORIZED_VENDORS])) {
+                setcookie(
+                    HookService::DEFAULT_COOKIE_AUTHORIZED_VENDORS . '_' . $language['iso_code'],
+                    $_COOKIE[HookService::DEFAULT_COOKIE_AUTHORIZED_VENDORS],
+                    strtotime('+1 year'),
+                    '/',
+                    '',
+                    true
+                );
+            }
+            if (isset($_COOKIE[HookService::DEFAULT_COOKIE_ALL_VENDORS])) {
+                setcookie(
+                    HookService::DEFAULT_COOKIE_ALL_VENDORS . '_' . $language['iso_code'],
+                    $_COOKIE[HookService::DEFAULT_COOKIE_ALL_VENDORS],
+                    strtotime('+1 year'),
+                    '/',
+                    '',
+                    true
+                );
+            }
+        }
+
+        unset($_COOKIE[HookService::DEFAULT_COOKIE_NAME]);
+        setcookie(HookService::DEFAULT_COOKIE_NAME, '', time() - 3600, '/', '', true);
+
+        unset($_COOKIE[HookService::DEFAULT_COOKIE_AUTHORIZED_VENDORS]);
+        setcookie(HookService::DEFAULT_COOKIE_AUTHORIZED_VENDORS, '', time() - 3600, '/', '', true);
+
+        unset($_COOKIE[HookService::DEFAULT_COOKIE_ALL_VENDORS]);
+        setcookie(HookService::DEFAULT_COOKIE_ALL_VENDORS, '', time() - 3600, '/', '', true);
     }
 }
