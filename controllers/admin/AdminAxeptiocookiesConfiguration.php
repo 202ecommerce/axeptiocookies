@@ -78,8 +78,8 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
     {
         parent::setMedia($isNewTheme);
 
-        $this->addJS(_PS_MODULE_DIR_ . 'axeptiocookies/views/js/admin.js');
-        $this->addCSS(_PS_MODULE_DIR_ . 'axeptiocookies/views/css/admin.css');
+        $this->addJS(_PS_MODULE_DIR_ . 'axeptiocookies/views/js/admin.' . $this->module->version . '.js');
+        $this->addCSS(_PS_MODULE_DIR_ . 'axeptiocookies/views/css/admin.' . $this->module->version . '.css');
         Media::addJsDef([
             $this->module->name => $this->getJsVariables(),
         ]);

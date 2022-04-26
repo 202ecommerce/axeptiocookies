@@ -29,101 +29,124 @@ const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const parser = require('xml2json');
 
-const minimizers = [];
-const plugins = [
-  new VueLoaderPlugin(),
-  new FixStyleOnlyEntriesPlugin(),
-  new MiniCssExtractPlugin({
-    filename: '[name].css',
-  }),
-  new webpack.ProvidePlugin({
-    $: 'jquery',
-    jQuery: 'jquery',
-    'window.jQuery': 'jquery'
-  }),
-];
+const getBuildVersion = (mode) => {
+  if (mode === 'development') {
+    return '@version@';
+  }
 
-const config = {
-  entry: {
-    'js/admin': './views/_dev/js/admin/admin.js',
-    'css/admin': './views/_dev/scss/admin.scss',
-  },
+  const data = fs.readFileSync('./202/build.xml', 'utf8');
+  const buildXml = JSON.parse(parser.toJson(data));
+  const properties = buildXml.project.property;
+  for (let property of properties) {
+    if ('name' in property && 'value' in property) {
+      if (property.name === 'TARGETVERSION') {
+        return property.value;
+      }
+    }
+  }
 
-  output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, './views/')
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(s)?css$/,
-        use: [
-          {loader: MiniCssExtractPlugin.loader},
-          {loader: 'css-loader'},
-          {loader: 'postcss-loader'},
-          {loader: 'sass-loader'},
-        ],
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            'scss': [
-              'vue-style-loader',
-              'css-loader',
-              'sass-loader'
-            ],
-            'sass': [
-              'vue-style-loader',
-              'css-loader',
-              'sass-loader?indentedSyntax'
-            ]
-          }
-        }
-      },
-    ],
-  },
+  return '1.0.0';
+}
 
-  externals: {
-    $: '$',
-    jquery: 'jQuery',
-  },
+const getConfig = (env, argv) => {
+  const minimizers = [];
+  const plugins = [
+    new VueLoaderPlugin(),
+    new FixStyleOnlyEntriesPlugin(),
+    new MiniCssExtractPlugin({
+      filename: `[name].${getBuildVersion(argv.mode)}.css`,
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
+    }),
+  ];
 
-  plugins,
-
-  optimization: {
-    minimizer: minimizers
-  },
-  devtool: this.mode === 'development' ? 'eval' : 'cheap-source-map',
-  resolve: {
-    extensions: ['.js', '.scss', '.css', '.vue', '.json'],
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '~': path.resolve(__dirname, './node_modules'),
-      '@app': path.resolve(__dirname, './bb/themes/new-theme/js/app'),
-      '@components': path.resolve(__dirname, './bb/themes/new-theme/js/components'),
+  return {
+    entry: {
+      'js/admin': './views/_dev/js/admin/admin.js',
+      'css/admin': './views/_dev/scss/admin.scss',
     },
-  },
-  stats: {
-    children: false,
-  },
+
+    output: {
+      filename: `[name].${getBuildVersion(argv.mode)}.js`,
+      path: path.resolve(__dirname, './views/')
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env'],
+              },
+            },
+          ],
+        },
+        {
+          test: /\.(s)?css$/,
+          use: [
+            {loader: MiniCssExtractPlugin.loader},
+            {loader: 'css-loader'},
+            {loader: 'postcss-loader'},
+            {loader: 'sass-loader'},
+          ],
+        },
+        {
+          test: /\.vue$/,
+          loader: 'vue-loader',
+          options: {
+            loaders: {
+              'scss': [
+                'vue-style-loader',
+                'css-loader',
+                'sass-loader'
+              ],
+              'sass': [
+                'vue-style-loader',
+                'css-loader',
+                'sass-loader?indentedSyntax'
+              ]
+            }
+          }
+        },
+      ],
+    },
+
+    externals: {
+      $: '$',
+      jquery: 'jQuery',
+    },
+
+    plugins,
+
+    optimization: {
+      minimizer: minimizers
+    },
+    devtool: argv.mode === 'development' ? 'eval' : 'cheap-source-map',
+    resolve: {
+      extensions: ['.js', '.scss', '.css', '.vue', '.json'],
+      alias: {
+        'vue$': 'vue/dist/vue.esm.js',
+        '~': path.resolve(__dirname, './node_modules'),
+        '@app': path.resolve(__dirname, './bb/themes/new-theme/js/app'),
+        '@components': path.resolve(__dirname, './bb/themes/new-theme/js/components'),
+      },
+    },
+    stats: {
+      children: false,
+    },
+  };
 };
 
 module.exports = (env, argv) => {
+  const config = getConfig(env, argv);
   // Production specific settings
   if (argv.mode === 'production') {
     const terserPlugin = new TerserPlugin({
