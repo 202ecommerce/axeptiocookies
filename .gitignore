@@ -7,3 +7,5 @@ node_modules
 !/202/build.xml
 !/202/phpunit.xml
 *.map
+views/js/*
+views/css/*
