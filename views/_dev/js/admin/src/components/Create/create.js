@@ -39,6 +39,8 @@ export default {
       title: '',
       subtitle: '',
       hasBack: false,
+      commonFieldsHighlited: false,
+      searchTimer: null
     };
   },
   computed: {
@@ -95,7 +97,8 @@ export default {
 
       this.$store.dispatch('createConfiguration', configuration);
     },
-    async handleBlurProjectId() {
+    async handleInputProjectId() {
+      const self = this;
       if (this.createConfiguration !== null && this.idProject === this.createConfiguration.idProject) {
         return;
       }
@@ -106,6 +109,22 @@ export default {
         return;
       }
       await this.$store.dispatch('getCookiesByProjectId', this.idProject);
+      if (this.isCommonFieldEditable) {
+        this.commonFieldsHighlited = true;
+        setTimeout(function () {
+          self.commonFieldsHighlited = false;
+        }, 1000);
+      }
+    },
+    onSearchProject() {
+      const self = this;
+      if (this.searchTimer) {
+        clearTimeout(this.searchTimer);
+        this.searchTimer = null;
+      }
+      this.searchTimer = setTimeout(async() => {
+        await self.handleInputProjectId();
+      }, 500);
     },
     handleSelectConfiguration(configuration) {
       if (!(this.createConfiguration !== null && this.idProject === this.createConfiguration.idProject)) {

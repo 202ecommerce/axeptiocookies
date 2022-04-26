@@ -85,6 +85,10 @@
       }
     }
   }
+
+  .is-highlited {
+    border: 1px solid var(--success);
+  }
 }
 
 .edit-wrapper {

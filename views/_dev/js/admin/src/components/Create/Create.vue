@@ -40,7 +40,7 @@
                   <input type="text"
                          :class="{'is-invalid': createConfiguration && createConfiguration.idProject === null}"
                          v-model="idProject"
-                         @blur="handleBlurProjectId"
+                         @input="onSearchProject"
                          class="form-control"/>
                   <div class="invalid-feedback"
                        v-text="translations.create.project_invalid"
@@ -64,6 +64,7 @@
                            :select-label="''"
                            :selected-label="''"
                            :deselect-label="''"
+                           :class="{'is-highlited': commonFieldsHighlited}"
                            :multiple="false"
                            :allow-empty="false"></multiselect>
             </div>
@@ -80,6 +81,7 @@
                            :select-label="''"
                            :selected-label="''"
                            :deselect-label="''"
+                           :class="{'is-highlited': commonFieldsHighlited}"
                            :options="shops"
                            :multiple="true"
                            :taggable="true"></multiselect>
@@ -98,6 +100,7 @@
                            :select-label="''"
                            :selected-label="''"
                            :deselect-label="''"
+                           :class="{'is-highlited': commonFieldsHighlited}"
                            :options="languages"
                            :multiple="false"
                            :allow-empty="false"></multiselect>

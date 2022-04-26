@@ -19,6 +19,8 @@
 import axios from 'axios'
 import qs from 'qs';
 
+const CancelToken = axios.CancelToken;
+
 axios.interceptors.response.use(function (response) {
   if (response.data === '') {
     response.data = {
@@ -33,16 +35,29 @@ axios.interceptors.response.use(function (response) {
 });
 
 export default class Client {
+  constructor() {
+    this.getProjectIdCancelToken = false;
+  }
 
   async getCookiesByProjectId(idProject) {
     try {
+      const self = this;
       const url = window.axeptiocookies.links.ajax;
 
+      if (this.getProjectIdCancelToken) {
+        this.getProjectIdCancelToken();
+      }
+
       const response = await axios.post(url, qs.stringify({
-        ajax: true,
-        action: 'GetCookiesByProjectId',
-        idProject: idProject
-      }));
+          ajax: true,
+          action: 'GetCookiesByProjectId',
+          idProject: idProject
+        }),
+        {
+          cancelToken: new CancelToken((c) => {
+            self.getProjectIdCancelToken = c;
+          })
+        });
 
       return response.data;
     } catch (e) {
