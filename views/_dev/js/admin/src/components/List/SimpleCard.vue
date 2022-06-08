@@ -22,55 +22,60 @@
   -->
 
 <template>
-  <div class="my-2">
-    <div class="list-configuration-card-wrapper list-configuration-card-wrapper-edit">
-      <div class="card list-configuration-card flex-row px-4 py-3">
+  <tr class="list-configuration-card">
+    <td class="widget-case">
+      <div class="d-flex align-items-center">
         <div class="img-wrapper">
           <img :src="image" alt="List">
         </div>
-        <div class="d-flex flex-column justify-content-center pl-2">
-          <div class="d-flex flex-column mb-2">
-            <div class="d-flex">
-              <div class="font-weight-bold"
-                   v-if="configuration.configuration"
-                   v-text="configuration.configuration.title"></div>
-              <div v-else
-                   class="font-weight-bold"
-                   v-text="configuration.idConfiguration"
-              ></div>
-              <div class="pl-2 d-flex align-items-center configuration-warning" v-if="!configuration.configuration">
-                <i class="material-icons brand-danger">warning</i>
-                <span class="ml-2"
-                      v-text="translations.list.configuration_unavailable"></span>
-              </div>
-            </div>
-            <div>
-              <div v-text="translations.list.project_id + ' : ' + configuration.idProject"></div>
-              <div>
-                <span v-text="translations.list.shop + ' : '"></span>
-                <span v-for="(shop, index) in getShops"
-                      :key="shop.id_shop"
-                      class="badge badge-warning"
-                      :class="{'ml-2': index > 0}"
-                      v-text="shop.name"></span>
-              </div>
-              <div v-text="translations.list.language + ' : ' + (getLanguage ? getLanguage.name : '')">
-              </div>
-            </div>
+        <div class="d-flex flex-column">
+          <div class="font-weight-bold case-text"
+               v-if="configuration.configuration"
+               v-text="configuration.configuration.title"></div>
+          <div v-else
+               class="font-weight-bold case-text"
+               v-text="configuration.idConfiguration"
+          ></div>
+          <div class="d-flex align-items-center configuration-warning" v-if="!configuration.configuration">
+            <i class="material-icons brand-danger">warning</i>
+            <span class="ml-1"
+                  v-text="translations.list.configuration_unavailable"></span>
           </div>
-          <router-link tag="a"
-                       :to="{name: 'edit', params: {'id': configuration.idObject}}"
-                       class="card-text"
-                       v-text="translations.list.edit"></router-link>
-          <a class="card-text"
-             href="#"
-             @click.prevent="handleDelete"
-             v-text="translations.list.delete"></a>
         </div>
       </div>
-    </div>
-    <delete-modal :configuration="configuration"></delete-modal>
-  </div>
+    </td>
+    <td class="summary-case">
+      <div class="d-flex flex-column justify-content-center">
+        <div class="d-flex flex-column mb-2">
+          <div>
+            <div class="case-text" v-text="translations.list.project_id + ' : ' + configuration.idProject"></div>
+            <div>
+              <span class="case-text" v-text="translations.list.shop + ' : '"></span>
+              <span v-for="(shop, index) in getShops"
+                    :key="shop.id_shop"
+                    class="badge badge-warning"
+                    :class="{'ml-2': index > 0}"
+                    v-text="shop.name"></span>
+            </div>
+            <div class="case-text" v-text="translations.list.language + ' : ' + (getLanguage ? getLanguage.name : '')">
+            </div>
+          </div>
+        </div>
+      </div>
+    </td>
+    <td class="edit-case text-center">
+      <router-link tag="button"
+                   :to="{name: 'edit', params: {'id': configuration.idObject}}"
+                   class="btn btn-outline-warning text-nowrap"
+                   v-text="translations.list.edit"></router-link>
+    </td>
+    <td class="delete-case text-center">
+      <a class="btn btn-outline-danger text-nowrap"
+         href="#"
+         @click.prevent="handleDelete"
+         v-text="translations.list.delete"></a>
+    </td>
+  </tr>
 </template>
 
 <script src="./simpleCard.js">

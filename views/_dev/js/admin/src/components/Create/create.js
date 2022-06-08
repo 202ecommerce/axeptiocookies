@@ -77,7 +77,10 @@ export default {
     },
     getCookiesByProjectIdLoading() {
       return this.$store.getters.getCookiesByProjectIdLoading;
-    }
+    },
+    image() {
+      return window.axeptiocookies.images.create;
+    },
   },
   methods: {
     handleSave() {

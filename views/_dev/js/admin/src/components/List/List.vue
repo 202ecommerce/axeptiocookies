@@ -23,13 +23,41 @@
 
 <template>
   <div class="d-flex flex-column">
-    <div class="d-flex justify-content-center list-wrapper">
-      <div class="col-xl-8">
+
+    <div class="row">
+      <div class="col-12">
+        <top-description></top-description>
+      </div>
+    </div>
+
+    <div class="row list-wrapper" v-if="configurations.length">
+      <div class="col-12">
         <loader v-if="loading"></loader>
-        <simple-card v-for="(config) in configurations"
+
+        <table class="table mt-2 mb-0">
+          <thead>
+          <tr>
+            <th class="text-center" v-text="translations.list.table.widget"></th>
+            <th v-text="translations.list.table.summary"></th>
+            <th class="text-center" v-text="translations.list.table.modification"></th>
+            <th class="text-center" v-text="translations.list.table.deletion"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <simple-card v-for="(config) in configurations"
+                       :key="config.idObject"
+                       :configuration="config"></simple-card>
+          </tbody>
+        </table>
+        <delete-modal v-for="(config) in configurations"
                      :key="config.idObject"
-                     :configuration="config"></simple-card>
-        <create-card></create-card>
+                     :configuration="config"></delete-modal>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <cache></cache>
       </div>
     </div>
   </div>

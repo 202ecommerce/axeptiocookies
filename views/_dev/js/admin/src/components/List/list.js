@@ -21,9 +21,11 @@
  * @license   Commercial license
  */
 
-import CreateCard from './CreateCard';
 import Loader from '../Common/Loader';
 import SimpleCard from './SimpleCard';
+import DeleteModal from './DeleteModal';
+import TopDescription from '../Common/TopDescription';
+import Cache from '../Common/Cache';
 
 export default {
   name: 'List',
@@ -33,7 +35,10 @@ export default {
     },
     configurations() {
       return this.$store.getters.getConfigurations;
-    }
+    },
+    translations() {
+      return window.axeptiocookies.translations;
+    },
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {
@@ -42,8 +47,10 @@ export default {
     })
   },
   components: {
-    CreateCard,
     SimpleCard,
-    Loader
+    Loader,
+    TopDescription,
+    Cache,
+    DeleteModal
   }
 }

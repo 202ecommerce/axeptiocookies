@@ -22,7 +22,7 @@
   -->
 
 <template>
-  <div class="card">
+  <div class="card mt-2">
     <div class="card-header">
       <div class="col-sm-12"
            v-text="translations.common.cache_title">

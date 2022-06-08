@@ -23,26 +23,8 @@
 
 .list-configuration-card {
   img {
-    max-width: 150px;
+    max-width: 75px;
     pointer-events: none;
-  }
-
-  .card-text {
-    color: #000000;
-    text-decoration: none !important;
-  }
-
-  a {
-    &.card-text {
-      &:hover {
-        color: var(--primary);
-      }
-    }
-
-  }
-
-  &-wrapper-create {
-    cursor: pointer;
   }
 
   .configuration-warning {
@@ -94,6 +76,39 @@
 .edit-wrapper {
   .card-block {
     min-height: 300px;
+  }
+
+  .nav-item {
+    cursor: pointer;
+  }
+
+  .img-wrapper {
+    max-width: 120px;
+  }
+}
+
+.create-wrapper {
+  .img-wrapper {
+    max-width: 120px;
+  }
+}
+
+.list-wrapper {
+  table {
+    background: #fff !important;
+
+    .edit-case, .delete-case {
+      width: 10%;
+    }
+
+    .widget-case, .summary-case {
+      width: 35%;
+
+      .case-text {
+        color: #000;
+        font-size: 1rem;
+      }
+    }
   }
 }
 

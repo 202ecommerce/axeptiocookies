@@ -25,9 +25,21 @@ import Multiselect from 'vue-multiselect';
 import Loader from '../Common/Loader';
 import {configurationEmitter} from '../../events/emitters';
 import {CONFIGURATION_EDITED} from '../../events/EventType';
+import AxeptioExample from "./AxpetioExample";
+
+const TAB_ITEM = {
+  GENERAL: 'general',
+  MODULES: 'modules'
+};
 
 export default {
   name: "Edit",
+  data() {
+    return {
+      selectedTab: TAB_ITEM.GENERAL,
+      tabs: TAB_ITEM
+    };
+  },
   computed: {
     translations() {
       return window.axeptiocookies.translations;
@@ -43,7 +55,19 @@ export default {
     },
     editConfiguration() {
       return this.$store.getters.getEditConfiguration;
-    }
+    },
+    nbModules() {
+      if (!this.editConfiguration) {
+        return 0;
+      }
+
+      return this.editConfiguration.modules.filter(module => {
+        return module.checked;
+      }).length;
+    },
+    image() {
+      return window.axeptiocookies.images.create;
+    },
   },
   methods: {
     handleSave() {
@@ -64,7 +88,8 @@ export default {
   },
   components: {
     Multiselect,
-    Loader
+    Loader,
+    AxeptioExample
   },
   created() {
     const self = this;

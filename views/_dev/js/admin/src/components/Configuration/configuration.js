@@ -23,9 +23,7 @@
 
 import {configurationEmitter} from "../../events/emitters";
 import {CONFIGURATION_DELETED} from "../../events/EventType";
-import TopDescription from '../Common/TopDescription';
 import Notification from '../Common/Notification';
-import Cache from '../Common/Cache';
 
 export default {
   name: "Configuration",
@@ -37,8 +35,6 @@ export default {
     });
   },
   components: {
-    TopDescription,
     Notification,
-    Cache
   }
 };

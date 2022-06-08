@@ -22,14 +22,24 @@
  */
 
 export default {
-  name: "CreateCard",
-
-  computed: {
-    image() {
-      return window.axeptiocookies.images.create;
+  name: "AxpetioExample",
+  props: {
+    title: {
+      type: String,
     },
+    subtitle: {
+      type: String,
+    },
+    message: {
+      type: String,
+    }
+  },
+  computed: {
     translations() {
       return window.axeptiocookies.translations;
+    },
+    images() {
+      return window.axeptiocookies.images;
     },
   }
 }

@@ -112,7 +112,10 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
         return [
             'translations' => [
                 'create' => [
-                    'title' => $this->l('Create new association'),
+                    'title' => $this->l('Creating a widget for your website'),
+                    'subtitle' => $this->l('To create a new widget, open your Axeptio interface to retrieve the information'),
+                    'info_axeptio' => $this->l('Info Axeptio'),
+                    'info_ps' => $this->l('Info Prestashop'),
                     'project_title' => $this->l('What is your Axeptio\'s project ID'),
                     'project_invalid' => $this->l('Project ID is invalid'),
                     'configuration_title' => $this->l('What is your configuration?'),
@@ -124,16 +127,28 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                     'step_subtitle' => $this->l('Subtitle'),
                 ],
                 'edit' => [
-                    'title' => $this->l('Edit association'),
+                    'title' => $this->l('Edit your widget'),
+                    'subtitle' => $this->l('Manage the appearance and modules you want to offer for user consent'),
+                    'tabs' => [
+                        'general' => $this->l('General'),
+                        'modules' => $this->l('Modules'),
+                    ],
                     'project_title' => $this->l('Project ID'),
                     'configuration_title' => $this->l('Configuration'),
                     'shop_title' => $this->l('Shops'),
                     'language_title' => $this->l('Languages'),
-                    'modules_title' => $this->l('Modules'),
                     'back' => $this->l('To the list'),
                     'step_message' => $this->l('Message'),
                     'step_title' => $this->l('Title'),
                     'step_subtitle' => $this->l('Subtitle'),
+                ],
+                'example' => [
+                    'accept' => $this->l('Accept all'),
+                    'next' => $this->l('Next'),
+                    'title' => $this->l('Title module'),
+                    'description' => $this->l('Description module'),
+                    'certified' => $this->l('Consents certified by'),
+                    'toggle_all' => $this->l('Toggle all'),
                 ],
                 'common' => [
                     'save' => $this->trans('Save', [], 'Admin.Actions'),
@@ -142,32 +157,34 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                     'cache_description' => $this->l('Cache is purged automatically when it needed,
                                 if you have some problems with displaying of Axeptio widget, try to use this button'),
                     'description' => [
-                        'title' => $this->l('Axeptio - cookies and personal data management'),
-                        'configure' => sprintf(
-                            $this->l('The informations needed to configure this module are on your admin panel on %s'),
-                            '<a target="_blank" href="https://admin.axeptio.eu">admin.axeptio.eu</a>'),
-                        'documentation' => sprintf(
-                            $this->l('Technical documentation : %s'),
-                            '<a target="_blank"
-                                          href="https://developers.axeptio.eu/integration/integration-cms/integration-prestashop">
-                                          developers.axeptio.eu/integration/integration-cms/integration-prestashop
-                                      </a>'
-                        ),
+                        'title' => $this->l('Important'),
+                        'desc1' => $this->l('The Axeptio widget allows you to be GDPR compliant and let your 
+                                users choose the consent and cookies they want to activate.'),
+                        'desc2' => $this->l('To work, your account must be created and you already have a 
+                                project already created.'),
+                        'desc3' => sprintf(
+                            $this->l('If this is not the case %sclick here to create your Axeptio account and create your project%s'),
+                            '<a target="_blank" href="https://admin.axeptio.eu">', '</a>'),
                     ],
                     'error_occurred' => $this->l('Error occurred, try to reload this page'),
                 ],
                 'list' => [
-                    'delete' => $this->l('Delete this association'),
+                    'delete' => $this->l('Delete'),
                     'delete_no' => $this->trans('No', [], 'Admin.Global'),
                     'delete_yes' => $this->trans('Yes', [], 'Admin.Global'),
-                    'delete_confirmation' => $this->l('Are you sure you want delete this association?'),
-                    'new' => $this->l('Create new association'),
-                    'new_description' => $this->l('Create new association between an Axeptio configuration and a shop/language in PrestaShop'),
-                    'edit' => $this->l('Edit modules subject to consent'),
-                    'configuration_unavailable' => $this->l('Axeptio configuration unavailable, it is recommended to modify this association'),
+                    'delete_confirmation' => $this->l('Are you sure you want delete this widget?'),
+                    'new' => $this->l('Create an Axeptio widget'),
+                    'edit' => $this->l('Edit'),
+                    'configuration_unavailable' => $this->l('Axeptio widget is unavailable, it is recommended to modify this widget'),
                     'project_id' => $this->l('Project ID'),
                     'shop' => $this->trans('Shop', [], 'Admin.Global'),
                     'language' => $this->trans('Language', [], 'Admin.Global'),
+                    'table' => [
+                        'widget' => $this->l('Widget'),
+                        'modification' => $this->l('Modification'),
+                        'deletion' => $this->l('Deletion'),
+                        'summary' => $this->l('Summary'),
+                    ]
                 ],
             ],
             'links' => [
@@ -187,6 +204,8 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
             'images' => [
                 'create' => '/modules/' . $this->module->name . '/views/img/create.avif',
                 'list' => '/modules/' . $this->module->name . '/views/img/list.avif',
+                'people' => '/modules/' . $this->module->name . '/views/img/people.avif',
+                'sky' => '/modules/' . $this->module->name . '/views/img/sky.png',
             ],
         ];
     }
