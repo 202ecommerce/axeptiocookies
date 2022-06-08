@@ -184,7 +184,7 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                         'modification' => $this->l('Modification'),
                         'deletion' => $this->l('Deletion'),
                         'summary' => $this->l('Summary'),
-                    ]
+                    ],
                 ],
             ],
             'links' => [
