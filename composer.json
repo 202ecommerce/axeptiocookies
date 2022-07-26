@@ -41,7 +41,7 @@
         "exclude-from-classmap": ["vendor/symfony/polyfill-php80/Resources/stubs/Attribute.php"]
     },
     "scripts": {
-        "pre-autoload-dump": "if [ ${TOTPSCLASSLIB_DEV_PATH} ]; then php ${TOTPSCLASSLIB_DEV_PATH}/classlib/refresh.php .; fi"
+        "pre-autoload-dump": "if [ ${TOTPSCLASSLIB_DEV_PATH} ]; then php ${TOTPSCLASSLIB_DEV_PATH}/classlib/refresh.php .; fi; echo '}' >> ./vendor/symfony/config/Tests/Fixtures/ParseError.php"
     },
     "type": "prestashop-module",
     "author": "202-ecommerce"

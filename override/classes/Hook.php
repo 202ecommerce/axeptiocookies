@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * NOTICE OF LICENSE
  *
  * This source file is subject to a commercial license from SARL 202 ecommerce
@@ -22,6 +22,9 @@
  * @license   Commercial license
  */
 
+/**
+ * Override hook class
+ */
 class Hook extends HookCore
 {
     public static function getHookModuleExecList($hookName = null)

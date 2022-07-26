@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * NOTICE OF LICENSE
  *
  * This source file is subject to a commercial license from SARL 202 ecommerce
@@ -20,7 +20,6 @@
  * @author    202-ecommerce <tech@202-ecommerce.com>
  * @copyright Copyright (c) 202-ecommerce
  * @license   Commercial license
- * @version   release/2.3.2
  */
 
 namespace AxeptiocookiesClasslib\Utils\CacheStorage;

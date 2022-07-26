@@ -19,7 +19,6 @@
  * @author    202-ecommerce <tech@202-ecommerce.com>
  * @copyright Copyright (c) 202-ecommerce
  * @license   Commercial license
- * @version   [version]
  */
 
 const path = require('path');

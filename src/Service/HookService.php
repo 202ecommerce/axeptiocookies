@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * NOTICE OF LICENSE
  *
  * This source file is subject to a commercial license from SARL 202 ecommerce
@@ -172,8 +172,9 @@ class HookService
             $vendor->setName(self::PS_MODULE_PREFIX . $module['name']);
             $vendor->setTitle(!empty($module['displayName']) ? $module['displayName'] : $module['name']);
             $vendor->setType(!empty($module['tab']) ? $module['tab'] : '');
-            $vendor->setPolicyUrl('https://prestashop.com');
-            $vendor->setDomain('https://prestashop.com');
+            if (!empty($module['image'])) {
+                $vendor->setImage($module['image']);
+            }
             $vendors[] = $vendor;
         }
 

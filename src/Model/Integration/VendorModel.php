@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * NOTICE OF LICENSE
  *
  * This source file is subject to a commercial license from SARL 202 ecommerce
@@ -37,6 +37,8 @@ class VendorModel
     protected $policyUrl;
 
     protected $domain;
+
+    protected $image;
 
     /**
      * @return mixed
@@ -158,6 +160,26 @@ class VendorModel
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     *
+     * @return VendorModel
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
     public static function __set_state($array)
     {
         $obj = new VendorModel();
@@ -167,6 +189,7 @@ class VendorModel
         $obj->setDescription($array['description']);
         $obj->setPolicyUrl($array['policyUrl']);
         $obj->setDomain($array['domain']);
+        $obj->setImage($array['image']);
 
         return $obj;
     }
@@ -181,6 +204,7 @@ class VendorModel
             'type' => $this->getType(),
             'policyUrl' => $this->getPolicyUrl(),
             'domain' => $this->getDomain(),
+            'image' => $this->getImage(),
         ];
     }
 }

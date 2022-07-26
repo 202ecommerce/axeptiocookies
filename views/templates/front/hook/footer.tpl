@@ -1,12 +1,34 @@
+{**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to a commercial license from SARL 202 ecommerce
+ * Use, copy, modification or distribution of this source file without written
+ * license agreement from the SARL 202 ecommerce is strictly forbidden.
+ * In order to obtain a license, please contact us: tech@202-ecommerce.com
+ * ...........................................................................
+ * INFORMATION SUR LA LICENCE D'UTILISATION
+ *
+ * L'utilisation de ce fichier source est soumise a une licence commerciale
+ * concedee par la societe 202 ecommerce
+ * Toute utilisation, reproduction, modification ou distribution du present
+ * fichier source sans contrat de licence ecrit de la part de la SARL 202 ecommerce est
+ * expressement interdite.
+ * Pour obtenir une licence, veuillez contacter 202-ecommerce <tech@202-ecommerce.com>
+ * ...........................................................................
+ *
+ * @author    202-ecommerce <tech@202-ecommerce.com>
+ * @copyright Copyright (c) 202-ecommerce
+ * @license   Commercial license
+ *}
 {if !empty($integration)}
   <script>
     window.axeptioSettings = {
       //<![CDATA[
-      clientId: "{$integration.clientId}",
-      cookiesVersion: "{$integration.cookiesVersion}",
-      jsonCookieName: "{$integration.jsonCookieName}",
-      allVendorsCookieName: "{$integration.allVendorsCookieName}",
-      authorizedVendorsCookieName: "{$integration.authorizedVendorsCookieName}"
+      clientId: "{$integration.clientId|escape:'htmlall':'UTF-8'}",
+      cookiesVersion: "{$integration.cookiesVersion|escape:'htmlall':'UTF-8'}",
+      jsonCookieName: "{$integration.jsonCookieName|escape:'htmlall':'UTF-8'}",
+      allVendorsCookieName: "{$integration.allVendorsCookieName|escape:'htmlall':'UTF-8'}",
+      authorizedVendorsCookieName: "{$integration.authorizedVendorsCookieName|escape:'htmlall':'UTF-8'}"
       //]]>
     };
 

@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * NOTICE OF LICENSE
  *
  * This source file is subject to a commercial license from SARL 202 ecommerce
@@ -21,7 +21,6 @@
  * @copyright Copyright (c) 202-ecommerce
  * @license   Commercial license
  */
-
 if (!defined('_PS_VERSION_')) {
     exit;
 }
