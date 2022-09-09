@@ -17,6 +17,9 @@
  * @license   https://opensource.org/licenses/AFL-3.0  Academic Free License (AFL 3.0)
  */
 
+/*
+ * Check PS is installed
+ */
 if (!defined('_PS_VERSION_')) {
     exit;
 }
