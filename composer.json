@@ -38,11 +38,16 @@
             "axeptiocookies.php"
         ],
         "files": [],
-        "exclude-from-classmap": ["vendor/symfony/polyfill-php80/Resources/stubs/Attribute.php"]
+        "exclude-from-classmap": [
+            "vendor/symfony/polyfill-php80/Resources/stubs/Attribute.php"
+        ]
     },
     "scripts": {
-        "pre-autoload-dump": "if [ ${TOTPSCLASSLIB_DEV_PATH} ]; then php ${TOTPSCLASSLIB_DEV_PATH}/classlib/refresh.php .; fi; echo '}' >> ./vendor/symfony/config/Tests/Fixtures/ParseError.php"
+        "pre-autoload-dump": "if [ ${TOTPSCLASSLIB_DEV_PATH} ]; then php ${TOTPSCLASSLIB_DEV_PATH}/classlib/refresh.php .; fi; echo '}' >> ./vendor/symfony/config/Tests/Fixtures/ParseError.php",
+        "license-header": [
+            "vendor/bin/header-stamp --license=202/license/license.txt --exclude=.github,202,config,node_modules,translations,vendor"
+        ]
     },
     "type": "prestashop-module",
-    "author": "202-ecommerce"
+    "author": "PrestaShop"
 }
