@@ -83,11 +83,11 @@ class HookService
         $cacheParams->setIdLang(Context::getContext()->language->id);
         $cacheParams->setIdShop(Context::getContext()->shop->id);
 
-//        if ($this->projectCache->exist($cacheParams) && !$this->projectCache->isExpired($cacheParams)) {
-//            $cacheResult = $this->projectCache->get($cacheParams);
-//
-//            return $cacheResult['content'];
-//        }
+        if ($this->projectCache->exist($cacheParams) && !$this->projectCache->isExpired($cacheParams)) {
+            $cacheResult = $this->projectCache->get($cacheParams);
+
+            return $cacheResult['content'];
+        }
 
         $configurations = $this->configurationRepository->getConfigurationsByShopLang(
             $cacheParams->getIdShop(),
