@@ -30,11 +30,11 @@ jobs:
 
             # Get Docker images 202ecommerce/prestashop
             - name: Get PrestaShop 202 Image (Tag ${{ matrix.presta-versions }})
-              run: docker run -tid --rm -v $PWD:/var/www/html/modules/axeptiocookies --name temp-unittest-ps 202ecommerce/prestashop:${{ matrix.presta-versions }}
+              run: docker run -tid --rm -v $PWD:/var/www/html/modules/axeptiocookies  -e TEST_ID_CONFIGURATION=62500feea925ec04460954a9 -e TEST_ID_PROJECT=62500fefea9774f707035148 --name temp-unittest-ps 202ecommerce/prestashop:${{ matrix.presta-versions }}
 
             # Clear previous instance of the module in the PrestaShop volume
             - name: Install module and play unit test
-              run: docker exec -t temp-unittest-ps /bin/bash -c "export TEST_ID_CONFIGURATION=${{ secrets.TEST_ID_CONFIGURATION }} && TEST_ID_PROJECT=${{ secrets.TEST_ID_PROJECT }} && sh /var/www/html/modules/axeptiocookies/202/docker/run_for_unittest.sh"
+              run: docker exec -t temp-unittest-ps sh /var/www/html/modules/axeptiocookies/202/docker/run_for_unittest.sh
 
             # Copy coverage report from container to local
             - name: Copy coverage report from container to local
