@@ -80,7 +80,7 @@ class CommonHookTest extends TestCase
 
     public function testActionDispatcherBeforeFrontReplace()
     {
-        set_error_handler(function ($error) {
+        set_error_handler(function () {
             return false;
         });
         global $_COOKIE;
@@ -88,7 +88,7 @@ class CommonHookTest extends TestCase
             HookService::PS_MODULE_PREFIX . 'ps_emailsubscription' => true,
         ]);
 
-        $result = $this->hookDispatcher->dispatch(
+        $this->hookDispatcher->dispatch(
             'actionDispatcherBefore',
             [
                 'controller_type' => \Dispatcher::FC_FRONT,
@@ -117,7 +117,7 @@ class CommonHookTest extends TestCase
 
     public function testDisplayFooterFixtures()
     {
-        $data = $this->createConfigurationFixtures();
+        $this->createConfigurationFixtures();
         $result = $this->hookDispatcher->dispatch('displayFooter');
         $this->assertNotEmpty($result);
     }
@@ -130,8 +130,8 @@ class CommonHookTest extends TestCase
             'id_module' => \Module::getModuleIdByName('ps_emailsubscription'),
         ];
         $createConfigurationModel = (new CreateConfigurationModel())
-            ->setIdProject('62500feea925ec04460954a9')
-            ->setIdConfiguration('62500fefea9774f707035148')
+            ->setIdProject(getenv('TEST_ID_PROJECT'))
+            ->setIdConfiguration('TEST_ID_CONFIGURATION')
             ->setIdLanguage(1)
             ->setIdShops([1]);
 

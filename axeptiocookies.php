@@ -140,9 +140,7 @@ class Axeptiocookies extends Module
 
     public function install()
     {
-        $result = $this->mInstall();
-
-        return $result;
+        return $this->mInstall();
     }
 
     public function uninstall()

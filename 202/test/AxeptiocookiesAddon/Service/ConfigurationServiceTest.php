@@ -56,8 +56,8 @@ class ConfigurationServiceTest extends TestCase
     public function testCreateConfigurationValid()
     {
         $createConfigurationModel = (new CreateConfigurationModel())
-            ->setIdProject('62500feea925ec04460954a9')
-            ->setIdConfiguration('62500fefea9774f707035148')
+            ->setIdProject(getenv('TEST_ID_PROJECT'))
+            ->setIdConfiguration(getenv('TEST_ID_CONFIGURATION'))
             ->setIdLanguage(1)
             ->setIdShops([1]);
 
@@ -73,8 +73,8 @@ class ConfigurationServiceTest extends TestCase
     public function testCreateConfigurationSameShopLang()
     {
         $createConfigurationModel = (new CreateConfigurationModel())
-            ->setIdProject('62500feea925ec04460954a9')
-            ->setIdConfiguration('62500fefea9774f707035148')
+            ->setIdProject(getenv('TEST_ID_PROJECT'))
+            ->setIdConfiguration(getenv('TEST_ID_CONFIGURATION'))
             ->setIdLanguage(1)
             ->setIdShops([1]);
 
@@ -85,13 +85,13 @@ class ConfigurationServiceTest extends TestCase
     public function testCreateConfigurationValidationError()
     {
         $createConfigurationModel = (new CreateConfigurationModel())
-            ->setIdProject('62500feea925ec04460954a9')
+            ->setIdProject(getenv('TEST_ID_PROJECT'))
             ->setIdConfiguration('')
             ->setIdLanguage(1)
             ->setIdShops([1]);
 
         $this->expectException(ConfigurationValidatorException::class);
-        $result = $this->configurationService->createConfiguration($createConfigurationModel);
+        $this->configurationService->createConfiguration($createConfigurationModel);
     }
 
     /**
@@ -105,7 +105,7 @@ class ConfigurationServiceTest extends TestCase
 
         $configuration = (new Configuration())
             ->build([
-                'identifier' => '62500fefea9774f707035148',
+                'identifier' => getenv('TEST_ID_CONFIGURATION'),
                 'language' => 'fr',
                 'name' => 'projet test module axeptio-fr',
                 'title' => 'French Projet Test module Axeptio Cookies'
@@ -113,16 +113,16 @@ class ConfigurationServiceTest extends TestCase
 
         $editConfigurationModel = (new EditConfigurationModel())
             ->setIdObject(static::$createdConfiguration)
-            ->setIdProject('62500feea925ec04460954a9')
+            ->setIdProject(getenv('TEST_ID_PROJECT'))
             ->setConfiguration($configuration)
             ->setLanguage(\Language::getLanguage(2))
             ->setShops([\Shop::getShop(1)])
             ->setProject((new Project())->build(
                 [
-                    'projectId' => '62500feea925ec04460954a9',
+                    'projectId' => getenv('TEST_ID_PROJECT'),
                     'cookies' => [
                         [
-                            'identifier' => '62500fefea9774f707035148',
+                            'identifier' => getenv('TEST_ID_CONFIGURATION'),
                             'language' => 'fr',
                             'name' => 'projet test module axeptio-fr',
                             'title' => 'French Projet Test module Axeptio Cookies'
@@ -141,7 +141,7 @@ class ConfigurationServiceTest extends TestCase
         $configuration = new AxeptioConfiguration(static::$createdConfiguration);
 
         $this->assertNotEmpty($result);
-        $this->assertEquals($configuration->id_lang, 2);
+        $this->assertEquals(2, $configuration->id_lang);
     }
 
     public function testDeleteConfigurationNotValid()
@@ -174,7 +174,7 @@ class ConfigurationServiceTest extends TestCase
     {
         $this->expectException(\PrestaShopException::class);
 
-        $configuration = $this->configurationService->getById(-1);
+        $this->configurationService->getById(-1);
     }
 
     /**

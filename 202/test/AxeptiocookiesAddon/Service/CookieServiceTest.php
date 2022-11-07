@@ -120,8 +120,8 @@ class CookieServiceTest extends TestCase
             'id_module' => \Module::getModuleIdByName('ps_emailsubscription'),
         ];
         $createConfigurationModel = (new CreateConfigurationModel())
-            ->setIdProject('62500feea925ec04460954a9')
-            ->setIdConfiguration('62500fefea9774f707035148')
+            ->setIdProject(getenv('TEST_ID_PROJECT'))
+            ->setIdConfiguration(getenv('TEST_ID_CONFIGURATION'))
             ->setIdLanguage(1)
             ->setIdShops([1]);
 

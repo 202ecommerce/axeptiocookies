@@ -97,11 +97,6 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
         return $tpl->fetch();
     }
 
-    public function postProcess()
-    {
-        return parent::postProcess();
-    }
-
     protected function getJsVariables()
     {
         return [

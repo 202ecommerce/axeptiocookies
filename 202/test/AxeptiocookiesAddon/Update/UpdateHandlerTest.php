@@ -26,14 +26,16 @@ use PHPUnit\Framework\TestCase;
 
 class UpdateHandlerTest extends TestCase
 {
+    const TEST_VERSION_ID = 'projet test module axeptio-fr';
+
     public function testCreateLangShopConfigurationFromParams()
     {
         /** @var UpdateHandler $updateHandler */
         $updateHandler = ServiceContainer::getInstance()->get(UpdateHandler::class);
 
         $result = $updateHandler->createLangShopConfigurationFromParams(
-            '62500feea925ec04460954a9',
-            'projet test module axeptio-fr',
+            getenv('TEST_ID_PROJECT'),
+            self::TEST_VERSION_ID,
             1,
             1
         );
@@ -47,8 +49,8 @@ class UpdateHandlerTest extends TestCase
         $updateHandler = ServiceContainer::getInstance()->get(UpdateHandler::class);
 
         $result = $updateHandler->createLangShopConfigurationFromParams(
-            '62500feea925ec04460954a9',
-            'projet test module axeptio-fr',
+            getenv('TEST_ID_PROJECT'),
+            self::TEST_VERSION_ID,
             null,
             1
         );
@@ -63,7 +65,7 @@ class UpdateHandlerTest extends TestCase
 
         $result = $updateHandler->createLangShopConfigurationFromParams(
             'test',
-            'projet test module axeptio-fr',
+            self::TEST_VERSION_ID,
             1,
             1
         );
@@ -77,7 +79,7 @@ class UpdateHandlerTest extends TestCase
         $updateHandler = ServiceContainer::getInstance()->get(UpdateHandler::class);
 
         $result = $updateHandler->createLangShopConfigurationFromParams(
-            '62500feea925ec04460954a9',
+            getenv('TEST_ID_PROJECT'),
             'unknown',
             1,
             1
