@@ -55,7 +55,7 @@ class CommonHookTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->module = ServiceContainer::getInstance()->get('axeptiocookies');
+        $this->module = ServiceContainer::getInstance()->get('axeptiocookies.module');
         $this->hookDispatcher = new HookDispatcher($this->module);
         $this->configurationService = ServiceContainer::getInstance()->get(ConfigurationService::class);
         $this->moduleService = ServiceContainer::getInstance()->get(ModuleService::class);
