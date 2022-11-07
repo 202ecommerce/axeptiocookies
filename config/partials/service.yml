@@ -2,24 +2,29 @@ services:
 
   AxeptiocookiesAddon\API\Client\Client:
     class: AxeptiocookiesAddon\API\Client\Client
+    public: true
 
   AxeptiocookiesAddon\Service\ProjectService:
     class: AxeptiocookiesAddon\Service\ProjectService
+    public: true
     arguments:
       - '@AxeptiocookiesAddon\API\Client\Client'
 
   AxeptiocookiesAddon\Service\ModuleService:
     class: AxeptiocookiesAddon\Service\ModuleService
+    public: true
     arguments:
       - '@AxeptiocookiesAddon\Repository\ModuleRepository'
 
   AxeptiocookiesAddon\Validator\ConfigurationValidator:
     class: AxeptiocookiesAddon\Validator\ConfigurationValidator
+    public: true
     arguments:
       - '@AxeptiocookiesAddon\Repository\ConfigurationRepository'
 
   AxeptiocookiesAddon\Service\ConfigurationService:
     class: AxeptiocookiesAddon\Service\ConfigurationService
+    public: true
     arguments:
       - '@AxeptiocookiesAddon\Repository\ConfigurationRepository'
       - '@AxeptiocookiesAddon\Service\ProjectService'
@@ -29,9 +34,11 @@ services:
 
   AxeptiocookiesAddon\Cache\ProjectCache:
     class: AxeptiocookiesAddon\Cache\ProjectCache
+    public: true
 
   AxeptiocookiesAddon\Service\HookService:
     class: AxeptiocookiesAddon\Service\HookService
+    public: true
     arguments:
       - '@AxeptiocookiesAddon\Cache\ProjectCache'
       - '@AxeptiocookiesAddon\Service\ProjectService'
@@ -40,6 +47,7 @@ services:
 
   AxeptiocookiesAddon\Service\CookieService:
     class: AxeptiocookiesAddon\Service\CookieService
+    public: true
     arguments:
       - '@AxeptiocookiesAddon\Service\HookService'
 

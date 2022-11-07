@@ -31,7 +31,7 @@ $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_2caa711b5
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_70f043bb5fbaffcbe59b314bf948c787'] = 'Info Axeptio';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_b4889a390e448637bf02041f973f6251'] = 'Info Prestashop';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_1f4cabece9b3b660e736d16d58161a9e'] = 'Quel est l\'identifiant de votre projet Axeptio?';
-$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_a63207202f0b821ec164858813d1a4a7'] = 'L\'ID du projet n\'est pas valide';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_e69b0b1e7822b8d7e25c54fa12dda714'] = 'L\'ID du projet n\'est pas valide, pour information il est nécessaire de publier le projet dans votre dashboard Axeptio';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_40f135442c8eb24ceceee1574dbc0ff4'] = 'Quelle est votre configuration ?';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_0f55fc70fa58dbd1c9d5bf24b16a254e'] = 'À quelle boutique cette configuration doit-elle être liée ?';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_3656811525429cdbd2f9b19b80c4a7a8'] = 'À quelle langue cette configuration doit-elle être liée ?';
