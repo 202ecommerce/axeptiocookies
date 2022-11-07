@@ -1,5 +1,5 @@
 name: Unit test
-on: [push, pull_request]
+on: [push]
 jobs:
     # Run PHPUnit against the module and a PrestaShop release
     phpunit:
@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                presta-versions: ['1.7.8.3']
+                presta-versions: ['1.7.8.7']
         steps:
             - name: Checkout
               uses: actions/checkout@v2.0.0
@@ -35,3 +35,13 @@ jobs:
             # Clear previous instance of the module in the PrestaShop volume
             - name: Install module and play unit test
               run: docker exec -t temp-unittest-ps sh /var/www/html/modules/axeptiocookies/202/docker/run_for_unittest.sh
+
+            # Copy coverage report from container to local
+            - name: Copy coverage report from container to local
+              run: docker cp temp-unittest-ps:/var/www/html/modules/axeptiocookies/202/build/clover.xml ./
+
+            - name: SonarCloud Scan
+              uses: sonarsource/sonarcloud-github-action@master
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
