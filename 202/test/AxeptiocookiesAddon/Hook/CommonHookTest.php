@@ -131,7 +131,7 @@ class CommonHookTest extends TestCase
         ];
         $createConfigurationModel = (new CreateConfigurationModel())
             ->setIdProject(getenv('TEST_ID_PROJECT'))
-            ->setIdConfiguration('TEST_ID_CONFIGURATION')
+            ->setIdConfiguration(getenv('TEST_ID_CONFIGURATION'))
             ->setIdLanguage(1)
             ->setIdShops([1]);
 
