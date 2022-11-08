@@ -97,39 +97,7 @@ class ConfigurationServiceTest extends AxeptioBaseTestCase
             $this->markTestSkipped('Created configuration empty');
         }
 
-        $configuration = (new Configuration())
-            ->build([
-                'identifier' => getenv('TEST_ID_CONFIGURATION'),
-                'language' => 'fr',
-                'name' => 'projet test module axeptio-fr',
-                'title' => 'French Projet Test module Axeptio Cookies'
-            ]);
-
-        $editConfigurationModel = (new EditConfigurationModel())
-            ->setIdObject(static::$createdConfiguration)
-            ->setIdProject(getenv('TEST_ID_PROJECT'))
-            ->setConfiguration($configuration)
-            ->setLanguage(\Language::getLanguage(2))
-            ->setShops([\Shop::getShop(1)])
-            ->setProject((new Project())->build(
-                [
-                    'projectId' => getenv('TEST_ID_PROJECT'),
-                    'cookies' => [
-                        [
-                            'identifier' => getenv('TEST_ID_CONFIGURATION'),
-                            'language' => 'fr',
-                            'name' => 'projet test module axeptio-fr',
-                            'title' => 'French Projet Test module Axeptio Cookies'
-                        ]
-                    ]
-                ]
-            ))
-            ->setModules([
-                [
-                    'name' => 'ps_shoppingcart',
-                    'checked' => 'true',
-                ]
-            ]);
+        $editConfigurationModel = $this->getEditConfigurationObject();
 
         $result = $this->configurationService->editConfiguration($editConfigurationModel);
         $configuration = new AxeptioConfiguration(static::$createdConfiguration);
@@ -155,7 +123,7 @@ class ConfigurationServiceTest extends AxeptioBaseTestCase
             $this->markTestSkipped('Created configuration empty');
         }
 
-        $editConfigurationModel = $editConfigSetter($this->getErrorEditConfigurationObject());
+        $editConfigurationModel = $editConfigSetter($this->getEditConfigurationObject());
 
         $this->expectExceptionMessage($expectedExceptionMessage);
         $this->configurationService->editConfiguration($editConfigurationModel);
@@ -203,7 +171,7 @@ class ConfigurationServiceTest extends AxeptioBaseTestCase
         $this->assertNotEmpty($deleteResult);
     }
 
-    protected function getErrorEditConfigurationObject()
+    protected function getEditConfigurationObject()
     {
         $configuration = (new Configuration())
             ->build([
