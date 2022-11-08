@@ -245,16 +245,16 @@ class ConfigurationServiceTest extends AxeptioBaseTestCase
         return [
             [function (EditConfigurationModel $editConfigurationModel) {
                 return $editConfigurationModel->setIdObject(0);
-            }, 'L\'ID d\'objet n\'est pas valide'],
+            }, 'Object ID is not valid'],
             [function (EditConfigurationModel $editConfigurationModel) {
                 return $editConfigurationModel->setIdProject('');
-            }, 'L\'ID de projet n\'est pas valide'],
+            }, 'Project ID is not valid'],
             [function (EditConfigurationModel $editConfigurationModel) {
                 return $editConfigurationModel->setShops([]);
-            }, 'Les boutiques ne sont pas sélectionnées'],
+            }, 'Shops are not selected'],
             [function (EditConfigurationModel $editConfigurationModel) {
                 return $editConfigurationModel->setLanguage(\Language::getLanguage(0));
-            }, 'La langue n\'est pas sélectionnée'],
+            }, 'Language is not selected'],
         ];
     }
 }
