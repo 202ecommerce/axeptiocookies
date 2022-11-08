@@ -19,12 +19,10 @@
 
 namespace AxeptiocookiesAddon\Update;
 
-use AxeptiocookiesAddon\Entity\AxeptioConfiguration;
-use AxeptiocookiesAddon\Entity\AxeptioModuleConfiguration;
+use AxeptiocookiesAddon\AxeptioBaseTestCase;
 use AxeptiocookiesAddon\Utils\ServiceContainer;
-use PHPUnit\Framework\TestCase;
 
-class UpdateHandlerTest extends TestCase
+class UpdateHandlerTest extends AxeptioBaseTestCase
 {
     const TEST_VERSION_ID = 'projet test module axeptio-fr';
 
@@ -86,17 +84,5 @@ class UpdateHandlerTest extends TestCase
         );
 
         $this->assertEmpty($result);
-    }
-
-    public static function setUpBeforeClass()
-    {
-        parent::setUpBeforeClass();
-        self::truncateTables();
-    }
-
-    private static function truncateTables()
-    {
-        \Db::getInstance()->delete(AxeptioConfiguration::$definition['table'], 1);
-        \Db::getInstance()->delete(AxeptioModuleConfiguration::$definition['table'], 1);
     }
 }

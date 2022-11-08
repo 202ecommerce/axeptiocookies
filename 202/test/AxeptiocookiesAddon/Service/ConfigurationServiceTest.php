@@ -21,31 +21,18 @@ namespace AxeptiocookiesAddon\Service;
 
 use AxeptiocookiesAddon\API\Response\Object\Configuration;
 use AxeptiocookiesAddon\API\Response\Object\Project;
+use AxeptiocookiesAddon\AxeptioBaseTestCase;
 use AxeptiocookiesAddon\Entity\AxeptioConfiguration;
-use AxeptiocookiesAddon\Entity\AxeptioModuleConfiguration;
 use AxeptiocookiesAddon\Model\CreateConfigurationModel;
 use AxeptiocookiesAddon\Model\EditConfigurationModel;
-use AxeptiocookiesAddon\Utils\ServiceContainer;
 use AxeptiocookiesAddon\Validator\ConfigurationValidatorException;
-use PHPUnit\Framework\TestCase;
 
-class ConfigurationServiceTest extends TestCase
+class ConfigurationServiceTest extends AxeptioBaseTestCase
 {
     /**
      * @var int
      */
     protected static $createdConfiguration;
-
-    /**
-     * @var ConfigurationService
-     */
-    protected $configurationService;
-
-    public function setUp()
-    {
-        parent::setUp();
-        $this->configurationService = ServiceContainer::getInstance()->get(ConfigurationService::class);
-    }
 
     public static function setUpBeforeClass()
     {
@@ -184,11 +171,5 @@ class ConfigurationServiceTest extends TestCase
     {
         $deleteResult = $this->configurationService->deleteById(static::$createdConfiguration);
         $this->assertNotEmpty($deleteResult);
-    }
-
-    private static function truncateTables()
-    {
-        \Db::getInstance()->delete(AxeptioConfiguration::$definition['table'], 1);
-        \Db::getInstance()->delete(AxeptioModuleConfiguration::$definition['table'], 1);
     }
 }
