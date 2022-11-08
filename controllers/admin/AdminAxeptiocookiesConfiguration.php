@@ -103,14 +103,18 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
             'translations' => [
                 'create' => [
                     'title' => $this->l('Creating a widget for your website', $this->controller_name),
-                    'subtitle' => $this->l('To create a new widget, open your Axeptio interface to retrieve the information', $this->controller_name),
+                    'subtitle' => $this->l('To create a new widget, open your Axeptio interface to retrieve 
+                            the information', $this->controller_name),
                     'info_axeptio' => $this->l('Info Axeptio', $this->controller_name),
                     'info_ps' => $this->l('Info Prestashop', $this->controller_name),
                     'project_title' => $this->l('What is your Axeptio\'s project ID', $this->controller_name),
-                    'project_invalid' => $this->l('The project ID is not valid, remember that it is necessary to publish the project in your Axeptio dashboard', $this->controller_name),
+                    'project_invalid' => $this->l('The project ID is not valid, remember that it is necessary 
+                            to publish the project in your Axeptio dashboard', $this->controller_name),
                     'configuration_title' => $this->l('What is your configuration?', $this->controller_name),
-                    'shop_title' => $this->l('To what shop this configuration should be linked to?', $this->controller_name),
-                    'language_title' => $this->l('To what language this configuration should be linked to?', $this->controller_name),
+                    'shop_title' => $this->l('To what shop this configuration should be linked 
+                            to?', $this->controller_name),
+                    'language_title' => $this->l('To what language this configuration should be linked 
+                            to?', $this->controller_name),
                     'back' => $this->l('To the list', $this->controller_name),
                     'step_message' => $this->l('Message', $this->controller_name),
                     'step_title' => $this->l('Title', $this->controller_name),
@@ -118,7 +122,8 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                 ],
                 'edit' => [
                     'title' => $this->l('Edit your widget', $this->controller_name),
-                    'subtitle' => $this->l('Manage the appearance and modules you want to offer for user consent', $this->controller_name),
+                    'subtitle' => $this->l('Manage the appearance and modules you want to offer 
+                    for user consent', $this->controller_name),
                     'tabs' => [
                         'general' => $this->l('General', $this->controller_name),
                         'modules' => $this->l('Modules', $this->controller_name),
@@ -145,7 +150,8 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                     'clear_cache' => $this->l('Clear cache', $this->controller_name),
                     'cache_title' => $this->l('Cache management', $this->controller_name),
                     'cache_description' => $this->l('Cache is purged automatically when it needed,
-                                if you have some problems with displaying of Axeptio widget, try to use this button', $this->controller_name),
+                                if you have some problems with displaying of Axeptio widget, try to use 
+                                this button', $this->controller_name),
                     'description' => [
                         'title' => $this->l('Important', $this->controller_name),
                         'desc1' => $this->l('The Axeptio widget allows you to be GDPR compliant and let your 
@@ -153,7 +159,8 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                         'desc2' => $this->l('To work, your account must be created and you already have a 
                                 project already created.', $this->controller_name),
                         'desc3' => sprintf(
-                            $this->l('If this is not the case %sclick here to create your Axeptio account and create your project%s', $this->controller_name),
+                            $this->l('If this is not the case %sclick here to create your Axeptio account and 
+                                create your project%s', $this->controller_name),
                             '<a target="_blank" href="https://admin.axeptio.eu">', '</a>'),
                     ],
                     'error_occurred' => $this->l('Error occurred, try to reload this page', $this->controller_name),
@@ -165,7 +172,8 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                     'delete_confirmation' => $this->l('Are you sure you want delete this widget?'),
                     'new' => $this->l('Create an Axeptio widget', $this->controller_name),
                     'edit' => $this->l('Edit', $this->controller_name),
-                    'configuration_unavailable' => $this->l('Axeptio widget is unavailable, it is recommended to modify this widget', $this->controller_name),
+                    'configuration_unavailable' => $this->l('Axeptio widget is unavailable, it is recommended to 
+                            modify this widget', $this->controller_name),
                     'project_id' => $this->l('Project ID', $this->controller_name),
                     'shop' => $this->trans('Shop', [], 'Admin.Global'),
                     'language' => $this->trans('Language', [], 'Admin.Global'),
