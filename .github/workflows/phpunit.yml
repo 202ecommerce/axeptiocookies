@@ -39,10 +39,8 @@ jobs:
             # Copy coverage report from container to local
             - name: Copy coverage report from container to local
               run: |
-                ls -la $PWD
                 docker cp temp-unittest-ps:/var/www/html/modules/axeptiocookies/202/build/clover.xml $PWD
                 sed -i 's@'/var/www/html/modules/axeptiocookies/'@/github/workspace/@g' clover.xml
-                tail clover.xml
 
             - name: SonarCloud Scan
               uses: sonarsource/sonarcloud-github-action@master
