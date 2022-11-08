@@ -49,7 +49,7 @@ class UpdateHandler
     /**
      * @param string $projectId
      * @param string $versionId
-     * @param int $idShop
+     * @param int|null $idShop
      * @param int $idLang
      *
      * @return bool

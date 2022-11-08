@@ -4,8 +4,9 @@ imports:
   - { resource: partials/update.yml }
 
 services:
-  axeptiocookies:
+  axeptiocookies.module:
     class: 'Axeptiocookies'
+    public: true
     factory: ['Module', 'getInstanceByName']
     arguments:
       - 'axeptiocookies'

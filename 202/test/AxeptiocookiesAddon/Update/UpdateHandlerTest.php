@@ -19,21 +19,21 @@
 
 namespace AxeptiocookiesAddon\Update;
 
-use AxeptiocookiesAddon\Entity\AxeptioConfiguration;
-use AxeptiocookiesAddon\Entity\AxeptioModuleConfiguration;
+use AxeptiocookiesAddon\AxeptioBaseTestCase;
 use AxeptiocookiesAddon\Utils\ServiceContainer;
-use PHPUnit\Framework\TestCase;
 
-class UpdateHandlerTest extends TestCase
+class UpdateHandlerTest extends AxeptioBaseTestCase
 {
+    const TEST_VERSION_ID = 'projet test module axeptio-fr';
+
     public function testCreateLangShopConfigurationFromParams()
     {
         /** @var UpdateHandler $updateHandler */
         $updateHandler = ServiceContainer::getInstance()->get(UpdateHandler::class);
 
         $result = $updateHandler->createLangShopConfigurationFromParams(
-            '62500feea925ec04460954a9',
-            'projet test module axeptio-fr',
+            getenv('TEST_ID_PROJECT'),
+            self::TEST_VERSION_ID,
             1,
             1
         );
@@ -47,8 +47,8 @@ class UpdateHandlerTest extends TestCase
         $updateHandler = ServiceContainer::getInstance()->get(UpdateHandler::class);
 
         $result = $updateHandler->createLangShopConfigurationFromParams(
-            '62500feea925ec04460954a9',
-            'projet test module axeptio-fr',
+            getenv('TEST_ID_PROJECT'),
+            self::TEST_VERSION_ID,
             null,
             1
         );
@@ -63,7 +63,7 @@ class UpdateHandlerTest extends TestCase
 
         $result = $updateHandler->createLangShopConfigurationFromParams(
             'test',
-            'projet test module axeptio-fr',
+            self::TEST_VERSION_ID,
             1,
             1
         );
@@ -77,24 +77,12 @@ class UpdateHandlerTest extends TestCase
         $updateHandler = ServiceContainer::getInstance()->get(UpdateHandler::class);
 
         $result = $updateHandler->createLangShopConfigurationFromParams(
-            '62500feea925ec04460954a9',
+            getenv('TEST_ID_PROJECT'),
             'unknown',
             1,
             1
         );
 
         $this->assertEmpty($result);
-    }
-
-    public static function setUpBeforeClass()
-    {
-        parent::setUpBeforeClass();
-        self::truncateTables();
-    }
-
-    private static function truncateTables()
-    {
-        \Db::getInstance()->delete(AxeptioConfiguration::$definition['table'], 1);
-        \Db::getInstance()->delete(AxeptioModuleConfiguration::$definition['table'], 1);
     }
 }
