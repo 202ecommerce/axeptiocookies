@@ -74,8 +74,11 @@ class CommonHookTest extends AxeptioBaseTestCase
 
     public function testDisplayFooterFixtures()
     {
+        $currentIsoCode = \Context::getContext()->language->iso_code;
+        \Context::getContext()->language->iso_code = 'en';
         $this->createConfigurationFixtures();
         $result = $this->hookDispatcher->dispatch('displayFooter');
+        \Context::getContext()->language->iso_code = $currentIsoCode;
         $this->assertNotEmpty($result);
     }
 }

@@ -129,7 +129,7 @@ class ModuleService
 
     public function getSelectedModulesListByIdConfiguration($idConfiguration)
     {
-        $selectedModules = $this->moduleRepository->getSelectedModulesByIdConfiguration($idConfiguration);
+        $selectedModules = $this->getSelectedModulesByIdConfiguration($idConfiguration);
 
         if (empty($selectedModules)) {
             return [];
@@ -169,6 +169,16 @@ class ModuleService
         }
 
         return $result;
+    }
+
+    /**
+     * @param int $idConfiguration
+     *
+     * @return array|bool|\mysqli_result|\PDOStatement|resource|null
+     */
+    public function getSelectedModulesByIdConfiguration($idConfiguration)
+    {
+        return $this->moduleRepository->getSelectedModulesByIdConfiguration($idConfiguration);
     }
 
     /**

@@ -29,7 +29,7 @@ class ModuleRepository
     public function getSelectedModulesByIdConfiguration($idConfiguration)
     {
         $query = new DbQuery();
-        $query->select('module_name');
+        $query->select('id_axeptiocookies_module_configuration, module_name');
         $query->from(AxeptioModuleConfiguration::$definition['table']);
         $query->where('id_axeptiocookies_configuration = ' . (int) $idConfiguration);
 

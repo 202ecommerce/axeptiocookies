@@ -23,6 +23,7 @@ use AxeptiocookiesAddon\API\Response\Object\Configuration;
 use AxeptiocookiesAddon\API\Response\Object\Project;
 use AxeptiocookiesAddon\AxeptioBaseTestCase;
 use AxeptiocookiesAddon\Entity\AxeptioConfiguration;
+use AxeptiocookiesAddon\Entity\AxeptioModuleConfiguration;
 use AxeptiocookiesAddon\Model\CreateConfigurationModel;
 use AxeptiocookiesAddon\Model\EditConfigurationModel;
 use AxeptiocookiesAddon\Validator\ConfigurationValidatorException;
@@ -46,12 +47,18 @@ class ConfigurationServiceTest extends AxeptioBaseTestCase
             ->setIdProject(getenv('TEST_ID_PROJECT'))
             ->setIdConfiguration(getenv('TEST_ID_CONFIGURATION'))
             ->setIdLanguage(1)
-            ->setIdShops([1]);
+            ->setIdShops([1])
+            ->setTitle('Test title')
+            ->setSubtitle('Test subtitle');
 
         $result = $this->configurationService->createConfiguration($createConfigurationModel);
 
         $this->assertNotEmpty($result);
-        static::$createdConfiguration = (int)$result;
+
+        $configuration = new AxeptioConfiguration($result);
+        $this->assertNotEmpty($configuration->toArray());
+
+        static::$createdConfiguration = (int) $result;
     }
 
     /**
@@ -126,9 +133,32 @@ class ConfigurationServiceTest extends AxeptioBaseTestCase
 
         $result = $this->configurationService->editConfiguration($editConfigurationModel);
         $configuration = new AxeptioConfiguration(static::$createdConfiguration);
+        $selectedConfigurations = $this->moduleService->getSelectedModulesByIdConfiguration($configuration->id);
 
         $this->assertNotEmpty($result);
         $this->assertEquals(2, $configuration->id_lang);
+        $this->assertNotEmpty($selectedConfigurations);
+
+        $idModuleConfiguration = $selectedConfigurations[0][AxeptioModuleConfiguration::$definition['primary']];
+        $moduleConfiguration = new AxeptioModuleConfiguration($idModuleConfiguration);
+        $this->assertNotEmpty($moduleConfiguration->id);
+        $this->assertNotEmpty($moduleConfiguration->toArray());
+    }
+
+    /**
+     * @dataProvider getTestEditConfigurationErrorDataProvider
+     * @depends      testCreateConfigurationValid
+     */
+    public function testEditConfigurationSaveError(callable $editConfigSetter, $expectedExceptionMessage)
+    {
+        if (empty(self::$createdConfiguration)) {
+            $this->markTestSkipped('Created configuration empty');
+        }
+
+        $editConfigurationModel = $editConfigSetter($this->getErrorEditConfigurationObject());
+
+        $this->expectExceptionMessage($expectedExceptionMessage);
+        $this->configurationService->editConfiguration($editConfigurationModel);
     }
 
     public function testDeleteConfigurationNotValid()
@@ -171,5 +201,60 @@ class ConfigurationServiceTest extends AxeptioBaseTestCase
     {
         $deleteResult = $this->configurationService->deleteById(static::$createdConfiguration);
         $this->assertNotEmpty($deleteResult);
+    }
+
+    protected function getErrorEditConfigurationObject()
+    {
+        $configuration = (new Configuration())
+            ->build([
+                'identifier' => getenv('TEST_ID_CONFIGURATION'),
+                'language' => 'fr',
+                'name' => 'projet test module axeptio-fr',
+                'title' => 'French Projet Test module Axeptio Cookies'
+            ]);
+
+        return (new EditConfigurationModel())
+            ->setIdObject(static::$createdConfiguration)
+            ->setIdProject(getenv('TEST_ID_PROJECT'))
+            ->setConfiguration($configuration)
+            ->setLanguage(\Language::getLanguage(2))
+            ->setShops([\Shop::getShop(1)])
+            ->setProject((new Project())->build(
+                [
+                    'projectId' => getenv('TEST_ID_PROJECT'),
+                    'cookies' => [
+                        [
+                            'identifier' => getenv('TEST_ID_CONFIGURATION'),
+                            'language' => 'fr',
+                            'name' => 'projet test module axeptio-fr',
+                            'title' => 'French Projet Test module Axeptio Cookies'
+                        ]
+                    ]
+                ]
+            ))
+            ->setModules([
+                [
+                    'name' => 'ps_shoppingcart',
+                    'checked' => 'true',
+                ]
+            ]);
+    }
+
+    public function getTestEditConfigurationErrorDataProvider()
+    {
+        return [
+            [function (EditConfigurationModel $editConfigurationModel) {
+                return $editConfigurationModel->setIdObject(0);
+            }, 'L\'ID d\'objet n\'est pas valide'],
+            [function (EditConfigurationModel $editConfigurationModel) {
+                return $editConfigurationModel->setIdProject('');
+            }, 'L\'ID de projet n\'est pas valide'],
+            [function (EditConfigurationModel $editConfigurationModel) {
+                return $editConfigurationModel->setShops([]);
+            }, 'Les boutiques ne sont pas sélectionnées'],
+            [function (EditConfigurationModel $editConfigurationModel) {
+                return $editConfigurationModel->setLanguage(\Language::getLanguage(0));
+            }, 'La langue n\'est pas sélectionnée'],
+        ];
     }
 }
