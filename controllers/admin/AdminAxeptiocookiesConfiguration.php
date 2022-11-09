@@ -200,9 +200,9 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                 'configurations' => $this->configurationService->getAll(),
             ],
             'images' => [
-                'create' => '/modules/' . $this->module->name . '/views/img/create.avif',
-                'list' => '/modules/' . $this->module->name . '/views/img/list.avif',
-                'people' => '/modules/' . $this->module->name . '/views/img/people.avif',
+                'create' => '/modules/' . $this->module->name . '/views/img/create.png',
+                'list' => '/modules/' . $this->module->name . '/views/img/list.png',
+                'people' => '/modules/' . $this->module->name . '/views/img/people.png',
                 'sky' => '/modules/' . $this->module->name . '/views/img/sky.png',
             ],
         ];
