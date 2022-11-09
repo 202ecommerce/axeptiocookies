@@ -4,6 +4,8 @@
 
 [![Unit tests](https://github.com/202ecommerce/axeptiocookies/actions/workflows/phpunit.yml/badge.svg?branch=develop)](https://github.com/202ecommerce/axeptiocookies/actions/workflows/phpunit.yml)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=202ecommerce_axeptiocookies&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=202ecommerce_axeptiocookies)
+
 ## About
 
 New rules for cookies: you need to collect consent for your cookies. 

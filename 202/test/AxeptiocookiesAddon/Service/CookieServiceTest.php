@@ -19,29 +19,16 @@
 
 namespace AxeptiocookiesAddon\Service;
 
-use AxeptiocookiesAddon\Entity\AxeptioConfiguration;
-use AxeptiocookiesAddon\Entity\AxeptioModuleConfiguration;
-use AxeptiocookiesAddon\Model\CreateConfigurationModel;
+use AxeptiocookiesAddon\AxeptioBaseTestCase;
 use AxeptiocookiesAddon\Utils\ServiceContainer;
-use PHPUnit\Framework\TestCase;
 
-class CookieServiceTest extends TestCase
+class CookieServiceTest extends AxeptioBaseTestCase
 {
 
     /**
      * @var CookieService
      */
     protected $cookieService;
-
-    /**
-     * @var ConfigurationService
-     */
-    protected $configurationService;
-
-    /**
-     * @var ModuleService
-     */
-    protected $moduleService;
 
     /**
      * @var HookService
@@ -52,8 +39,6 @@ class CookieServiceTest extends TestCase
     {
         parent::setUp();
         $this->cookieService = ServiceContainer::getInstance()->get(CookieService::class);
-        $this->configurationService = ServiceContainer::getInstance()->get(ConfigurationService::class);
-        $this->moduleService = ServiceContainer::getInstance()->get(ModuleService::class);
         $this->hookService = ServiceContainer::getInstance()->get(HookService::class);
     }
 
@@ -110,35 +95,5 @@ class CookieServiceTest extends TestCase
         $result = $this->cookieService->getModifiedHookExecList($data['hooks']);
 
         $this->assertNotEmpty($result);
-    }
-
-    private function createConfigurationFixtures()
-    {
-        $hook = [
-            'id_hook' => \Hook::getIdByName('displayFooterBefore'),
-            'module' => 'ps_emailsubscription',
-            'id_module' => \Module::getModuleIdByName('ps_emailsubscription'),
-        ];
-        $createConfigurationModel = (new CreateConfigurationModel())
-            ->setIdProject('62500feea925ec04460954a9')
-            ->setIdConfiguration('62500fefea9774f707035148')
-            ->setIdLanguage(1)
-            ->setIdShops([1]);
-
-        $createConfigurationId = $this->configurationService->createConfiguration($createConfigurationModel);
-        $this->moduleService->associateToModules($createConfigurationId, [
-            'ps_emailsubscription',
-        ]);
-
-        return [
-            'hooks' => [$hook],
-            'id' => $createConfigurationId,
-        ];
-    }
-
-    private static function truncateTables()
-    {
-        \Db::getInstance()->delete(AxeptioConfiguration::$definition['table'], 1);
-        \Db::getInstance()->delete(AxeptioModuleConfiguration::$definition['table'], 1);
     }
 }

@@ -1,7 +1,9 @@
 services:
   AxeptiocookiesAddon\Repository\ConfigurationRepository:
     class: AxeptiocookiesAddon\Repository\ConfigurationRepository
+    public: true
 
   AxeptiocookiesAddon\Repository\ModuleRepository:
     class: AxeptiocookiesAddon\Repository\ModuleRepository
+    public: true
 

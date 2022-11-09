@@ -31,6 +31,6 @@ cd /var/www/html/modules/axeptiocookies/
 
 echo "Launch of unit tests"
 
-vendor/bin/phpunit -c 202/phpunit.xml
+php -dmemory_limit=512M -dxdebug.mode=coverage vendor/bin/phpunit -c 202/phpunit.xml
 
 chown www-data:www-data /var/www/html/var -Rf

@@ -20,6 +20,7 @@ rm -Rf views/_dev
 rm -Rf .php_cs.dist
 rm -Rf package.json
 rm -Rf package-lock.json
+rm -Rf sonar-project.properties
 
 if [ -f "composer.json" ]; then
     echo "Exécutution de composer pour ${TARGETNAME}"

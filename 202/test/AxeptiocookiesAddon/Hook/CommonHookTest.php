@@ -19,54 +19,11 @@
 
 namespace AxeptiocookiesAddon\Hook;
 
-use AxeptiocookiesAddon\Entity\AxeptioConfiguration;
-use AxeptiocookiesAddon\Entity\AxeptioModuleConfiguration;
-use AxeptiocookiesAddon\Model\CreateConfigurationModel;
-use AxeptiocookiesAddon\Service\ConfigurationService;
+use AxeptiocookiesAddon\AxeptioBaseTestCase;
 use AxeptiocookiesAddon\Service\HookService;
-use AxeptiocookiesAddon\Service\ModuleService;
-use AxeptiocookiesAddon\Utils\ServiceContainer;
-use FrontController;
-use Module;
-use PHPUnit\Framework\TestCase;
 
-class CommonHookTest extends TestCase
+class CommonHookTest extends AxeptioBaseTestCase
 {
-    /**
-     * @var HookDispatcher
-     */
-    protected $hookDispatcher;
-
-    /**
-     * @var ConfigurationService
-     */
-    protected $configurationService;
-
-    /**
-     * @var ModuleService
-     */
-    protected $moduleService;
-
-    /**
-     * @var Module
-     */
-    protected $module;
-
-    protected function setUp()
-    {
-        parent::setUp();
-        $this->module = ServiceContainer::getInstance()->get('axeptiocookies');
-        $this->hookDispatcher = new HookDispatcher($this->module);
-        $this->configurationService = ServiceContainer::getInstance()->get(ConfigurationService::class);
-        $this->moduleService = ServiceContainer::getInstance()->get(ModuleService::class);
-    }
-
-    public static function setUpBeforeClass()
-    {
-        parent::setUpBeforeClass();
-        self::truncateTables();
-    }
-
     public function testActionDispatcherBeforeFrontEmpty()
     {
         $result = $this->hookDispatcher->dispatch(
@@ -80,7 +37,7 @@ class CommonHookTest extends TestCase
 
     public function testActionDispatcherBeforeFrontReplace()
     {
-        set_error_handler(function ($error) {
+        set_error_handler(function () {
             return false;
         });
         global $_COOKIE;
@@ -88,7 +45,7 @@ class CommonHookTest extends TestCase
             HookService::PS_MODULE_PREFIX . 'ps_emailsubscription' => true,
         ]);
 
-        $result = $this->hookDispatcher->dispatch(
+        $this->hookDispatcher->dispatch(
             'actionDispatcherBefore',
             [
                 'controller_type' => \Dispatcher::FC_FRONT,
@@ -117,38 +74,11 @@ class CommonHookTest extends TestCase
 
     public function testDisplayFooterFixtures()
     {
-        $data = $this->createConfigurationFixtures();
+        $currentIsoCode = \Context::getContext()->language->iso_code;
+        \Context::getContext()->language->iso_code = 'en';
+        $this->createConfigurationFixtures();
         $result = $this->hookDispatcher->dispatch('displayFooter');
+        \Context::getContext()->language->iso_code = $currentIsoCode;
         $this->assertNotEmpty($result);
-    }
-
-    private function createConfigurationFixtures()
-    {
-        $hook = [
-            'id_hook' => \Hook::getIdByName('displayFooterBefore'),
-            'module' => 'ps_emailsubscription',
-            'id_module' => \Module::getModuleIdByName('ps_emailsubscription'),
-        ];
-        $createConfigurationModel = (new CreateConfigurationModel())
-            ->setIdProject('62500feea925ec04460954a9')
-            ->setIdConfiguration('62500fefea9774f707035148')
-            ->setIdLanguage(1)
-            ->setIdShops([1]);
-
-        $createConfigurationId = $this->configurationService->createConfiguration($createConfigurationModel);
-        $this->moduleService->associateToModules($createConfigurationId, [
-            'ps_emailsubscription',
-        ]);
-
-        return [
-            'hooks' => [$hook],
-            'id' => $createConfigurationId,
-        ];
-    }
-
-    private static function truncateTables()
-    {
-        \Db::getInstance()->delete(AxeptioConfiguration::$definition['table'], 1);
-        \Db::getInstance()->delete(AxeptioModuleConfiguration::$definition['table'], 1);
     }
 }

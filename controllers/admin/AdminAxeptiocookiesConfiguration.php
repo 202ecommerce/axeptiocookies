@@ -97,88 +97,91 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
         return $tpl->fetch();
     }
 
-    public function postProcess()
-    {
-        return parent::postProcess();
-    }
-
     protected function getJsVariables()
     {
         return [
             'translations' => [
                 'create' => [
-                    'title' => $this->l('Creating a widget for your website'),
-                    'subtitle' => $this->l('To create a new widget, open your Axeptio interface to retrieve the information'),
-                    'info_axeptio' => $this->l('Info Axeptio'),
-                    'info_ps' => $this->l('Info Prestashop'),
-                    'project_title' => $this->l('What is your Axeptio\'s project ID'),
-                    'project_invalid' => $this->l('Project ID is invalid'),
-                    'configuration_title' => $this->l('What is your configuration?'),
-                    'shop_title' => $this->l('To what shop this configuration should be linked to?'),
-                    'language_title' => $this->l('To what language this configuration should be linked to?'),
-                    'back' => $this->l('To the list'),
-                    'step_message' => $this->l('Message'),
-                    'step_title' => $this->l('Title'),
-                    'step_subtitle' => $this->l('Subtitle'),
+                    'title' => $this->l('Creating a widget for your website', $this->controller_name),
+                    'subtitle' => $this->l('To create a new widget, open your Axeptio interface to retrieve 
+                            the information', $this->controller_name),
+                    'info_axeptio' => $this->l('Info Axeptio', $this->controller_name),
+                    'info_ps' => $this->l('Info Prestashop', $this->controller_name),
+                    'project_title' => $this->l('What is your Axeptio\'s project ID', $this->controller_name),
+                    'project_invalid' => $this->l('The project ID is not valid, remember that it is necessary 
+                            to publish the project in your Axeptio dashboard', $this->controller_name),
+                    'configuration_title' => $this->l('What is your configuration?', $this->controller_name),
+                    'shop_title' => $this->l('To what shop this configuration should be linked 
+                            to?', $this->controller_name),
+                    'language_title' => $this->l('To what language this configuration should be linked 
+                            to?', $this->controller_name),
+                    'back' => $this->l('To the list', $this->controller_name),
+                    'step_message' => $this->l('Message', $this->controller_name),
+                    'step_title' => $this->l('Title', $this->controller_name),
+                    'step_subtitle' => $this->l('Subtitle', $this->controller_name),
                 ],
                 'edit' => [
-                    'title' => $this->l('Edit your widget'),
-                    'subtitle' => $this->l('Manage the appearance and modules you want to offer for user consent'),
+                    'title' => $this->l('Edit your widget', $this->controller_name),
+                    'subtitle' => $this->l('Manage the appearance and modules you want to offer 
+                    for user consent', $this->controller_name),
                     'tabs' => [
-                        'general' => $this->l('General'),
-                        'modules' => $this->l('Modules'),
+                        'general' => $this->l('General', $this->controller_name),
+                        'modules' => $this->l('Modules', $this->controller_name),
                     ],
-                    'project_title' => $this->l('Project ID'),
-                    'configuration_title' => $this->l('Configuration'),
-                    'shop_title' => $this->l('Shops'),
-                    'language_title' => $this->l('Languages'),
-                    'back' => $this->l('To the list'),
-                    'step_message' => $this->l('Message'),
-                    'step_title' => $this->l('Title'),
-                    'step_subtitle' => $this->l('Subtitle'),
+                    'project_title' => $this->l('Project ID', $this->controller_name),
+                    'configuration_title' => $this->l('Configuration', $this->controller_name),
+                    'shop_title' => $this->l('Shops', $this->controller_name),
+                    'language_title' => $this->l('Languages', $this->controller_name),
+                    'back' => $this->l('To the list', $this->controller_name),
+                    'step_message' => $this->l('Message', $this->controller_name),
+                    'step_title' => $this->l('Title', $this->controller_name),
+                    'step_subtitle' => $this->l('Subtitle', $this->controller_name),
                 ],
                 'example' => [
-                    'accept' => $this->l('Accept all'),
-                    'next' => $this->l('Next'),
-                    'title' => $this->l('Title module'),
-                    'description' => $this->l('Description module'),
-                    'certified' => $this->l('Consents certified by'),
-                    'toggle_all' => $this->l('Toggle all'),
+                    'accept' => $this->l('Accept all', $this->controller_name),
+                    'next' => $this->l('Next', $this->controller_name),
+                    'title' => $this->l('Title module', $this->controller_name),
+                    'description' => $this->l('Description module', $this->controller_name),
+                    'certified' => $this->l('Consents certified by', $this->controller_name),
+                    'toggle_all' => $this->l('Toggle all', $this->controller_name),
                 ],
                 'common' => [
                     'save' => $this->trans('Save', [], 'Admin.Actions'),
-                    'clear_cache' => $this->l('Clear cache'),
-                    'cache_title' => $this->l('Cache management'),
+                    'clear_cache' => $this->l('Clear cache', $this->controller_name),
+                    'cache_title' => $this->l('Cache management', $this->controller_name),
                     'cache_description' => $this->l('Cache is purged automatically when it needed,
-                                if you have some problems with displaying of Axeptio widget, try to use this button'),
+                                if you have some problems with displaying of Axeptio widget, try to use 
+                                this button', $this->controller_name),
                     'description' => [
-                        'title' => $this->l('Important'),
+                        'title' => $this->l('Important', $this->controller_name),
                         'desc1' => $this->l('The Axeptio widget allows you to be GDPR compliant and let your 
-                                users choose the consent and cookies they want to activate.'),
+                                users choose the consent and cookies they want to activate.', $this->controller_name),
                         'desc2' => $this->l('To work, your account must be created and you already have a 
-                                project already created.'),
+                                project already created.', $this->controller_name),
                         'desc3' => sprintf(
-                            $this->l('If this is not the case %sclick here to create your Axeptio account and create your project%s'),
+                            $this->l('If this is not the case %sclick here to create your Axeptio account and 
+                                create your project%s', $this->controller_name),
                             '<a target="_blank" href="https://admin.axeptio.eu">', '</a>'),
                     ],
-                    'error_occurred' => $this->l('Error occurred, try to reload this page'),
+                    'error_occurred' => $this->l('Error occurred, try to reload this page', $this->controller_name),
                 ],
                 'list' => [
-                    'delete' => $this->l('Delete'),
+                    'delete' => $this->l('Delete', $this->controller_name),
                     'delete_no' => $this->trans('No', [], 'Admin.Global'),
                     'delete_yes' => $this->trans('Yes', [], 'Admin.Global'),
                     'delete_confirmation' => $this->l('Are you sure you want delete this widget?'),
-                    'new' => $this->l('Create an Axeptio widget'),
-                    'edit' => $this->l('Edit'),
-                    'configuration_unavailable' => $this->l('Axeptio widget is unavailable, it is recommended to modify this widget'),
-                    'project_id' => $this->l('Project ID'),
+                    'new' => $this->l('Create an Axeptio widget', $this->controller_name),
+                    'edit' => $this->l('Edit', $this->controller_name),
+                    'configuration_unavailable' => $this->l('Axeptio widget is unavailable, it is recommended to 
+                            modify this widget', $this->controller_name),
+                    'project_id' => $this->l('Project ID', $this->controller_name),
                     'shop' => $this->trans('Shop', [], 'Admin.Global'),
                     'language' => $this->trans('Language', [], 'Admin.Global'),
                     'table' => [
-                        'widget' => $this->l('Widget'),
-                        'modification' => $this->l('Modification'),
-                        'deletion' => $this->l('Deletion'),
-                        'summary' => $this->l('Summary'),
+                        'widget' => $this->l('Widget', $this->controller_name),
+                        'modification' => $this->l('Modification', $this->controller_name),
+                        'deletion' => $this->l('Deletion', $this->controller_name),
+                        'summary' => $this->l('Summary', $this->controller_name),
                     ],
                 ],
             ],
@@ -197,9 +200,9 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                 'configurations' => $this->configurationService->getAll(),
             ],
             'images' => [
-                'create' => '/modules/' . $this->module->name . '/views/img/create.avif',
-                'list' => '/modules/' . $this->module->name . '/views/img/list.avif',
-                'people' => '/modules/' . $this->module->name . '/views/img/people.avif',
+                'create' => '/modules/' . $this->module->name . '/views/img/create.png',
+                'list' => '/modules/' . $this->module->name . '/views/img/list.png',
+                'people' => '/modules/' . $this->module->name . '/views/img/people.png',
                 'sky' => '/modules/' . $this->module->name . '/views/img/sky.png',
             ],
         ];
