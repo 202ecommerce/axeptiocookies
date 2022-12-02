@@ -16,7 +16,12 @@
  * @license   https://opensource.org/licenses/AFL-3.0  Academic Free License (AFL 3.0)
  */
 module.exports = {
-  plugins: {
-    autoprefixer: {},
-  },
+  plugins: [
+    [
+      "autoprefixer",
+      {
+        // Options
+      },
+    ],
+  ],
 };
