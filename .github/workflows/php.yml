@@ -112,5 +112,5 @@ jobs:
             - name: Upload HTML Report
               uses: actions/upload-artifact@v1
               with:
-                  name: HTML Report
+                  name: github-pages
                   path: phpmetrics.html
