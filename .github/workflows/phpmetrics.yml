@@ -1,4 +1,4 @@
-name: Coding Standart
+name: Publish metrics
 on:
   # the 1st condition
   workflow_run:
