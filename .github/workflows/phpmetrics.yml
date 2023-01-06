@@ -2,7 +2,7 @@ name: Coding Standart
 on:
   # the 1st condition
   workflow_run:
-    workflows: ["tests"]
+    workflows: ["Coding Standart"]
     branches:
       - '*'
     types:
