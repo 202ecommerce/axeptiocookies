@@ -100,17 +100,3 @@ jobs:
             # This tool is outside the composer.json because of the compatibility with PHP 5.6
             - name : Run PHPStan
               run: docker run --rm --volumes-from temp-ps -v $PWD:/var/www/html/modules/axeptiocookies -e _PS_ROOT_DIR_=/var/www/html --workdir=/var/www/html/modules/axeptiocookies phpstan/phpstan:0.12 analyse --configuration=/var/www/html/modules/axeptiocookies/202/phpstan/phpstan.neon
-
-    phpmetrics-action:
-        runs-on: ubuntu-latest
-        name: PhpMetrics Action
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2
-            - name: PhpMetrics Scan
-              uses: umutphp/phpmetrics-action@v1
-            - name: Upload HTML Report
-              uses: actions/upload-artifact@v1
-              with:
-                  name: github-pages
-                  path: phpmetrics.html
