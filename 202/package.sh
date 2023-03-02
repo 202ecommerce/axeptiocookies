@@ -83,12 +83,6 @@ if [ "$?" -ne "0" ]; then
     echo "Packaging failed!"
     exit 1
 fi
-if [ -f "202/package.sh" ]; then
-    echo "Exécutution du script de packaging de ${TARGETNAME}"
-    source 202/package.sh
-else
-    echo -e "Pas de fichier package dans le dossier du projet"
-fi
 
 rm -Rf 202
 rm -Rf README.md
