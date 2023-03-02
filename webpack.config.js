@@ -19,7 +19,7 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
-const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
@@ -48,7 +48,7 @@ const getConfig = (env, argv) => {
   const minimizers = [];
   const plugins = [
     new VueLoaderPlugin(),
-    new FixStyleOnlyEntriesPlugin(),
+    new RemoveEmptyScriptsPlugin(),
     new MiniCssExtractPlugin({
       filename: `[name].${getBuildVersion(argv.mode)}.css`,
     }),
@@ -79,6 +79,7 @@ const getConfig = (env, argv) => {
               loader: 'babel-loader',
               options: {
                 presets: ['@babel/preset-env'],
+                plugins: ['@babel/plugin-transform-runtime'],
               },
             },
           ],
@@ -129,8 +130,6 @@ const getConfig = (env, argv) => {
       alias: {
         'vue$': 'vue/dist/vue.esm.js',
         '~': path.resolve(__dirname, './node_modules'),
-        '@app': path.resolve(__dirname, './bb/themes/new-theme/js/app'),
-        '@components': path.resolve(__dirname, './bb/themes/new-theme/js/components'),
       },
     },
     stats: {
@@ -144,12 +143,14 @@ module.exports = (env, argv) => {
   // Production specific settings
   if (argv.mode === 'production') {
     const terserPlugin = new TerserPlugin({
-      cache: true,
-      sourceMap: true,
       extractComments: /^\**!|@preserve|@license|@cc_on/i, // Remove comments except those containing @preserve|@license|@cc_on
       parallel: true,
       terserOptions: {
-        drop_console: true,
+        compress: {
+          pure_funcs: [
+            'console.log'
+          ]
+        }
       },
     });
 

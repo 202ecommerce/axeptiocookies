@@ -31,7 +31,7 @@
 
     <target name="package-zip" depends="build-common" description="Create ZIP package">
         <echo>Create ZIP package</echo>
-        <exec executable="${env.TOTBUILDER_PATH}tot-package.sh" failonerror="true">
+        <exec executable="${basedir}/202/package.sh" failonerror="true">
             <arg value="prod"/>
             <arg value="${TARGETNAME}"/>
             <arg value="${TARGETBRANCH}"/>
@@ -114,14 +114,9 @@
             <arg value="doc-build"/>
         </exec>
     </target>
-    <target name="npm" depends="clean-npm,npm-install" description="Install or update node dependencies"/>
+    <target name="npm" depends="clean-npm" description="Install or update node dependencies"/>
     <target name="clean-npm" description="Empty node_modules folder">
         <delete dir="${basedir}/202/node_modules"/>
-    </target>
-    <target name="npm-install" description="Installing node deps">
-        <exec executable="npm">
-            <arg value="install"/>
-        </exec>
     </target>
     <!-- end documentation -->
 
