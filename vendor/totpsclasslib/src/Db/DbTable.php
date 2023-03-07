@@ -20,6 +20,7 @@
  * @author    202-ecommerce <tech@202-ecommerce.com>
  * @copyright Copyright (c) 202-ecommerce
  * @license   Commercial license
+ * @version   release/2.3.3
  */
 
 namespace AxeptiocookiesClasslib\Db;
@@ -100,10 +101,15 @@ class DbTable
             return $result;
         }
         // table exists
-        $alter = $this->alterFields();
+        $alters = $this->alterFields();
 
-        if (!empty($alter)) {
-            return $this->db->execute($alter);
+        if (!empty($alters)) {
+            foreach ($alters as $alter) {
+                $result = $this->db->execute($alter);
+                if ($result === false) {
+                    return false;
+                }
+            }
         }
         $this->alterKeys();
 
@@ -112,7 +118,7 @@ class DbTable
 
     /**
      * Alter table fields
-     * @return string
+     * @return array
      */
     private function alterFields()
     {
@@ -146,7 +152,7 @@ class DbTable
             }
         }
 
-        return implode("\r\n", $alters);
+        return $alters;
     }
 
     /**
