@@ -3,6 +3,7 @@
 .php_cs.cache
 /vendor/*
 !/vendor/totpsclasslib
+!/vendor/.htaccess
 node_modules
 !/202/build.xml
 !/202/phpunit.xml
