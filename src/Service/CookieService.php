@@ -109,7 +109,7 @@ class CookieService
             }
         }
 
-        return $hookList;
+        return !empty($hookList) ? $hookList : false;
     }
 
     public function isEligibleHookName($hookName)
