@@ -45,7 +45,6 @@ class WhiteListModules
         'termsAndConditions',
         'updateProduct',
         'validateCustomerFormFields',
-        'validateCustomerFormFields',
     ];
 
     public static function getAllWhiteListHooks($lowerCase = true)
