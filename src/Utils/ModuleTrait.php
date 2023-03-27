@@ -32,7 +32,7 @@ use Tools;
 
 trait ModuleTrait
 {
-    //region Fields
+    // region Fields
 
     /**
      * List of hooks used in this Module
@@ -58,7 +58,7 @@ trait ModuleTrait
 
     public $extensions = [];
 
-    //endregion
+    // endregion
 
     /**
      * Module constructor.
@@ -148,7 +148,7 @@ trait ModuleTrait
             }
         }
 
-        //execute extension's hooks
+        // execute extension's hooks
         if (!isset($this->extensions) || empty($this->extensions)) {
             if (!$result) {
                 return false;
@@ -161,7 +161,6 @@ trait ModuleTrait
             $hookResult = null;
             if (is_callable([$extension, $hookName])) {
                 $hookResult = $extension->{$hookName}($params);
-            //TODO
             } elseif (is_callable([$extension, 'getHookDispatcher']) && $extension->getHookDispatcher() != null) {
                 $hookResult = $extension->getHookDispatcher()->dispatch($hookName, $params);
             }
@@ -256,7 +255,7 @@ trait ModuleTrait
             }
         }
 
-        //if we want to use an old approach
+        // if we want to use an old approach
         return $this->handleWidget($configuration['action'], __FUNCTION__, $hookName, $configuration);
     }
 

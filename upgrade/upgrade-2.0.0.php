@@ -19,7 +19,9 @@
 
 /**
  * @param Axeptiocookies $module
+ *
  * @return bool
+ *
  * @throws PrestaShopDatabaseException
  * @throws PrestaShopException
  */

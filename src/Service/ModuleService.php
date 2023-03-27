@@ -66,7 +66,7 @@ class ModuleService
                 $configFile = _PS_MODULE_DIR_ . $module['name'] . '/config_' . $iso . '.xml';
             }
 
-            $xmlExist = (file_exists($configFile));
+            $xmlExist = file_exists($configFile);
             $need_new_config_file = !$xmlExist
                 || @filemtime($configFile) < @filemtime(_PS_MODULE_DIR_ . $module['name'] . '/' . $module['name'] . '.php');
 
