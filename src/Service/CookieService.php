@@ -121,7 +121,7 @@ class CookieService
         $isNotDisplayBO = preg_match('/^((?!displayBackOffice.*).)*$/m', $hookName);
         $isNotDisplayAdmin = preg_match('/^((?!displayAdmin.*).)*$/m', $hookName);
         $isNotAction = preg_match('/^((?!action.*).)*$/m', $hookName);
-        $isNotInWhiteList = !(in_array(strtolower($hookName), WhiteListModules::getAllWhiteListHooks()));
+        $isNotInWhiteList = !in_array(strtolower($hookName), WhiteListModules::getAllWhiteListHooks());
 
         return $isNotDisplayBO && $isNotDisplayAdmin && $isNotAction && $isNotInWhiteList;
     }
