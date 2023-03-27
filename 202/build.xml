@@ -38,6 +38,7 @@
             <arg value="${TARGETVERSION}"/>
             <arg value="${env.BUILD_TAG}"/>
             <arg value="${env.GIT_URL}"/>
+            <arg value="${env.TOTBUILDER_PATH}"/>
         </exec>
     </target>
 
