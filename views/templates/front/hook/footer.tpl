@@ -69,7 +69,7 @@
         }
         for (const [key, value] of Object.entries(choices)) {
           if (!isCookiesSet || (typeof currentCookiesConfig[key] === 'undefined' || currentCookiesConfig[key] !== value)) {
-            window.location.reload();
+            // window.location.reload();
             break;
           }
         }

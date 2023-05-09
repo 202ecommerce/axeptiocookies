@@ -25,6 +25,12 @@ class WhiteListModules
         'axeptiocookies',
     ];
 
+    const PRELOADED_MODULES_HOOKS = [
+      'ps_googleanalytics' => [
+          'displayHeader',
+      ],
+    ];
+
     const WHITE_LIST_HOOKS = [
         'moduleRoutes',
         'additionalCustomerFormFields',

@@ -21,6 +21,7 @@ namespace AxeptiocookiesAddon\Service;
 
 use AxeptiocookiesAddon\Model\Constant\WhiteListModules;
 use Context;
+use Hook;
 
 class CookieService
 {
@@ -102,6 +103,9 @@ class CookieService
             }
 
             foreach ($hookList as $index => $hookItem) {
+                if ($this->isPreloadedHook($hookItem['module'], Hook::getNameById($hookItem['id_hook']))) {
+                    continue;
+                }
                 if ($hookItem['module'] == $moduleName) {
                     unset($hookList[$index]);
                     break;
@@ -129,5 +133,15 @@ class CookieService
     public function clearContextRequestCache()
     {
         static::$contextModules = [];
+    }
+
+    public function isPreloadedHook($moduleName, $hookName)
+    {
+        $preloadedHooks = WhiteListModules::PRELOADED_MODULES_HOOKS;
+        if (!isset($preloadedHooks[$moduleName])) {
+            return false;
+        }
+
+        return in_array($hookName, $preloadedHooks[$moduleName]);
     }
 }

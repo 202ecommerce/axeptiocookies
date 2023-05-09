@@ -1,0 +1,14 @@
+services:
+  AxeptiocookiesAddon\Factory\TemplateReplacementFactory:
+    class: AxeptiocookiesAddon\Factory\TemplateReplacementFactory
+    public: true
+
+  AxeptiocookiesAddon\Handler\Template\AbstractTemplateHandler:
+    class: AxeptiocookiesAddon\Handler\Template\AbstractTemplateHandler
+    abstract: true
+    public: true
+
+  AxeptiocookiesAddon\Handler\Template\PsGoogleAnalyticsTemplateHandler:
+    class: AxeptiocookiesAddon\Handler\Template\PsGoogleAnalyticsTemplateHandler
+    parent: AxeptiocookiesAddon\Handler\Template\AbstractTemplateHandler
+    public: true
