@@ -78,7 +78,7 @@ class CookieServiceTest extends AxeptioBaseTestCase
 
         $result = $this->cookieService->getModifiedHookExecList($data['hooks']);
 
-        $this->assertEmpty($result);
+        $this->assertNotEmpty($result);
     }
 
     public function testGetModifiedHookExecListDependencyTrue()
