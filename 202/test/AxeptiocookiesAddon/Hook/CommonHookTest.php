@@ -20,7 +20,9 @@
 namespace AxeptiocookiesAddon\Hook;
 
 use AxeptiocookiesAddon\AxeptioBaseTestCase;
+use AxeptiocookiesAddon\Cache\ProjectCache;
 use AxeptiocookiesAddon\Service\HookService;
+use AxeptiocookiesAddon\Utils\ServiceContainer;
 
 class CommonHookTest extends AxeptioBaseTestCase
 {
@@ -68,6 +70,7 @@ class CommonHookTest extends AxeptioBaseTestCase
     public function testDisplayFooter()
     {
         self::truncateTables();
+        ServiceContainer::getInstance()->get(ProjectCache::class)->cleanCacheDirectory();
         $result = $this->hookDispatcher->dispatch('displayFooter');
         $this->assertEmpty($result);
     }
