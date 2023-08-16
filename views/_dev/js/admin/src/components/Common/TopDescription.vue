@@ -29,11 +29,11 @@
         <p v-html="translations.common.description.desc1"></p>
         <p v-html="translations.common.description.desc2"></p>
         <p v-html="translations.common.description.desc3"></p>
-        <router-link tag="button"
-                     :to="{name: 'create'}"
-                     v-text="translations.list.new"
-                     class="btn btn-primary text-nowrap">
-        </router-link>
+        <button type="button"
+                @click="$router.push({name: 'create'})"
+                v-text="translations.list.new"
+                class="btn btn-primary text-nowrap">
+        </button>
       </div>
     </div>
   </div>

@@ -59,10 +59,11 @@
       </div>
     </td>
     <td class="edit-case text-center">
-      <router-link tag="button"
-                   :to="{name: 'edit', params: {'id': configuration.idObject}}"
-                   class="btn btn-outline-warning text-nowrap"
-                   v-text="translations.list.edit"></router-link>
+      <button class="btn btn-outline-warning text-nowrap"
+              v-text="translations.list.edit"
+              type="button"
+              @click="$router.push({name: 'edit', params: {'id': configuration.idObject}})"
+      ></button>
     </td>
     <td class="delete-case text-center">
       <a class="btn btn-outline-danger text-nowrap"
