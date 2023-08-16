@@ -133,12 +133,12 @@
         <div class="card-footer">
           <div class="d-flex"
                :class="{'justify-content-end': !showBackButton, 'justify-content-between': showBackButton}">
-            <router-link class="btn btn-lg btn-default"
-                         tag="button"
-                         v-if="showBackButton"
-                         v-text="translations.create.back"
-                         :to="{ name: 'list'}">
-            </router-link>
+            <button class="btn btn-lg btn-default"
+                    v-if="showBackButton"
+                    v-text="translations.create.back"
+                    type="button"
+                    @click="$router.push({ name: 'list'})">
+            </button>
 
             <button class="btn btn-lg btn-primary"
                     :disabled="!isSavable"

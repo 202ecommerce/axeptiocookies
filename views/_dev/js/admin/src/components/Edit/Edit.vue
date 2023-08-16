@@ -23,15 +23,15 @@
         <loader v-if="loading"></loader>
         <div class="row p-3">
           <div class="col-7 d-flex align-items-center">
-           <div class="d-flex align-items-center">
-             <div class="img-wrapper">
-               <img :src="image" class="img-fluid" alt="Edit">
-             </div>
-             <div class="d-flex flex-column">
-               <div class="h2" v-text="translations.edit.title"></div>
-               <div v-text="translations.edit.subtitle"></div>
-             </div>
-           </div>
+            <div class="d-flex align-items-center">
+              <div class="img-wrapper">
+                <img :src="image" class="img-fluid" alt="Edit">
+              </div>
+              <div class="d-flex flex-column">
+                <div class="h2" v-text="translations.edit.title"></div>
+                <div v-text="translations.edit.subtitle"></div>
+              </div>
+            </div>
           </div>
           <div class="col-5">
             <div class="form-wrapper"
@@ -187,11 +187,11 @@
         </div>
         <div class="card-footer">
           <div class="d-flex justify-content-between">
-            <router-link class="btn btn-lg btn-default"
-                         tag="button"
-                         v-text="translations.edit.back"
-                         :to="{ name: 'list'}">
-            </router-link>
+            <button class="btn btn-lg btn-default"
+                    v-text="translations.edit.back"
+                    type="button"
+                    @click="$router.push({ name: 'list'})">
+            </button>
 
             <button class="btn btn-lg btn-primary"
                     v-text="translations.common.save"
