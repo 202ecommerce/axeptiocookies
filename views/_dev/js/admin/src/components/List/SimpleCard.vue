@@ -47,6 +47,7 @@
             <div>
               <span class="case-text" v-text="translations.list.shop + ' : '"></span>
               <span v-for="(shop, index) in getShops"
+                    v-if="shop && shop.id_shop"
                     :key="shop.id_shop"
                     class="badge badge-warning"
                     :class="{'ml-2': index > 0}"
