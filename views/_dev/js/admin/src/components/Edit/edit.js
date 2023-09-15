@@ -70,6 +70,14 @@ export default {
     },
     handleModuleClick(index) {
       this.editConfiguration.modules[index].checked = !this.editConfiguration.modules[index].checked;
+    },
+    getPrettyModuleName(name) {
+      const areaElement = document.createElement("textarea");
+      areaElement.innerHTML = name;
+      const text = areaElement.value;
+      areaElement.remove();
+
+      return text;
     }
   },
   beforeRouteEnter(to, from, next) {
