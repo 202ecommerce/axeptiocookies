@@ -172,7 +172,7 @@
                           </div>
                           <div class="d-flex flex-column ml-2">
                             <div class="font-weight-bold"
-                                 v-text="module.displayName ? module.displayName : module.name"></div>
+                                 v-text="module.displayName ? getPrettyModuleName(module.displayName) : module.name"></div>
                             <div class="small-text"
                                  v-text="module.name"></div>
                           </div>
