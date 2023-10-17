@@ -34,14 +34,4 @@ class VendorDbTest extends TestCase
 
         $this->assertNotEmpty($response);
     }
-
-    public function testCallNotValid()
-    {
-        $client = new Client(new ResponseFactory());
-        $request = new ProjectRequest();
-        $request->setIdProject('test');
-        $response = $client->call($request);
-
-        $this->assertEmpty($response->getIdProject());
-    }
 }

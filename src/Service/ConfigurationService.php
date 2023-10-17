@@ -65,10 +65,10 @@ class ConfigurationService
      * @param HookService $hookService
      */
     public function __construct(ConfigurationRepository $configurationRepository,
-                                ProjectService          $projectService,
-                                ModuleService           $moduleService,
-                                ConfigurationValidator  $configurationValidator,
-                                HookService             $hookService)
+                                ProjectService $projectService,
+                                ModuleService $moduleService,
+                                ConfigurationValidator $configurationValidator,
+                                HookService $hookService)
     {
         $this->configurationRepository = $configurationRepository;
         $this->projectService = $projectService;

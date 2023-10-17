@@ -48,13 +48,13 @@ class Manifest
 
     /**
      * @param string $entrypoint
-     * @param bool $hash
+     *
      * @return array
      */
     public function getEntrypoint($entrypoint)
     {
         return isset($this->manifest[$entrypoint]) ? [
-            "url" => $this->getPath($this->manifest[$entrypoint]["file"])
+            'url' => $this->getPath($this->manifest[$entrypoint]['file']),
         ] : [];
     }
 
@@ -62,49 +62,47 @@ class Manifest
      * Returns imports for a file listed in the manifest
      *
      * @param string $entrypoint
-     * @param bool $hash (optional)
+     *
      * @return array
      */
     public function getImports($entrypoint)
     {
-        if (!isset($this->manifest[$entrypoint]) || !isset($this->manifest[$entrypoint]["imports"]) || !is_array($this->manifest[$entrypoint]["imports"])) {
+        if (!isset($this->manifest[$entrypoint]) || !isset($this->manifest[$entrypoint]['imports']) || !is_array($this->manifest[$entrypoint]['imports'])) {
             return [];
         }
 
         return array_filter(
             array_map(function ($import) {
-                return isset($this->manifest[$import]["file"]) ? [
-                    "url" => $this->getPath($this->manifest[$import]["file"])
+                return isset($this->manifest[$import]['file']) ? [
+                    'url' => $this->getPath($this->manifest[$import]['file']),
                 ] : [];
-            }, $this->manifest[$entrypoint]["imports"], [])
+            }, $this->manifest[$entrypoint]['imports'], [])
         );
     }
 
     /**
      * @param string $entrypoint
-     * @param bool $hash (optional)
+     *
      * @return array
      */
     public function getStyles($entrypoint)
     {
-        // TODO: Refactor for PHP 8.x
-        if (!isset($this->manifest[$entrypoint]) || !isset($this->manifest[$entrypoint]["css"]) || !is_array($this->manifest[$entrypoint]["css"])) {
+        if (!isset($this->manifest[$entrypoint]) || !isset($this->manifest[$entrypoint]['css']) || !is_array($this->manifest[$entrypoint]['css'])) {
             return [];
         }
 
         return array_filter(
             array_map(function ($style) {
                 return isset($style) ? [
-                    "url" => $this->getPath($style)
+                    'url' => $this->getPath($style),
                 ] : [];
-            }, $this->manifest[$entrypoint]["css"], [])
+            }, $this->manifest[$entrypoint]['css'], [])
         );
     }
 
     /**
-     * Resolves URL for a given file path
-     *
      * @param string $relativePath
+     *
      * @return string
      */
     private function getPath($relativePath)

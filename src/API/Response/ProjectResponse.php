@@ -27,8 +27,6 @@ class ProjectResponse extends AbstractResponse
     {
         $project = new Project();
 
-
-
         return $project->build($this->jsonResponse);
     }
 }
