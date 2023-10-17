@@ -17,8 +17,13 @@
  * @license   https://opensource.org/licenses/AFL-3.0  Academic Free License (AFL 3.0)
  */
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesAddon\Service\ConfigurationService;
 use AxeptiocookiesAddon\Service\ModuleService;
+use AxeptiocookiesAddon\Utils\GetViteVariablesUtils;
 use AxeptiocookiesAddon\Utils\ServiceContainer;
 
 class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
@@ -73,8 +78,6 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
     {
         parent::setMedia($isNewTheme);
 
-        $this->addJS(_PS_MODULE_DIR_ . 'axeptiocookies/views/js/admin.' . $this->module->version . '.js');
-        $this->addCSS(_PS_MODULE_DIR_ . 'axeptiocookies/views/css/admin.' . $this->module->version . '.css');
         Media::addJsDef([
             $this->module->name => $this->getJsVariables(),
         ]);
@@ -91,8 +94,7 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
         $tplFile = _PS_MODULE_DIR_ . 'axeptiocookies/views/templates/admin/configuration/layout.tpl';
 
         $tpl = Context::getContext()->smarty->createTemplate($tplFile);
-        $tpl->assign([
-        ]);
+        $tpl->assign((new GetViteVariablesUtils())->getViteVariables('src/admin/js/main.ts'));
 
         return $tpl->fetch();
     }
@@ -136,6 +138,10 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                     'step_message' => $this->l('Message', $this->controller_name),
                     'step_title' => $this->l('Title', $this->controller_name),
                     'step_subtitle' => $this->l('Subtitle', $this->controller_name),
+                    'recommended' => [
+                        'description' => $this->l('Collection of personal data', $this->controller_name),
+                        'reset' => $this->l('Check the modules for which consent is recommended by Axeptio', $this->controller_name),
+                    ]
                 ],
                 'example' => [
                     'accept' => $this->l('Accept all', $this->controller_name),
@@ -169,7 +175,7 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                     'delete' => $this->l('Delete', $this->controller_name),
                     'delete_no' => $this->trans('No', [], 'Admin.Global'),
                     'delete_yes' => $this->trans('Yes', [], 'Admin.Global'),
-                    'delete_confirmation' => $this->l('Are you sure you want delete this widget?'),
+                    'delete_confirmation' => $this->l('Are you sure you want delete this widget?', $this->controller_name),
                     'new' => $this->l('Create an Axeptio widget', $this->controller_name),
                     'edit' => $this->l('Edit', $this->controller_name),
                     'configuration_unavailable' => $this->l('Axeptio widget is unavailable, it is recommended to 

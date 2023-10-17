@@ -65,6 +65,8 @@ $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_6ed562a0d
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_8af1f1c0895c6f9654aa578cfd0a3987'] = 'Modification';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_a1998652b01bdc9e7128734efb804780'] = 'Suppression';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_290612199861c31d1036b185b4e69b75'] = 'Résumé';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_ce96df65876e9b1913f1d1a6dbbfd76e'] = 'Collecte de données personnelles';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_ed5a66a242bc6e07f7c4b7806e7edfe3'] = 'Cocher les modules pour lesquels le consentement est recommandé par Axeptio';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfigurationajax_b31a89f719860aa502734dcf0d9c1700'] = 'Échec du chargement des configurations';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfigurationajax_71bb639c47fc161186ed7edb14f324d6'] = 'Échec du chargement de vos configurations';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfigurationajax_e78483c9a3073cc1096852724e9ac43a'] = 'Votre association a bien été supprimée';

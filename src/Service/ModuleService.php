@@ -19,6 +19,9 @@
 
 namespace AxeptiocookiesAddon\Service;
 
+use AxeptiocookiesAddon\API\Client\Client;
+use AxeptiocookiesAddon\API\Request\VendorDbRequest;
+use AxeptiocookiesAddon\API\Response\Object\Vendor;
 use AxeptiocookiesAddon\Entity\AxeptioModuleConfiguration;
 use AxeptiocookiesAddon\Model\Constant\WhiteListModules;
 use AxeptiocookiesAddon\Repository\ModuleRepository;
@@ -37,11 +40,18 @@ class ModuleService
     protected $moduleRepository;
 
     /**
-     * @param ModuleRepository $moduleRepository
+     * @var Client
      */
-    public function __construct(ModuleRepository $moduleRepository)
+    protected $client;
+
+    /**
+     * @param ModuleRepository $moduleRepository
+     * @param Client $client
+     */
+    public function __construct(ModuleRepository $moduleRepository, Client $client)
     {
         $this->moduleRepository = $moduleRepository;
+        $this->client = $client;
     }
 
     public function getModulesListByIdConfiguration($idConfiguration, $idShop = null, $isActive = null, $restrictBySelected = false)
@@ -53,6 +63,8 @@ class ModuleService
             $isActive,
             $restrictBySelected ? $selectedModules : null
         );
+
+        $recommendedModules = $this->getRecommendedModules();
 
         foreach ($modules as &$module) {
             $module['image'] = $this->getModuleImageLink($module['name']);
@@ -115,6 +127,12 @@ class ModuleService
                         continue;
                     }
                 }
+            }
+
+            if (!empty($module['name']) && isset($recommendedModules[$module['name']])) {
+                $module['recommended'] = $recommendedModules[$module['name']];
+            } else {
+                $module['recommended'] = false;
             }
         }
 
@@ -189,5 +207,26 @@ class ModuleService
     public function clearModules($idObject)
     {
         return $this->moduleRepository->clearModules($idObject);
+    }
+
+    public function getRecommendedModules()
+    {
+        $request = new VendorDbRequest();
+        $response = $this->client->call($request);
+        if (empty($response)) {
+            return [];
+        }
+
+        $result = [];
+
+        /** @var Vendor $item */
+        foreach ($response as $item) {
+            if (!$item->isRequired()) {
+                continue;
+            }
+            $result[$item->getName()] = $item;
+        }
+
+        return $result;
     }
 }
