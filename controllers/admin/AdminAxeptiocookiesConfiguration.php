@@ -16,7 +16,6 @@
  * @copyright 2022 Axeptio
  * @license   https://opensource.org/licenses/AFL-3.0  Academic Free License (AFL 3.0)
  */
-
 if (!defined('_PS_VERSION_')) {
     exit;
 }
@@ -141,7 +140,7 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                     'recommended' => [
                         'description' => $this->l('Collection of personal data', $this->controller_name),
                         'reset' => $this->l('Check the modules for which consent is recommended by Axeptio', $this->controller_name),
-                    ]
+                    ],
                 ],
                 'example' => [
                     'accept' => $this->l('Accept all', $this->controller_name),

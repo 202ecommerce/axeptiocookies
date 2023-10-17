@@ -179,26 +179,6 @@ class Vendor extends AbstractObject
         return $this;
     }
 
-    /**
-     * @return array
-     */
-    public function getData()
-    {
-        return $this->data;
-    }
-
-    /**
-     * @param array $data
-     *
-     * @return Vendor
-     */
-    public function setData($data)
-    {
-        $this->data = $data;
-
-        return $this;
-    }
-
     public static function __set_state($data)
     {
         $obj = new self();
@@ -216,9 +196,6 @@ class Vendor extends AbstractObject
         }
         if (!empty($data['isRequired'])) {
             $obj->setIsRequired($data['isRequired']);
-        }
-        if (!empty($data['data'])) {
-            $obj->setData($data['data']);
         }
 
         return $obj;

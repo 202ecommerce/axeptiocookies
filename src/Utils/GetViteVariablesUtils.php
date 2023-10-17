@@ -66,13 +66,13 @@ class GetViteVariablesUtils
                 }
             } else {
                 $manifestProcessor = new Manifest($manifest, $buildDirHttps);
-                $jsEntry = $manifestProcessor->getEntrypoint($entryPoint, false)['url'];
+                $jsEntry = $manifestProcessor->getEntrypoint($entryPoint)['url'];
                 $js = array_map(function ($data) {
                     return $data['url'];
-                }, $manifestProcessor->getImports($entryPoint, false));
+                }, $manifestProcessor->getImports($entryPoint));
                 $css = array_map(function ($data) {
                     return $data['url'];
-                }, $manifestProcessor->getStyles($entryPoint, false));
+                }, $manifestProcessor->getStyles($entryPoint));
             }
         }
 
