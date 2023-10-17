@@ -21,12 +21,12 @@
 {if $vitedev}
   <script type="module" src="http://localhost:8000/@vite/client"></script>
 {else}
-  <script type="module" crossorigin src="{$jsEntry}"></script>
+  <script type="module" crossorigin src="{$jsEntry|escape:'htmlall':'UTF-8'}"></script>
   {foreach $jsBuild as $js}
-    <link rel="modulepreload" href="{$js}">
+    <link rel="modulepreload" href="{$js|escape:'htmlall':'UTF-8'}">
   {/foreach}
   {foreach $cssBuild as $css}
-    <link rel="stylesheet" href="{$css}">
+    <link rel="stylesheet" href="{$css|escape:'htmlall':'UTF-8'}">
   {/foreach}
 {/if}
 
