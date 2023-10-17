@@ -35,10 +35,14 @@ const imageUrl = images.list;
 
 const getShops: ComputedRef<Shop[]> = computed((): Shop[] => {
   if (props.configuration) {
-    return props.configuration.idShops.map(idShop => {
+    const fetchedShops = props.configuration.idShops.map(idShop => {
       return shops.find(shop => {
         return shop.id_shop === idShop;
       }) as Shop;
+    });
+
+    return fetchedShops.filter(shop => {
+      return isShop(shop);
     });
   }
 
@@ -60,6 +64,11 @@ const getLanguage = computed(() => {
 const handleDelete = () => {
   $('#deleteModal_' + props.configuration.idObject).modal('show');
 };
+
+const isShop = (shop: any): shop is Shop => {
+  return shop && 'id_shop' in shop;
+};
+
 </script>
 
 <template>
@@ -92,9 +101,6 @@ const handleDelete = () => {
             <div class="case-text" v-text="trans('list.project_id') + ' : ' + configuration.idProject"></div>
             <div v-if="getShops">
               <span class="case-text" v-text="trans('list.shop') + ' : '"></span>
-              <template>
-
-              </template>
               <span v-for="(shopItem, index) in getShops"
                     :key="shopItem.id_shop"
                     class="badge badge-warning"

@@ -32,7 +32,7 @@ class Manifest
 
         try {
             $this->manifest = json_decode(
-                file_get_contents($manifestFile),
+                \Tools::file_get_contents($manifestFile),
                 true
             );
         } catch (\Exception $errorMessage) {
