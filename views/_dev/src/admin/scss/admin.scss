@@ -1,4 +1,4 @@
-{**
+/*!
  * Copyright since 2022 Axeptio
  *
  * NOTICE OF LICENSE
@@ -14,26 +14,12 @@
  * @author    202 ecommerce <tech@202-ecommerce.com>
  * @copyright 2022 Axeptio
  * @license   https://opensource.org/licenses/AFL-3.0  Academic Free License (AFL 3.0)
- *}
+ */
 
-{assign var="vitedev" value=false}
-
-{if $vitedev}
-  <script type="module" src="http://localhost:8000/@vite/client"></script>
-{else}
-  <script type="module" crossorigin src="{$jsEntry}"></script>
-  {foreach $jsBuild as $js}
-    <link rel="modulepreload" href="{$js}">
-  {/foreach}
-  {foreach $cssBuild as $css}
-    <link rel="stylesheet" href="{$css}">
-  {/foreach}
-{/if}
-
-<div class="axeptioApp">
-  <div id="axeptio-configuration"></div>
-</div>
-{if $vitedev}
-  <script type="module" src="http://localhost:8000/src/admin/js/main.ts"></script>
-{/if}
-
+@import "prestakit/dist/css/bootstrap-prestashop-ui-kit";
+@import "vue-multiselect/dist/vue-multiselect.css";
+@import 'floating-vue/dist/style.css';
+@import "admin/global";
+@import "admin/loader";
+@import "admin/configuration";
+@import "admin/axeptio-example";

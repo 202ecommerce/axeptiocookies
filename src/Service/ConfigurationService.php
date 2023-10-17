@@ -26,6 +26,7 @@ use AxeptiocookiesAddon\Model\EditConfigurationModel;
 use AxeptiocookiesAddon\Model\ListConfigurationModel;
 use AxeptiocookiesAddon\Repository\ConfigurationRepository;
 use AxeptiocookiesAddon\Validator\ConfigurationValidator;
+use Module;
 use PrestaShopException;
 use Validate;
 
@@ -64,10 +65,10 @@ class ConfigurationService
      * @param HookService $hookService
      */
     public function __construct(ConfigurationRepository $configurationRepository,
-                                ProjectService $projectService,
-                                ModuleService $moduleService,
-                                ConfigurationValidator $configurationValidator,
-                                HookService $hookService)
+                                ProjectService          $projectService,
+                                ModuleService           $moduleService,
+                                ConfigurationValidator  $configurationValidator,
+                                HookService             $hookService)
     {
         $this->configurationRepository = $configurationRepository;
         $this->projectService = $projectService;
@@ -97,6 +98,11 @@ class ConfigurationService
         $this->configurationRepository->clearShops($configuration->id);
 
         $configuration->associateTo($configurationModel->getIdShops());
+
+        $modules = array_filter(array_keys($this->moduleService->getRecommendedModules()), function ($moduleName) {
+            return !empty(Module::getModuleIdByName($moduleName));
+        });
+        $this->moduleService->associateToModules($configuration->id, $modules);
 
         $this->hookService->purgeCache();
 

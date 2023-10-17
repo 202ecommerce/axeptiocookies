@@ -19,16 +19,33 @@
 
 namespace AxeptiocookiesAddon\API\Client;
 
+use AxeptiocookiesAddon\API\Request\AbstractRequest;
 use AxeptiocookiesAddon\API\Request\ProjectRequest;
+use AxeptiocookiesAddon\API\Response\Factory\ResponseFactory;
 use AxeptiocookiesAddon\API\Response\Object\Project;
 use AxeptiocookiesAddon\API\Response\ProjectResponse;
 
 class Client
 {
     /**
-     * @param ProjectRequest $request
+     * @var ResponseFactory
+     */
+    protected $responseFactory;
+
+    /**
+     * @param ResponseFactory $responseFactory
+     */
+    public function __construct(ResponseFactory $responseFactory)
+    {
+        $this->responseFactory = $responseFactory;
+    }
+
+    /**
+     * @param AbstractRequest $request
      *
-     * @return Project|bool
+     * @return mixed
+     *
+     * @throws \PrestaShopException
      */
     public function call($request)
     {
@@ -62,10 +79,11 @@ class Client
         $response = curl_exec($curl);
         curl_close($curl);
 
+        $responseClass = $this->responseFactory->getResponseClass($request);
         if (empty($response)) {
-            $response = new ProjectResponse([]);
+            $response = new $responseClass([]);
         } else {
-            $response = new ProjectResponse(json_decode($response, true));
+            $response = new $responseClass(json_decode($response, true));
         }
 
         return $response->getResponse();

@@ -108,14 +108,9 @@ rm -Rf README.md
 rm -Rf composer.*
 rm -Rf cache.properties
 rm -Rf node_modules
-rm -Rf postcss.config.js
-rm -Rf webpack.config.js
-rm -Rf babel.config.js
-rm .editorconfig .stylelintignore .stylelintignore browserlist docker-compose.yml
 rm -Rf views/_dev
-rm -Rf .php_cs.dist
-rm -Rf package.json
-rm -Rf package-lock.json
+rm -Rf .php-cs-fixer.cache
+rm -Rf .php-cs-fixer.dist.php
 rm -Rf sonar-project.properties
 rm -Rf composer.lock
 

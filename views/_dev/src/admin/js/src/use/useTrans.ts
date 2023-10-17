@@ -1,4 +1,4 @@
-{**
+/**
  * Copyright since 2022 Axeptio
  *
  * NOTICE OF LICENSE
@@ -14,26 +14,32 @@
  * @author    202 ecommerce <tech@202-ecommerce.com>
  * @copyright 2022 Axeptio
  * @license   https://opensource.org/licenses/AFL-3.0  Academic Free License (AFL 3.0)
- *}
+ */
 
-{assign var="vitedev" value=false}
+declare global {
+  interface Window {
+    axeptiocookies: any;
+  }
+}
 
-{if $vitedev}
-  <script type="module" src="http://localhost:8000/@vite/client"></script>
-{else}
-  <script type="module" crossorigin src="{$jsEntry}"></script>
-  {foreach $jsBuild as $js}
-    <link rel="modulepreload" href="{$js}">
-  {/foreach}
-  {foreach $cssBuild as $css}
-    <link rel="stylesheet" href="{$css}">
-  {/foreach}
-{/if}
+export function useTrans(): {trans: Function} {
+  const trans = (key: string) => {
+    if (!window.axeptiocookies || !window.axeptiocookies.translations) {
+      return key;
+    }
 
-<div class="axeptioApp">
-  <div id="axeptio-configuration"></div>
-</div>
-{if $vitedev}
-  <script type="module" src="http://localhost:8000/src/admin/js/main.ts"></script>
-{/if}
+    const keys: string[] = key.split('.');
+    let translation = window.axeptiocookies.translations;
+    keys.forEach(keyItem => {
+      if (translation[keyItem]) {
+        translation = translation[keyItem];
+      }
+    });
 
+    return translation;
+  };
+
+  return {
+    trans,
+  };
+}
