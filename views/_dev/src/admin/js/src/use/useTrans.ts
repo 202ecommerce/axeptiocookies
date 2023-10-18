@@ -24,7 +24,7 @@ declare global {
 
 export function useTrans(): {trans: Function} {
   const trans = (key: string) => {
-    if (!window.axeptiocookies || !window.axeptiocookies.translations) {
+    if (!window.axeptiocookies.translations) {
       return key;
     }
 

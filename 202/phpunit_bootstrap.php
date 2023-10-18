@@ -17,7 +17,6 @@
  * @license   https://opensource.org/licenses/AFL-3.0  Academic Free License (AFL 3.0)
  */
 $basedir = '/var/www/html/';
-//$basedir = '/home/denys/www/prestashop810.denys.tot/site/';
 require_once $basedir . 'config/config.inc.php';
 
 require_once 'test/AxeptiocookiesAddon/AxeptioBaseTestCase.php';

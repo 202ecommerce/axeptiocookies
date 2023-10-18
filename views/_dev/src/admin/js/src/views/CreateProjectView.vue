@@ -63,7 +63,7 @@ const isCommonFieldEditable = computed(() => {
 });
 
 const configurations: ComputedRef<ConfigurationData[]> = computed(() => {
-  if (configurationStore.createConfiguration && configurationStore.createConfiguration.configurations) {
+  if (configurationStore.createConfiguration?.configurations) {
     return configurationStore.createConfiguration.configurations;
   }
 
@@ -170,7 +170,8 @@ configurationBus.on((event, data) => {
             <div class="col-5 d-flex justify-content-end">
               <iframe width="560" height="315"
                       src="https://www.youtube.com/embed/TPWdnNa3Ki8"
-                      title="Axeptio" frameborder="0"
+                      title="Axeptio"
+                      style="border: 0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowfullscreen></iframe>
             </div>
