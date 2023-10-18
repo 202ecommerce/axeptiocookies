@@ -44,7 +44,7 @@ const configurationStore = useConfigurationStore();
       <div class="col-12">
         <loader v-if="commonStore.loading"></loader>
 
-        <table class="table mt-2 mb-0">
+        <table class="table mt-2 mb-0" aria-label="Configuration's table">
           <thead>
           <tr>
             <th class="text-center" v-text="trans('list.table.widget')"></th>
@@ -72,7 +72,3 @@ const configurationStore = useConfigurationStore();
     </div>
   </div>
 </template>
-
-<style scoped lang="scss">
-
-</style>

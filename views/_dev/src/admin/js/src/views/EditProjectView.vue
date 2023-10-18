@@ -244,8 +244,9 @@ const handleResetToRecommendedModules = () => {
                 class="tab-pane fade"
                 :class="{'show active': selectedTab === TabItem.MODULES}"
             >
-              <div class="d-inline-flex float-right mb-2" v-if="isResetBtnVisible">
+              <div class="d-inline-flex float-right mb-3 module-tab-actions">
                 <button class="btn btn-lg btn-outline-info"
+                        v-if="isResetBtnVisible"
                         v-text="trans('edit.recommended.reset')"
                         type="button"
                         @click="handleResetToRecommendedModules">
@@ -274,8 +275,10 @@ const handleResetToRecommendedModules = () => {
                         </div>
                         <div class="ml-2"
                              v-if="module.recommended !== false && module.recommended.isRequired">
-                          <i class="material-icons text-danger"
-                             v-tooltip="trans('edit.recommended.description')">close</i>
+                          <img :src="images.recommended"
+                               class="img-fluid"
+                               v-tooltip="trans('edit.recommended.description')"
+                               :alt="trans('edit.recommended.description')">
                         </div>
                       </div>
                     </div>
@@ -304,7 +307,3 @@ const handleResetToRecommendedModules = () => {
     </div>
   </div>
 </template>
-
-<style scoped lang="scss">
-
-</style>

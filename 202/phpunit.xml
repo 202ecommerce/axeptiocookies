@@ -28,6 +28,8 @@
     <php>
         <ini name="error_reporting" value="-1" />
         <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled" />
+        <env name="TEST_ID_PROJECT" value="62500feea925ec04460954a9" />
+        <env name="TEST_ID_CONFIGURATION" value="62500fefea9774f707035148" />
     </php>
     <testsuites>
         <testsuite name="axeptiocookies">
@@ -39,7 +41,7 @@
             <directory suffix=".php">../src</directory>
         </whitelist>
     </filter>
-    <logging>
-        <log type="coverage-clover" target="build/clover.xml"/>
-    </logging>
+<!--    <logging>-->
+<!--        <log type="coverage-clover" target="build/clover.xml"/>-->
+<!--    </logging>-->
 </phpunit>
