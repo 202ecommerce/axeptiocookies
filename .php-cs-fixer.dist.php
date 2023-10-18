@@ -6,7 +6,7 @@ $rules = $configPs->getRules();
 
 $config = new PhpCsFixer\Config();
 $rules['global_namespace_import'] = ['import_classes' => false];
-$rules['statement_indentation'] = true;
+//$rules['statement_indentation'] = true;
 
 $config
     ->setRules($rules)
