@@ -68,9 +68,9 @@ export interface Language {
 
 export interface CreatableConfiguration {
   idProject: string;
-  idConfiguration?: string | undefined;
+  idConfiguration?: string;
   idShops?: number[];
-  idLanguage?: number | undefined;
+  idLanguage?: number;
   message?: string;
   title?: string;
   subtitle?: string;

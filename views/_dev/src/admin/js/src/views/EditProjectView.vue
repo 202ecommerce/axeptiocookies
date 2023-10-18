@@ -43,7 +43,7 @@ const configurationStore = useConfigurationStore();
 const selectedTab = ref(TabItem.GENERAL);
 
 const nbModules = computed(() => {
-  if (!configurationStore.editConfiguration || !configurationStore.editConfiguration?.modules) {
+  if (!configurationStore.editConfiguration?.modules) {
     return 0;
   }
 
@@ -79,7 +79,7 @@ configurationBus.on((event) => {
 });
 
 const isResetBtnVisible = computed(() => {
-  if (!configurationStore.editConfiguration || !configurationStore.editConfiguration.modules) {
+  if (!configurationStore.editConfiguration?.modules) {
     return false;
   }
 
@@ -93,7 +93,7 @@ const handleResetToRecommendedModules = () => {
   if (!isResetBtnVisible.value) {
     return;
   }
-  if (!configurationStore.editConfiguration || !configurationStore.editConfiguration.modules) {
+  if (!configurationStore.editConfiguration?.modules) {
     return false;
   }
   configurationStore.editConfiguration.modules.forEach(module => {
