@@ -20,10 +20,7 @@
 namespace AxeptiocookiesAddon\API\Client;
 
 use AxeptiocookiesAddon\API\Request\AbstractRequest;
-use AxeptiocookiesAddon\API\Request\ProjectRequest;
 use AxeptiocookiesAddon\API\Response\Factory\ResponseFactory;
-use AxeptiocookiesAddon\API\Response\Object\Project;
-use AxeptiocookiesAddon\API\Response\ProjectResponse;
 
 class Client
 {

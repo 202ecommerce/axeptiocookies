@@ -24,8 +24,6 @@
 
 namespace AxeptiocookiesAddon\API\Response\Object;
 
-use Context;
-
 class Vendor extends AbstractObject
 {
     /**
