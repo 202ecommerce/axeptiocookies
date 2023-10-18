@@ -20,14 +20,12 @@
 namespace AxeptiocookiesAddon\Repository;
 
 use AxeptiocookiesAddon\Entity\AxeptioConfiguration;
-use Db;
-use DbQuery;
 
 class ConfigurationRepository
 {
     public function clearShops($idConfiguration)
     {
-        Db::getInstance()->delete(
+        \Db::getInstance()->delete(
             AxeptioConfiguration::$definition['table'] . '_shop',
             AxeptioConfiguration::$definition['primary'] . ' = ' . (int) $idConfiguration
         );
@@ -35,16 +33,16 @@ class ConfigurationRepository
 
     public function getAll()
     {
-        $query = new DbQuery();
+        $query = new \DbQuery();
         $query->select(AxeptioConfiguration::$definition['primary']);
         $query->from(AxeptioConfiguration::$definition['table']);
 
-        return Db::getInstance()->executeS($query);
+        return \Db::getInstance()->executeS($query);
     }
 
     public function getConfigurationsByShopLang($idShop, $idLang, $idObject = null)
     {
-        $query = new DbQuery();
+        $query = new \DbQuery();
         $query->select('ac.' . AxeptioConfiguration::$definition['primary']);
         $query->from(AxeptioConfiguration::$definition['table'], 'ac');
         $query->innerJoin(
@@ -59,6 +57,6 @@ class ConfigurationRepository
             $query->where('ac.id_axeptiocookies_configuration <> ' . (int) $idObject);
         }
 
-        return Db::getInstance()->executeS($query);
+        return \Db::getInstance()->executeS($query);
     }
 }

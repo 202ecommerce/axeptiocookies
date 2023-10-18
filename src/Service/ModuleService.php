@@ -25,12 +25,7 @@ use AxeptiocookiesAddon\API\Response\Object\Vendor;
 use AxeptiocookiesAddon\Entity\AxeptioModuleConfiguration;
 use AxeptiocookiesAddon\Model\Constant\WhiteListModules;
 use AxeptiocookiesAddon\Repository\ModuleRepository;
-use Context;
-use Exception;
-use Module;
 use PrestaShop\PrestaShop\Adapter\ServiceLocator;
-use Tools;
-use Translate;
 
 class ModuleService
 {
@@ -70,7 +65,7 @@ class ModuleService
             $module['image'] = $this->getModuleImageLink($module['name']);
             $module['checked'] = in_array($module['name'], $selectedModules);
 
-            $iso = substr(Context::getContext()->language->iso_code, 0, 2);
+            $iso = substr(\Context::getContext()->language->iso_code, 0, 2);
 
             if ($iso == 'en') {
                 $configFile = _PS_MODULE_DIR_ . $module['name'] . '/config.xml';
@@ -89,8 +84,8 @@ class ModuleService
                     continue;
                 }
 
-                $file = _PS_MODULE_DIR_ . $module['name'] . '/' . Context::getContext()->language->iso_code . '.php';
-                if (Tools::file_exists_cache($file) && include_once($file)) {
+                $file = _PS_MODULE_DIR_ . $module['name'] . '/' . \Context::getContext()->language->iso_code . '.php';
+                if (\Tools::file_exists_cache($file) && include_once($file)) {
                     global $_MODULE;
                     if (isset($_MODULE) && is_array($_MODULE)) {
                         $_MODULES = !empty($_MODULES) ? array_merge($_MODULES, $_MODULE) : $_MODULE;
@@ -98,12 +93,12 @@ class ModuleService
                 }
 
                 $module['displayName'] = stripslashes(
-                    Translate::getModuleTranslation((string) $xmlModule->name,
-                        Module::configXmlStringFormat($xmlModule->displayName), (string) $xmlModule->name)
+                    \Translate::getModuleTranslation((string) $xmlModule->name,
+                        \Module::configXmlStringFormat($xmlModule->displayName), (string) $xmlModule->name)
                 );
                 $module['description'] = stripslashes(
-                    Translate::getModuleTranslation((string) $xmlModule->name,
-                        Module::configXmlStringFormat($xmlModule->description), (string) $xmlModule->name));
+                    \Translate::getModuleTranslation((string) $xmlModule->name,
+                        \Module::configXmlStringFormat($xmlModule->description), (string) $xmlModule->name));
                 $module['authorUri'] = (isset($xmlModule->author_uri) && $xmlModule->author_uri)
                     ? stripslashes($xmlModule->author_uri)
                     : false;
@@ -113,7 +108,7 @@ class ModuleService
             } else {
                 if (class_exists($module['name'], false)) {
                     try {
-                        /** @var Module $moduleObj */
+                        /** @var \Module $moduleObj */
                         $moduleObj = ServiceLocator::get($module['name']);
                         $module['displayName'] = stripslashes($moduleObj->displayName);
                         $module['description'] = stripslashes($moduleObj->description);
@@ -123,7 +118,7 @@ class ModuleService
                         $module['tab'] = isset($module->tab)
                             ? stripslashes($module->tab)
                             : false;
-                    } catch (Exception $e) {
+                    } catch (\Exception $e) {
                         continue;
                     }
                 }
@@ -162,7 +157,7 @@ class ModuleService
     {
         $images = glob(_PS_MODULE_DIR_ . $moduleName . '/logo.{jpg,png,gif}', GLOB_BRACE);
         foreach ($images as $image) {
-            return Context::getContext()->link->getBaseLink() . 'modules/' . $moduleName . DIRECTORY_SEPARATOR . basename($image);
+            return \Context::getContext()->link->getBaseLink() . 'modules/' . $moduleName . DIRECTORY_SEPARATOR . basename($image);
         }
 
         return null;

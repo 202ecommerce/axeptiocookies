@@ -19,10 +19,7 @@
 
 namespace AxeptiocookiesAddon\Entity;
 
-use ObjectModel;
-use Shop;
-
-class AxeptioConfiguration extends ObjectModel
+class AxeptioConfiguration extends \ObjectModel
 {
     /**
      * @var int
@@ -62,7 +59,7 @@ class AxeptioConfiguration extends ObjectModel
     public function __construct($id = null, $id_lang = null, $id_shop = null, $translator = null)
     {
         parent::__construct($id, $id_lang, $id_shop, $translator);
-        Shop::addTableAssociation(self::$definition['table'], ['type' => 'shop']);
+        \Shop::addTableAssociation(self::$definition['table'], ['type' => 'shop']);
     }
 
     /**
