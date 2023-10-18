@@ -43,7 +43,7 @@ export interface Shop {
   domain: string;
   domain_ssl: string;
   id_category: number;
-  id_shop: number;
+  id_shop: number | string;
   id_shop_group: number;
   name: string;
   theme_name: string;
