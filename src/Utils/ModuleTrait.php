@@ -22,13 +22,7 @@ namespace AxeptiocookiesAddon\Utils;
 use AxeptiocookiesClasslib\Extensions\AbstractModuleExtension;
 use AxeptiocookiesClasslib\Hook\AbstractHookDispatcher;
 use AxeptiocookiesClasslib\Install\ModuleInstaller;
-use Configuration;
-use Context;
-use Language;
-use OrderState;
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
-use ReflectionClass;
-use Tools;
 
 trait ModuleTrait
 {
@@ -91,7 +85,7 @@ trait ModuleTrait
         try {
             $isPhpVersionCompliant = $installer->checkPhpVersion();
         } catch (\Exception $e) {
-            $this->_errors[] = Tools::displayError($e->getMessage());
+            $this->_errors[] = \Tools::displayError($e->getMessage());
         }
 
         return $isPhpVersionCompliant && parent::install() && $installer->install();
@@ -204,7 +198,7 @@ trait ModuleTrait
             if (!($extension instanceof WidgetInterface)) {
                 continue;
             }
-            $extensionClass = (new ReflectionClass($extension))->getShortName();
+            $extensionClass = (new \ReflectionClass($extension))->getShortName();
             if ($extensionClass != $action) {
                 continue;
             }
@@ -303,7 +297,7 @@ trait ModuleTrait
         }
 
         $moduleName = $this->name;
-        $orderStates = OrderState::getOrderStates(Context::getContext()->language->id);
+        $orderStates = \OrderState::getOrderStates(\Context::getContext()->language->id);
 
         $moduleStatuses = array_filter($orderStates, function ($state) use ($moduleName) {
             return $state['module_name'] == $moduleName;
@@ -315,8 +309,8 @@ trait ModuleTrait
 
         $result = true;
         foreach ($this->statuses as $configurationName => $orderStateParams) {
-            $orderState = new OrderState();
-            $allLanguages = Language::getLanguages(false);
+            $orderState = new \OrderState();
+            $allLanguages = \Language::getLanguages(false);
             foreach ($orderStateParams as $key => $value) {
                 if ($key === 'name' || $key === 'template') {
                     foreach ($allLanguages as $language) {
@@ -337,7 +331,7 @@ trait ModuleTrait
                 copy($orderStateParams['logo'], $destination);
             }
             $result &= $resultAdd;
-            Configuration::updateValue($configurationName, $orderState->id);
+            \Configuration::updateValue($configurationName, $orderState->id);
         }
 
         return $result;

@@ -23,7 +23,6 @@ use AxeptiocookiesAddon\API\Client\Client;
 use AxeptiocookiesAddon\API\Request\ProjectRequest;
 use AxeptiocookiesAddon\API\Response\Object\Configuration;
 use AxeptiocookiesAddon\API\Response\Object\Project;
-use Exception;
 
 class ProjectService
 {
@@ -60,7 +59,7 @@ class ProjectService
             static::$projects[$projectId] = $this->client->call($request);
 
             return static::$projects[$projectId];
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             return new Project();
         }
     }

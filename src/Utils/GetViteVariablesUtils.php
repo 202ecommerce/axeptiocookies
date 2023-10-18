@@ -24,10 +24,7 @@
 
 namespace AxeptiocookiesAddon\Utils;
 
-use Context;
-use Exception;
 use Symfony\Component\Filesystem\Filesystem;
-use Tools;
 
 class GetViteVariablesUtils
 {
@@ -39,14 +36,14 @@ class GetViteVariablesUtils
         $filesystem = new Filesystem();
         $path = '/modules/axeptiocookies/views/';
         $buildDir = _PS_ROOT_DIR_ . $path;
-        $shop = Context::getContext()->shop;
-        $buildDirHttps = Tools::getShopDomainSsl(true) . $shop->physical_uri . ltrim($path, '/');
+        $shop = \Context::getContext()->shop;
+        $buildDirHttps = \Tools::getShopDomainSsl(true) . $shop->physical_uri . ltrim($path, '/');
         if ($filesystem->exists($buildDir)) {
             $manifest = $buildDir . 'manifest.json';
             if (!$filesystem->exists($manifest)) {
-                throw new Exception('manifest.json not exist');
+                throw new \Exception('manifest.json not exist');
             }
-            $json = Tools::file_get_contents($manifest);
+            $json = \Tools::file_get_contents($manifest);
             $json = json_decode($json, true);
 
             if (is_null($entryPoint)) {

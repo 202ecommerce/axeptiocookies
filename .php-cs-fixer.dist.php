@@ -5,8 +5,7 @@ $configPs = new PrestaShop\CodingStandards\CsFixer\Config();
 $rules = $configPs->getRules();
 
 $config = new PhpCsFixer\Config();
-//$rules['global_namespace_import'] = ['import_classes' => null];
-//$rules['no_unused_imports'] = false;
+$rules['global_namespace_import'] = ['import_classes' => false];
 
 $config
     ->setRules($rules)
