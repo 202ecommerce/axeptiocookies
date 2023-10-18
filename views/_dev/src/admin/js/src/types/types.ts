@@ -27,7 +27,7 @@ export interface Configuration {
   idLanguage: number;
   idObject: number;
   idProject: string;
-  idShops: number[];
+  idShops: string[];
   configuration: ConfigurationData;
 }
 

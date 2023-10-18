@@ -37,7 +37,7 @@ const getShops: ComputedRef<Shop[]> = computed((): Shop[] => {
   if (props.configuration) {
     const fetchedShops = props.configuration.idShops.map(idShop => {
       return shops.find(shop => {
-        return parseInt(shop.id_shop as string) === idShop;
+        return parseInt(shop.id_shop as string) === parseInt(idShop);
       }) as Shop;
     });
 
