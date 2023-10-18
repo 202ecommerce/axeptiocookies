@@ -82,7 +82,7 @@ const handleSave = () => {
   const creatableConfiguration: CreatableConfiguration = {
     idProject: idProject.value,
     idConfiguration: configuration.value?.id,
-    idShops: idShops.value.map(shop => shop.id_shop),
+    idShops: idShops.value.map(shop => parseInt(shop.id_shop as string)),
     idLanguage: language.value?.id_lang,
     message: message.value,
     title: title.value,
