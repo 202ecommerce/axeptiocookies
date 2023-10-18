@@ -209,6 +209,7 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                 'list' => '/modules/' . $this->module->name . '/views/img/list.png',
                 'people' => '/modules/' . $this->module->name . '/views/img/people.png',
                 'sky' => '/modules/' . $this->module->name . '/views/img/sky.png',
+                'recommended' => '/modules/' . $this->module->name . '/views/img/recommended.svg',
             ],
         ];
     }

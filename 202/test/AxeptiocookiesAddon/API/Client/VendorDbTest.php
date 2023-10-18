@@ -22,6 +22,7 @@ namespace AxeptiocookiesAddon\API\Client;
 use AxeptiocookiesAddon\API\Request\ProjectRequest;
 use AxeptiocookiesAddon\API\Request\VendorDbRequest;
 use AxeptiocookiesAddon\API\Response\Factory\ResponseFactory;
+use AxeptiocookiesAddon\API\Response\Object\Vendor;
 use PHPUnit\Framework\TestCase;
 
 class VendorDbTest extends TestCase
@@ -33,5 +34,11 @@ class VendorDbTest extends TestCase
         $response = $client->call($request);
 
         $this->assertNotEmpty($response);
+        $this->assertInstanceOf(Vendor::class, $response[0]);
+        $this->assertNotNull($response[0]->getId());
+        $this->assertNotNull($response[0]->getName());
+        $this->assertNotNull($response[0]->getUrl());
+        $this->assertNotNull($response[0]->getState());
+        $this->assertNotNull($response[0]->isRequired());
     }
 }

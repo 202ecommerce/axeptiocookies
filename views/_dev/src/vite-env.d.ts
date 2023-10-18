@@ -13,10 +13,11 @@ declare global {
         };
       };
       images: {
-        create: string,
-        list: string,
-        people: string,
-        sky: string
+        create: string;
+        list: string;
+        people: string;
+        sky: string;
+        recommended: string;
       };
       links: {
         ajax: string;

@@ -25,6 +25,7 @@ use AxeptiocookiesAddon\Hook\HookDispatcher;
 use AxeptiocookiesAddon\Model\CreateConfigurationModel;
 use AxeptiocookiesAddon\Service\ConfigurationService;
 use AxeptiocookiesAddon\Service\ModuleService;
+use AxeptiocookiesAddon\Service\ProjectService;
 use AxeptiocookiesAddon\Utils\ServiceContainer;
 use Module;
 use PHPUnit\Framework\TestCase;
@@ -47,6 +48,11 @@ abstract class AxeptioBaseTestCase extends TestCase
     protected $moduleService;
 
     /**
+     * @var ProjectService
+     */
+    protected $projectService;
+
+    /**
      * @var Module
      */
     protected $module;
@@ -58,6 +64,7 @@ abstract class AxeptioBaseTestCase extends TestCase
         $this->hookDispatcher = new HookDispatcher($this->module);
         $this->configurationService = ServiceContainer::getInstance()->get(ConfigurationService::class);
         $this->moduleService = ServiceContainer::getInstance()->get(ModuleService::class);
+        $this->projectService = ServiceContainer::getInstance()->get(ProjectService::class);
     }
 
 

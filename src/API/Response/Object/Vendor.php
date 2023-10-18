@@ -176,26 +176,4 @@ class Vendor extends AbstractObject
 
         return $this;
     }
-
-    public static function __set_state($data)
-    {
-        $obj = new self();
-        if (!empty($data['id'])) {
-            $obj->setId($data['id']);
-        }
-        if (!empty($data['state'])) {
-            $obj->setState($data['state']);
-        }
-        if (!empty($data['name'])) {
-            $obj->setName($data['name']);
-        }
-        if (!empty($data['url'])) {
-            $obj->setUrl($data['url']);
-        }
-        if (!empty($data['isRequired'])) {
-            $obj->setIsRequired($data['isRequired']);
-        }
-
-        return $obj;
-    }
 }

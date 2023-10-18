@@ -26,10 +26,11 @@ export function useConfig(): {
   languages: Language[],
   defaultConfigurations: Configuration[],
   images: {
-    create: string,
-    list: string,
-    people: string,
-    sky: string
+    create: string;
+    list: string;
+    people: string;
+    sky: string;
+    recommended: string;
   }
 } {
   const links: { [key: string]: string; } = window.axeptiocookies.links;

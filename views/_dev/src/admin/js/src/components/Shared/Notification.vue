@@ -49,7 +49,3 @@ const isDefaultResponse = (response: any): response is DefaultResponse => {
     </div>
   </div>
 </template>
-
-<style scoped lang="scss">
-
-</style>

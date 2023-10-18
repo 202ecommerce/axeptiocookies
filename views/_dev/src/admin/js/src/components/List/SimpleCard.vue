@@ -129,7 +129,3 @@ const isShop = (shop: any): shop is Shop => {
   </tr>
 
 </template>
-
-<style scoped lang="scss">
-
-</style>
