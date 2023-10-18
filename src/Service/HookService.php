@@ -63,11 +63,12 @@ class HookService
      * @param ConfigurationRepository $configurationRepository
      * @param ModuleService $moduleService
      */
-    public function __construct(ProjectCache $projectCache,
-                                ProjectService $projectService,
-                                ConfigurationRepository $configurationRepository,
-                                ModuleService $moduleService)
-    {
+    public function __construct(
+        ProjectCache $projectCache,
+        ProjectService $projectService,
+        ConfigurationRepository $configurationRepository,
+        ModuleService $moduleService
+    ) {
         $this->projectCache = $projectCache;
         $this->projectService = $projectService;
         $this->configurationRepository = $configurationRepository;

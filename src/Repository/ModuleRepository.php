@@ -54,12 +54,12 @@ class ModuleRepository
             return '"' . pSQL($hook) . '"';
         }, WhiteListModules::WHITE_LIST_HOOKS);
 
-//        $query->where('
-//                  h.name NOT LIKE "displayBackOffice%"
-//                  AND h.name NOT LIKE "displayAdmin%"
-//                  AND h.name NOT LIKE "action%"
-//                  AND h.name NOT IN (' . implode(', ', $whiteListHooks) . ')
-//        ');
+        $query->where('
+                          h.name NOT LIKE "displayBackOffice%"
+                          AND h.name NOT LIKE "displayAdmin%"
+                          AND h.name NOT LIKE "action%"
+                          AND h.name NOT IN (' . implode(', ', $whiteListHooks) . ')
+                ');
 
         if (!is_null($idShop)) {
             $query->innerJoin(
