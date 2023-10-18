@@ -24,8 +24,6 @@
 
 namespace AxeptiocookiesAddon\API\Response;
 
-use AxeptiocookiesAddon\API\Response\Object\Project;
-
 abstract class AbstractResponse
 {
     protected $jsonResponse = [];
