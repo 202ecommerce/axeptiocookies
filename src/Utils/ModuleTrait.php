@@ -38,7 +38,7 @@ trait ModuleTrait
     /**
      * @var AbstractHookDispatcher
      */
-    protected $hookDispatcher = null;
+    protected $hookDispatcher;
 
     /**
      * @var string
