@@ -196,7 +196,11 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                     '',
                     Context::getContext()->link->getAdminLink($this->controller_name)
                 ),
-                'ajax' => Context::getContext()->link->getAdminLink('AdminAxeptiocookiesConfigurationAjax'),
+                'ajax' => '/' . str_replace(
+                    Context::getContext()->link->getBaseLink(),
+                    '',
+                    Context::getContext()->link->getAdminLink('AdminAxeptiocookiesConfigurationAjax')
+                ),
                 'logo' => $this->moduleService->getModuleImageLink($this->module->name),
             ],
             'data' => [
