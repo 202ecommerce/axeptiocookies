@@ -15,6 +15,25 @@
  * @copyright 2022 Axeptio
  * @license   https://opensource.org/licenses/AFL-3.0  Academic Free License (AFL 3.0)
  *}
+
+{assign var="vitedev" value=false}
+
+{if $vitedev}
+  <script type="module" src="http://localhost:8000/@vite/client"></script>
+{else}
+  <script type="module" crossorigin src="{$jsEntry|escape:'htmlall':'UTF-8'}"></script>
+  {foreach $jsBuild as $js}
+    <link rel="modulepreload" href="{$js|escape:'htmlall':'UTF-8'}">
+  {/foreach}
+  {foreach $cssBuild as $css}
+    <link rel="stylesheet" href="{$css|escape:'htmlall':'UTF-8'}">
+  {/foreach}
+{/if}
+
 <div class="axeptioApp">
   <div id="axeptio-configuration"></div>
 </div>
+{if $vitedev}
+  <script type="module" src="http://localhost:8000/src/admin/js/main.ts"></script>
+{/if}
+

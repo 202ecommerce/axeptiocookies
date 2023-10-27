@@ -86,17 +86,19 @@ else
     echo -e "CONFIG FILE: \e[32mNo configuration files.\e[39m"
 fi
 
-if [ -f "package.json" ]; then
+if [ -f "views/_dev/package.json" ]; then
     export NVM_DIR="$HOME/.nvm" # set local path to NVM
     . ~/.nvm/nvm.sh             # add NVM into the Shell session
     nvm use 18  # choose current version
     echo "Install npm"
+    cd views/_dev
     npm install
     if [ "$?" -ne "0" ]; then
         echo "NPM failed!"
         exit 1
     fi
     npm run build
+    cd ../../
 fi
 if [ "$?" -ne "0" ]; then
     echo "Packaging failed!"
@@ -108,14 +110,9 @@ rm -Rf README.md
 rm -Rf composer.*
 rm -Rf cache.properties
 rm -Rf node_modules
-rm -Rf postcss.config.js
-rm -Rf webpack.config.js
-rm -Rf babel.config.js
-rm .editorconfig .stylelintignore .stylelintignore browserlist docker-compose.yml
 rm -Rf views/_dev
-rm -Rf .php_cs.dist
-rm -Rf package.json
-rm -Rf package-lock.json
+rm -Rf .php-cs-fixer.cache
+rm -Rf .php-cs-fixer.dist.php
 rm -Rf sonar-project.properties
 rm -Rf composer.lock
 

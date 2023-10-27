@@ -19,7 +19,7 @@
 
 namespace AxeptiocookiesAddon\API\Request;
 
-class ProjectRequest
+class ProjectRequest extends AbstractRequest
 {
     protected $baseUrl = 'https://client.axept.io/';
 

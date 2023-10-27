@@ -21,15 +21,8 @@ namespace AxeptiocookiesAddon\API\Response;
 
 use AxeptiocookiesAddon\API\Response\Object\Project;
 
-class ProjectResponse
+class ProjectResponse extends AbstractResponse
 {
-    protected $jsonResponse = [];
-
-    public function __construct(array $jsonResponse)
-    {
-        $this->jsonResponse = $jsonResponse;
-    }
-
     public function getResponse()
     {
         $project = new Project();

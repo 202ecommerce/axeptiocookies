@@ -22,9 +22,6 @@ namespace AxeptiocookiesAddon\Hook;
 use AxeptiocookiesAddon\Service\HookService;
 use AxeptiocookiesAddon\Utils\ServiceContainer;
 use AxeptiocookiesClasslib\Hook\AbstractHook;
-use Context;
-use Dispatcher;
-use Language;
 
 class CommonHook extends AbstractHook
 {
@@ -44,7 +41,7 @@ class CommonHook extends AbstractHook
             return;
         }
 
-        $tpl = Context::getContext()->smarty->createTemplate(
+        $tpl = \Context::getContext()->smarty->createTemplate(
             'module:axeptiocookies/views/templates/front/hook/footer.tpl'
         );
         $tpl->assign([
@@ -56,7 +53,7 @@ class CommonHook extends AbstractHook
 
     public function actionDispatcherBefore($params)
     {
-        if ($params['controller_type'] != Dispatcher::FC_FRONT) {
+        if ($params['controller_type'] != \Dispatcher::FC_FRONT) {
             return;
         }
 
@@ -64,8 +61,8 @@ class CommonHook extends AbstractHook
             return;
         }
 
-        $idShop = Context::getContext()->shop->id;
-        $languages = Language::getLanguages(true, $idShop);
+        $idShop = \Context::getContext()->shop->id;
+        $languages = \Language::getLanguages(true, $idShop);
 
         foreach ($languages as $language) {
             if (isset($_COOKIE[HookService::DEFAULT_COOKIE_NAME])) {

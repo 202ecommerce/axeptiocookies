@@ -21,24 +21,22 @@ namespace AxeptiocookiesAddon\Repository;
 
 use AxeptiocookiesAddon\Entity\AxeptioModuleConfiguration;
 use AxeptiocookiesAddon\Model\Constant\WhiteListModules;
-use Db;
-use DbQuery;
 
 class ModuleRepository
 {
     public function getSelectedModulesByIdConfiguration($idConfiguration)
     {
-        $query = new DbQuery();
+        $query = new \DbQuery();
         $query->select('id_axeptiocookies_module_configuration, module_name');
         $query->from(AxeptioModuleConfiguration::$definition['table']);
         $query->where('id_axeptiocookies_configuration = ' . (int) $idConfiguration);
 
-        return Db::getInstance()->executeS($query);
+        return \Db::getInstance()->executeS($query);
     }
 
     public function getAllModules($idShop = null, $isActive = null, $selectedModules = null)
     {
-        $query = new DbQuery();
+        $query = new \DbQuery();
         $query->select('DISTINCT m.*');
         $query->from('module', 'm');
         $query->innerJoin(
@@ -57,11 +55,11 @@ class ModuleRepository
         }, WhiteListModules::WHITE_LIST_HOOKS);
 
         $query->where('
-                  h.name NOT LIKE "displayBackOffice%"
-                  AND h.name NOT LIKE "displayAdmin%"
-                  AND h.name NOT LIKE "action%"
-                  AND h.name NOT IN (' . implode(', ', $whiteListHooks) . ')
-        ');
+                          h.name NOT LIKE "displayBackOffice%"
+                          AND h.name NOT LIKE "displayAdmin%"
+                          AND h.name NOT LIKE "action%"
+                          AND h.name NOT IN (' . implode(', ', $whiteListHooks) . ')
+                ');
 
         if (!is_null($idShop)) {
             $query->innerJoin(
@@ -87,12 +85,12 @@ class ModuleRepository
             }
         }
 
-        return Db::getInstance()->executeS($query);
+        return \Db::getInstance()->executeS($query);
     }
 
     public function clearModules($idObject)
     {
-        return Db::getInstance()->delete(
+        return \Db::getInstance()->delete(
             AxeptioModuleConfiguration::$definition['table'],
             'id_axeptiocookies_configuration = ' . (int) $idObject
         );

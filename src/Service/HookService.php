@@ -26,9 +26,6 @@ use AxeptiocookiesAddon\Model\Integration\IntegrationModel;
 use AxeptiocookiesAddon\Model\Integration\StepModel;
 use AxeptiocookiesAddon\Model\Integration\VendorModel;
 use AxeptiocookiesAddon\Repository\ConfigurationRepository;
-use Context;
-use Language;
-use Validate;
 
 class HookService
 {
@@ -66,11 +63,12 @@ class HookService
      * @param ConfigurationRepository $configurationRepository
      * @param ModuleService $moduleService
      */
-    public function __construct(ProjectCache $projectCache,
-                                ProjectService $projectService,
-                                ConfigurationRepository $configurationRepository,
-                                ModuleService $moduleService)
-    {
+    public function __construct(
+        ProjectCache $projectCache,
+        ProjectService $projectService,
+        ConfigurationRepository $configurationRepository,
+        ModuleService $moduleService
+    ) {
         $this->projectCache = $projectCache;
         $this->projectService = $projectService;
         $this->configurationRepository = $configurationRepository;
@@ -80,8 +78,8 @@ class HookService
     public function getIntegrationModelFromContext()
     {
         $cacheParams = new CacheParams();
-        $cacheParams->setIdLang(Context::getContext()->language->id);
-        $cacheParams->setIdShop(Context::getContext()->shop->id);
+        $cacheParams->setIdLang(\Context::getContext()->language->id);
+        $cacheParams->setIdShop(\Context::getContext()->shop->id);
 
         if ($this->projectCache->exist($cacheParams) && !$this->projectCache->isExpired($cacheParams)) {
             $cacheResult = $this->projectCache->get($cacheParams);
@@ -99,7 +97,7 @@ class HookService
         }
 
         $axeptioConfiguration = new AxeptioConfiguration($configurations[0][AxeptioConfiguration::$definition['primary']]);
-        if (!Validate::isLoadedObject($axeptioConfiguration)) {
+        if (!\Validate::isLoadedObject($axeptioConfiguration)) {
             return null;
         }
 
@@ -118,13 +116,13 @@ class HookService
         $integrationModel->setClientId($axeptioConfiguration->id_project);
         $integrationModel->setCookiesVersion($configuration->getName());
         $integrationModel->setJsonCookieName(
-            self::DEFAULT_COOKIE_NAME . '_' . Language::getIsoById($cacheParams->getIdLang())
+            self::DEFAULT_COOKIE_NAME . '_' . \Language::getIsoById($cacheParams->getIdLang())
         );
         $integrationModel->setAllVendorsCookieName(
-            self::DEFAULT_COOKIE_ALL_VENDORS . '_' . Language::getIsoById($cacheParams->getIdLang())
+            self::DEFAULT_COOKIE_ALL_VENDORS . '_' . \Language::getIsoById($cacheParams->getIdLang())
         );
         $integrationModel->setAuthorizedVendorsCookieName(
-            self::DEFAULT_COOKIE_AUTHORIZED_VENDORS . '_' . Language::getIsoById($cacheParams->getIdLang())
+            self::DEFAULT_COOKIE_AUTHORIZED_VENDORS . '_' . \Language::getIsoById($cacheParams->getIdLang())
         );
 
         if (!empty($vendors)) {
@@ -149,7 +147,7 @@ class HookService
      */
     protected function getVendorsFromContextByIdConfiguration($idConfiguration)
     {
-        $idShop = Context::getContext()->shop->id;
+        $idShop = \Context::getContext()->shop->id;
         $modules = $this->moduleService->getModulesListByIdConfiguration(
             (int) $idConfiguration,
             $idShop,

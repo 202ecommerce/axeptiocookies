@@ -23,8 +23,6 @@ use AxeptiocookiesAddon\Model\CreateConfigurationModel;
 use AxeptiocookiesAddon\Model\EditConfigurationModel;
 use AxeptiocookiesAddon\Repository\ConfigurationRepository;
 use AxeptiocookiesClasslib\Utils\Translate\TranslateTrait;
-use Context;
-use Shop;
 
 class ConfigurationValidator
 {
@@ -67,7 +65,7 @@ class ConfigurationValidator
                 $configurationModel->getIdLanguage()
             );
             if (!empty($configurations)) {
-                $shop = new Shop((int) $idShop, Context::getContext()->language->id);
+                $shop = new \Shop((int) $idShop, \Context::getContext()->language->id);
                 throw new ConfigurationValidatorException(sprintf($this->l('Association for shop "%s" already exists', $this->getClassShortName()), $shop->name));
             }
         }
@@ -104,7 +102,7 @@ class ConfigurationValidator
                 $configurationModel->getIdObject()
             );
             if (!empty($configurations)) {
-                $shop = new Shop((int) $shop['id_shop'], Context::getContext()->language->id);
+                $shop = new \Shop((int) $shop['id_shop'], \Context::getContext()->language->id);
                 throw new ConfigurationValidatorException(sprintf($this->l('Association for shop "%s" already exists', $this->getClassShortName()), $shop->name));
             }
         }

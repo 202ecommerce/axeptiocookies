@@ -19,8 +19,6 @@
 
 namespace AxeptiocookiesAddon\Validator;
 
-use PrestaShopException;
-
-class ConfigurationValidatorException extends PrestaShopException
+class ConfigurationValidatorException extends \PrestaShopException
 {
 }

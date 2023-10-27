@@ -19,9 +19,7 @@
 
 namespace AxeptiocookiesAddon\Entity;
 
-use ObjectModel;
-
-class AxeptioModuleConfiguration extends ObjectModel
+class AxeptioModuleConfiguration extends \ObjectModel
 {
     /**
      * @var int

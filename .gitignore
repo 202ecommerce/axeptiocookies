@@ -1,6 +1,7 @@
 *.xml
 *.log
 .php_cs.cache
+.php-cs-fixer.cache
 /vendor/*
 !/vendor/totpsclasslib
 !/vendor/.htaccess
@@ -10,3 +11,5 @@ node_modules
 *.map
 views/js/*
 views/css/*
+views/manifest.json
+views/_dev/node_modules
