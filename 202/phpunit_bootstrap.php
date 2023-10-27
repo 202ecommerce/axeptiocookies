@@ -22,5 +22,7 @@ require_once $basedir . 'config/config.inc.php';
 require_once 'test/AxeptiocookiesAddon/AxeptioBaseTestCase.php';
 
 // init a default front controller with context, cart,
+$_SERVER['REQUEST_METHOD'] = 'GET';
 $controller = new FrontController();
+$controller->ssl = false;
 $controller->init();

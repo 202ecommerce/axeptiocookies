@@ -3,6 +3,8 @@ services:
   AxeptiocookiesAddon\API\Client\Client:
     class: AxeptiocookiesAddon\API\Client\Client
     public: true
+    arguments:
+      - '@AxeptiocookiesAddon\API\Response\Factory\ResponseFactory'
 
   AxeptiocookiesAddon\Service\ProjectService:
     class: AxeptiocookiesAddon\Service\ProjectService
@@ -15,6 +17,7 @@ services:
     public: true
     arguments:
       - '@AxeptiocookiesAddon\Repository\ModuleRepository'
+      - '@AxeptiocookiesAddon\API\Client\Client'
 
   AxeptiocookiesAddon\Validator\ConfigurationValidator:
     class: AxeptiocookiesAddon\Validator\ConfigurationValidator
@@ -51,3 +54,6 @@ services:
     arguments:
       - '@AxeptiocookiesAddon\Service\HookService'
 
+  AxeptiocookiesAddon\API\Response\Factory\ResponseFactory:
+    class: AxeptiocookiesAddon\API\Response\Factory\ResponseFactory
+    public: true

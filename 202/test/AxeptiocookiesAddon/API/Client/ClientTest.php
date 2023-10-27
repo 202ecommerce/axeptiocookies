@@ -20,13 +20,14 @@
 namespace AxeptiocookiesAddon\API\Client;
 
 use AxeptiocookiesAddon\API\Request\ProjectRequest;
+use AxeptiocookiesAddon\API\Response\Factory\ResponseFactory;
 use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase
 {
     public function testCall()
     {
-        $client = new Client();
+        $client = new Client(new ResponseFactory());
         $request = new ProjectRequest();
         $request->setIdProject('5c7ce02205f1c66c7dd0d078');
         $response = $client->call($request);
@@ -36,7 +37,7 @@ class ClientTest extends TestCase
 
     public function testCallNotValid()
     {
-        $client = new Client();
+        $client = new Client(new ResponseFactory());
         $request = new ProjectRequest();
         $request->setIdProject('test');
         $response = $client->call($request);
@@ -46,7 +47,7 @@ class ClientTest extends TestCase
 
     public function testCallUrlEmpty()
     {
-        $client = new Client();
+        $client = new Client(new ResponseFactory());
         $request = new ProjectRequest();
         $request->setIdProject('');
         $response = $client->call($request);

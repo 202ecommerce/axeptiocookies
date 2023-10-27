@@ -26,8 +26,6 @@ use AxeptiocookiesAddon\Model\EditConfigurationModel;
 use AxeptiocookiesAddon\Model\ListConfigurationModel;
 use AxeptiocookiesAddon\Repository\ConfigurationRepository;
 use AxeptiocookiesAddon\Validator\ConfigurationValidator;
-use PrestaShopException;
-use Validate;
 
 class ConfigurationService
 {
@@ -63,12 +61,13 @@ class ConfigurationService
      * @param ConfigurationValidator $configurationValidator
      * @param HookService $hookService
      */
-    public function __construct(ConfigurationRepository $configurationRepository,
-                                ProjectService $projectService,
-                                ModuleService $moduleService,
-                                ConfigurationValidator $configurationValidator,
-                                HookService $hookService)
-    {
+    public function __construct(
+        ConfigurationRepository $configurationRepository,
+        ProjectService $projectService,
+        ModuleService $moduleService,
+        ConfigurationValidator $configurationValidator,
+        HookService $hookService
+    ) {
         $this->configurationRepository = $configurationRepository;
         $this->projectService = $projectService;
         $this->moduleService = $moduleService;
@@ -97,6 +96,11 @@ class ConfigurationService
         $this->configurationRepository->clearShops($configuration->id);
 
         $configuration->associateTo($configurationModel->getIdShops());
+
+        $modules = array_filter(array_keys($this->moduleService->getRecommendedModules()), function ($moduleName) {
+            return !empty(\Module::getModuleIdByName($moduleName));
+        });
+        $this->moduleService->associateToModules($configuration->id, $modules);
 
         $this->hookService->purgeCache();
 
@@ -147,15 +151,15 @@ class ConfigurationService
      *
      * @return bool
      *
-     * @throws PrestaShopException
+     * @throws \PrestaShopException
      * @throws \PrestaShopDatabaseException
      */
     public function deleteById($idConfiguration)
     {
         $configuration = new AxeptioConfiguration($idConfiguration);
 
-        if (!Validate::isLoadedObject($configuration)) {
-            throw new PrestaShopException(sprintf('Unable to find configuration with id %s', $idConfiguration));
+        if (!\Validate::isLoadedObject($configuration)) {
+            throw new \PrestaShopException(sprintf('Unable to find configuration with id %s', $idConfiguration));
         }
 
         $result = $configuration->delete();
@@ -206,8 +210,8 @@ class ConfigurationService
     public function getById($idObject)
     {
         $moduleConfiguration = new AxeptioConfiguration((int) $idObject);
-        if (!Validate::isLoadedObject($moduleConfiguration)) {
-            throw new PrestaShopException('Undefined configuration id');
+        if (!\Validate::isLoadedObject($moduleConfiguration)) {
+            throw new \PrestaShopException('Undefined configuration id');
         }
         $modules = $this->moduleService->getModulesListByIdConfiguration($idObject);
 
