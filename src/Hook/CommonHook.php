@@ -20,6 +20,7 @@
 namespace AxeptiocookiesAddon\Hook;
 
 use AxeptiocookiesAddon\Service\HookService;
+use AxeptiocookiesAddon\Smarty\CookiesCompletePrefilter;
 use AxeptiocookiesAddon\Utils\ServiceContainer;
 use AxeptiocookiesClasslib\Hook\AbstractHook;
 
@@ -53,6 +54,17 @@ class CommonHook extends AbstractHook
 
     public function actionDispatcherBefore($params)
     {
+        if ($params['controller_type'] != \Dispatcher::FC_ADMIN) {
+            \Context::getContext()->smarty->registerFilter(
+                'output',
+                [
+                    CookiesCompletePrefilter::class,
+                    'handleCookiesComplete',
+                ],
+                'handleCookiesComplete'
+            );
+        }
+
         if ($params['controller_type'] != \Dispatcher::FC_FRONT) {
             return;
         }
