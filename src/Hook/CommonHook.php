@@ -55,6 +55,17 @@ class CommonHook extends AbstractHook
 
     public function actionDispatcherBefore($params)
     {
+        if ($params['controller_type'] != \Dispatcher::FC_ADMIN) {
+            \Context::getContext()->smarty->registerFilter(
+                'output',
+                [
+                    CookiesCompletePrefilter::class,
+                    'handleCookiesComplete',
+                ],
+                'handleCookiesComplete'
+            );
+        }
+
         if ($params['controller_type'] != \Dispatcher::FC_FRONT) {
             return;
         }
@@ -107,20 +118,5 @@ class CommonHook extends AbstractHook
 
         unset($_COOKIE[HookService::DEFAULT_COOKIE_ALL_VENDORS]);
         setcookie(HookService::DEFAULT_COOKIE_ALL_VENDORS, '', time() - 3600, '/', '', true);
-    }
-
-    public function actionDispatcher($params)
-    {
-        if ($params['controller_type'] == Dispatcher::FC_ADMIN) {
-            return;
-        }
-        Context::getContext()->smarty->registerFilter(
-            'output',
-            [
-                CookiesCompletePrefilter::class,
-                'handleCookiesComplete',
-            ],
-            'handleCookiesComplete'
-        );
     }
 }

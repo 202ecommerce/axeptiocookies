@@ -20,8 +20,6 @@
 namespace AxeptiocookiesAddon\Service;
 
 use AxeptiocookiesAddon\Model\Constant\WhiteListModules;
-use Context;
-use Hook;
 
 class CookieService
 {
@@ -103,7 +101,7 @@ class CookieService
             }
 
             foreach ($hookList as $index => $hookItem) {
-                if ($this->isPreloadedHook($hookItem['module'], Hook::getNameById($hookItem['id_hook']))) {
+                if ($this->isPreloadedHook($hookItem['module'], \Hook::getNameById($hookItem['id_hook']))) {
                     continue;
                 }
                 if ($hookItem['module'] == $moduleName) {
