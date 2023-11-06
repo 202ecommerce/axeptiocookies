@@ -29,7 +29,6 @@ class CommonHook extends AbstractHook
     const AVAILABLE_HOOKS = [
         'displayFooter',
         'actionDispatcherBefore',
-        'actionDispatcher',
     ];
 
     public function displayFooter($params)
