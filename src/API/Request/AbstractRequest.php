@@ -24,6 +24,10 @@
 
 namespace AxeptiocookiesAddon\API\Request;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 abstract class AbstractRequest
 {
     abstract public function getUrl();

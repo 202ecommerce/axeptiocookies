@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Model\Response;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 class SuccessNotificationResponse extends SuccessResponse
 {
     /**

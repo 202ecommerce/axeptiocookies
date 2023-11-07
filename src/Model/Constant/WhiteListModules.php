@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Model\Constant;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 class WhiteListModules
 {
     const ALWAYS_SKIP_MODULES = [

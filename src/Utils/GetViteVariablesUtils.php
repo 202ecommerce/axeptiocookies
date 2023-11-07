@@ -24,6 +24,10 @@
 
 namespace AxeptiocookiesAddon\Utils;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use Symfony\Component\Filesystem\Filesystem;
 
 class GetViteVariablesUtils

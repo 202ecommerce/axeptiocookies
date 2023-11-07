@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Model\Response;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesClasslib\Utils\Translate\TranslateTrait;
 
 class ErrorResponse extends FrontResponse

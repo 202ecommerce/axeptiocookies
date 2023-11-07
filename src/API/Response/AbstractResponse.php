@@ -24,6 +24,10 @@
 
 namespace AxeptiocookiesAddon\API\Response;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 abstract class AbstractResponse
 {
     protected $jsonResponse = [];

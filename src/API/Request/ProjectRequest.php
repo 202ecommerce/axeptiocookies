@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\API\Request;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 class ProjectRequest extends AbstractRequest
 {
     protected $baseUrl = 'https://client.axept.io/';

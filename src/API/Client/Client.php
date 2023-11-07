@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\API\Client;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesAddon\API\Request\AbstractRequest;
 use AxeptiocookiesAddon\API\Response\Factory\ResponseFactory;
 

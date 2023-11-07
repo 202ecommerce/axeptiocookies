@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Repository;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesAddon\Entity\AxeptioConfiguration;
 
 class ConfigurationRepository
