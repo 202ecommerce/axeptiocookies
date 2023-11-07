@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Validator;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesAddon\Model\CreateConfigurationModel;
 use AxeptiocookiesAddon\Model\EditConfigurationModel;
 use AxeptiocookiesAddon\Repository\ConfigurationRepository;

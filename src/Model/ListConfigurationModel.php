@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Model;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesAddon\API\Response\Object\Configuration;
 
 class ListConfigurationModel implements \JsonSerializable

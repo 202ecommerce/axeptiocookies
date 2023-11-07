@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Cache;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesAddon\Model\Integration\IntegrationModel;
 use AxeptiocookiesClasslib\Utils\CacheStorage\CacheStorage;
 

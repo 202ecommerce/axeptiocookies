@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Model;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 class CreateConfigurationModel
 {
     /**

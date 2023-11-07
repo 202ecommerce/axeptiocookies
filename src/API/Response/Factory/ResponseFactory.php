@@ -24,6 +24,10 @@
 
 namespace AxeptiocookiesAddon\API\Response\Factory;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesAddon\API\Request\AbstractRequest;
 use AxeptiocookiesAddon\API\Request\ProjectRequest;
 use AxeptiocookiesAddon\API\Request\VendorDbRequest;

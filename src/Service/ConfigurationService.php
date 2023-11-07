@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Service;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesAddon\API\Response\Object\Configuration;
 use AxeptiocookiesAddon\Entity\AxeptioConfiguration;
 use AxeptiocookiesAddon\Model\CreateConfigurationModel;

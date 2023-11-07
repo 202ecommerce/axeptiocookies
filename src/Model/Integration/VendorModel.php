@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Model\Integration;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 class VendorModel
 {
     protected $name;

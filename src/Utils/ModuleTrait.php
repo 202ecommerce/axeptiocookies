@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Utils;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesClasslib\Extensions\AbstractModuleExtension;
 use AxeptiocookiesClasslib\Hook\AbstractHookDispatcher;
 use AxeptiocookiesClasslib\Install\ModuleInstaller;
