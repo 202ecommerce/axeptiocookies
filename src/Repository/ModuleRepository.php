@@ -31,9 +31,9 @@ class ModuleRepository
     public function getSelectedModulesByIdConfiguration($idConfiguration)
     {
         $query = new \DbQuery();
-        $query->select('id_axeptiocookies_module_configuration, module_name');
-        $query->from(AxeptioModuleConfiguration::$definition['table']);
-        $query->where('id_axeptiocookies_configuration = ' . (int) $idConfiguration);
+        $query->select('`id_axeptiocookies_module_configuration`, `module_name`');
+        $query->from(bqSQL(AxeptioModuleConfiguration::$definition['table']));
+        $query->where('`id_axeptiocookies_configuration` = ' . (int) $idConfiguration);
 
         return \Db::getInstance()->executeS($query);
     }
@@ -41,17 +41,17 @@ class ModuleRepository
     public function getAllModules($idShop = null, $isActive = null, $selectedModules = null)
     {
         $query = new \DbQuery();
-        $query->select('DISTINCT m.*');
-        $query->from('module', 'm');
+        $query->select('DISTINCT `m`.*');
+        $query->from('module', '`m`');
         $query->innerJoin(
             'hook_module',
             'hm',
-            'hm.id_module = m.id_module'
+            '`hm`.`id_module` = `m`.`id_module`'
         );
         $query->innerJoin(
             'hook',
             'h',
-            'h.id_hook = hm.id_hook'
+            '`h`.`id_hook` = `hm`.`id_hook`'
         );
 
         $whiteListHooks = array_map(function ($hook) {
@@ -59,23 +59,23 @@ class ModuleRepository
         }, WhiteListModules::WHITE_LIST_HOOKS);
 
         $query->where('
-                          h.name NOT LIKE "displayBackOffice%"
-                          AND h.name NOT LIKE "displayAdmin%"
-                          AND h.name NOT LIKE "action%"
-                          AND h.name NOT IN (' . implode(', ', $whiteListHooks) . ')
+                          `h`.`name` NOT LIKE "displayBackOffice%"
+                          AND `h`.`name` NOT LIKE "displayAdmin%"
+                          AND `h`.`name` NOT LIKE "action%"
+                          AND `h`.`name` NOT IN (' . implode(', ', $whiteListHooks) . ')
                 ');
 
         if (!is_null($idShop)) {
             $query->innerJoin(
                 'module_shop',
                 'ms',
-                'ms.id_module = m.id_module'
+                '`ms`.`id_module` = `m`.`id_module`'
             );
-            $query->where('ms.id_shop = ' . (int) $idShop);
+            $query->where('`ms`.`id_shop` = ' . (int) $idShop);
         }
 
         if (!is_null($isActive)) {
-            $query->where('m.active = ' . (int) $isActive);
+            $query->where('`m`.`active` = ' . (int) $isActive);
         }
 
         if (!is_null($selectedModules)) {
@@ -85,7 +85,7 @@ class ModuleRepository
             if (empty($selectedModules)) {
                 $query->where('FALSE');
             } else {
-                $query->where('m.name IN (' . implode(', ', $selectedModules) . ')');
+                $query->where('`m`.`name` IN (' . implode(', ', $selectedModules) . ')');
             }
         }
 
@@ -95,8 +95,8 @@ class ModuleRepository
     public function clearModules($idObject)
     {
         return \Db::getInstance()->delete(
-            AxeptioModuleConfiguration::$definition['table'],
-            'id_axeptiocookies_configuration = ' . (int) $idObject
+            bqSQL(AxeptioModuleConfiguration::$definition['table']),
+            '`id_axeptiocookies_configuration` = ' . (int) $idObject
         );
     }
 }

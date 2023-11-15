@@ -30,16 +30,16 @@ class ConfigurationRepository
     public function clearShops($idConfiguration)
     {
         \Db::getInstance()->delete(
-            AxeptioConfiguration::$definition['table'] . '_shop',
-            AxeptioConfiguration::$definition['primary'] . ' = ' . (int) $idConfiguration
+            bqSQL(AxeptioConfiguration::$definition['table']) . '_shop',
+            bqSQL(AxeptioConfiguration::$definition['primary']) . ' = ' . (int) $idConfiguration
         );
     }
 
     public function getAll()
     {
         $query = new \DbQuery();
-        $query->select(AxeptioConfiguration::$definition['primary']);
-        $query->from(AxeptioConfiguration::$definition['table']);
+        $query->select(bqSQL(AxeptioConfiguration::$definition['primary']));
+        $query->from(bqSQL(AxeptioConfiguration::$definition['table']));
 
         return \Db::getInstance()->executeS($query);
     }
@@ -47,18 +47,18 @@ class ConfigurationRepository
     public function getConfigurationsByShopLang($idShop, $idLang, $idObject = null)
     {
         $query = new \DbQuery();
-        $query->select('ac.' . AxeptioConfiguration::$definition['primary']);
-        $query->from(AxeptioConfiguration::$definition['table'], 'ac');
+        $query->select('`ac`.' . bqSQL(AxeptioConfiguration::$definition['primary']));
+        $query->from(bqSQL(AxeptioConfiguration::$definition['table']), '`ac`');
         $query->innerJoin(
-            AxeptioConfiguration::$definition['table'] . '_shop',
+            bqSQL(AxeptioConfiguration::$definition['table']) . '_shop',
             'acs',
-            'ac.id_axeptiocookies_configuration = acs.id_axeptiocookies_configuration'
+            '`ac`.`id_axeptiocookies_configuration` = `acs`.`id_axeptiocookies_configuration`'
         );
-        $query->where('ac.id_lang = ' . (int) $idLang);
-        $query->where('acs.id_shop = ' . (int) $idShop);
+        $query->where('`ac`.`id_lang` = ' . (int) $idLang);
+        $query->where('`acs`.`id_shop` = ' . (int) $idShop);
 
         if (!is_null($idObject)) {
-            $query->where('ac.id_axeptiocookies_configuration <> ' . (int) $idObject);
+            $query->where('`ac`.`id_axeptiocookies_configuration` <> ' . (int) $idObject);
         }
 
         return \Db::getInstance()->executeS($query);
