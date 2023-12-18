@@ -108,7 +108,7 @@ class Axeptiocookies extends Module
     public function __construct()
     {
         $this->name = 'axeptiocookies';
-        $this->version = '2.0.6';
+        $this->version = '@version@';
         $this->author = '202 ecommerce';
         $this->tab = 'front_office_features';
         $this->ps_versions_compliancy = [
