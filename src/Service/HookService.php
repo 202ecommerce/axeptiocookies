@@ -167,7 +167,11 @@ class HookService
             $vendor = new VendorModel();
             $vendor->setDescription(!empty($module['description']) ? $module['description'] : '');
             $vendor->setName(self::PS_MODULE_PREFIX . $module['name']);
-            $vendor->setTitle(!empty($module['displayName']) ? $module['displayName'] : $module['name']);
+            if (!empty($module['recommended']) && !empty($module['recommended']->getTitle()) && empty(\Context::getContext()->employee)) {
+                $vendor->setTitle($module['recommended']->getTitle());
+            } else {
+                $vendor->setTitle(!empty($module['displayName']) ? $module['displayName'] : $module['name']);
+            }
             $vendor->setType(!empty($module['tab']) ? $module['tab'] : '');
             if (!empty($module['image'])) {
                 $vendor->setImage($module['image']);

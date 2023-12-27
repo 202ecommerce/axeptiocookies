@@ -23,7 +23,8 @@
       cookiesVersion: "{$integration.cookiesVersion|escape:'htmlall':'UTF-8'}",
       jsonCookieName: "{$integration.jsonCookieName|escape:'htmlall':'UTF-8'}",
       allVendorsCookieName: "{$integration.allVendorsCookieName|escape:'htmlall':'UTF-8'}",
-      authorizedVendorsCookieName: "{$integration.authorizedVendorsCookieName|escape:'htmlall':'UTF-8'}"
+      authorizedVendorsCookieName: "{$integration.authorizedVendorsCookieName|escape:'htmlall':'UTF-8'}",
+      platform: "{$integration.platform|escape:'htmlall':'UTF-8'}"
       //]]>
     };
 
@@ -69,7 +70,7 @@
         }
         for (const [key, value] of Object.entries(choices)) {
           if (!isCookiesSet || (typeof currentCookiesConfig[key] === 'undefined' || currentCookiesConfig[key] !== value)) {
-            window.location.reload();
+            // window.location.reload();
             break;
           }
         }

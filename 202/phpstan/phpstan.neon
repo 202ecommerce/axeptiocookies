@@ -10,6 +10,8 @@ parameters:
       - ../../controllers
       - ../../override
       - ../../src
+  ignoreErrors:
+      - '~^Call to an undefined method Smarty_Internal_Data::fetch\(\)\.$~'
 
   reportUnmatchedIgnoredErrors: false
   level: 3

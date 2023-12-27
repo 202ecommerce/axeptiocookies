@@ -51,6 +51,11 @@ class Vendor extends AbstractObject
     protected $url;
 
     /**
+     * @var string
+     */
+    protected $title = '';
+
+    /**
      * @var bool
      */
     protected $isRequired = false;
@@ -76,6 +81,10 @@ class Vendor extends AbstractObject
 
         if (!empty($json['data']['url'])) {
             $this->setUrl($json['data']['url']);
+        }
+
+        if (!empty($json['data']['title'])) {
+            $this->setTitle($json['data']['title']);
         }
 
         return $this;
@@ -177,6 +186,26 @@ class Vendor extends AbstractObject
     public function setIsRequired($isRequired)
     {
         $this->isRequired = $isRequired;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     *
+     * @return Vendor
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
 
         return $this;
     }
