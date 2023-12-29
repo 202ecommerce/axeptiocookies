@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Smarty;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesAddon\Factory\TemplateReplacementFactory;
 use AxeptiocookiesAddon\Utils\ServiceContainer;
 
