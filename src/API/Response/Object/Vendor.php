@@ -24,6 +24,10 @@
 
 namespace AxeptiocookiesAddon\API\Response\Object;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 class Vendor extends AbstractObject
 {
     /**

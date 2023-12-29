@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Model\Constant;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 class TemplateFile
 {
     const PS_GOOGLE_ANALYTICS = 'modules/ps_googleanalytics/views/templates/hook/ps_googleanalytics.tpl';

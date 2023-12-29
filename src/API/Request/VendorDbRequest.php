@@ -24,6 +24,10 @@
 
 namespace AxeptiocookiesAddon\API\Request;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 class VendorDbRequest extends AbstractRequest
 {
     protected $baseUrl = 'https://api.axept.io/v1/vendors/plugin?data.platformId=64c8c424ebd89978a0bee99b';

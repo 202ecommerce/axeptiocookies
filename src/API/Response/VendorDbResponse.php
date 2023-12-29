@@ -24,6 +24,10 @@
 
 namespace AxeptiocookiesAddon\API\Response;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesAddon\API\Response\Object\Vendor;
 
 class VendorDbResponse extends AbstractResponse

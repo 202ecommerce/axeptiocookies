@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\API\Response;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesAddon\API\Response\Object\Project;
 
 class ProjectResponse extends AbstractResponse

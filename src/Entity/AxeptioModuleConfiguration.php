@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Entity;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 class AxeptioModuleConfiguration extends \ObjectModel
 {
     /**

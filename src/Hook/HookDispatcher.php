@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Hook;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesClasslib\Hook\AbstractHookDispatcher;
 
 class HookDispatcher extends AbstractHookDispatcher

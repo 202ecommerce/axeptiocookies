@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\API\Response\Object;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 abstract class AbstractObject implements \JsonSerializable
 {
     /**

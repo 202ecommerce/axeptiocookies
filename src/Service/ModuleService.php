@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Service;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesAddon\API\Client\Client;
 use AxeptiocookiesAddon\API\Request\VendorDbRequest;
 use AxeptiocookiesAddon\API\Response\Object\Vendor;

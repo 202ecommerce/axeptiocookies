@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Factory;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesAddon\Handler\Template\AbstractTemplateHandler;
 use AxeptiocookiesAddon\Handler\Template\PsGoogleAnalyticsTemplateHandler;
 use AxeptiocookiesAddon\Model\Constant\TemplateFile;

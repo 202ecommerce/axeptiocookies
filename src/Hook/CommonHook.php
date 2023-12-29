@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Hook;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesAddon\Service\HookService;
 use AxeptiocookiesAddon\Smarty\CookiesCompletePrefilter;
 use AxeptiocookiesAddon\Utils\ServiceContainer;

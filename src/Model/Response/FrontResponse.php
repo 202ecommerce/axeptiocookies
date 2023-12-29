@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Model\Response;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 abstract class FrontResponse implements \JsonSerializable
 {
     /**

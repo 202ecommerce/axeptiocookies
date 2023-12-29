@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Utils;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 class Manifest
 {
     private $manifest;

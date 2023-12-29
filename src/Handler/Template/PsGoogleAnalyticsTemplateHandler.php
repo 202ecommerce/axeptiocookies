@@ -19,6 +19,10 @@
 
 namespace AxeptiocookiesAddon\Handler\Template;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesAddon\Service\HookService;
 
 class PsGoogleAnalyticsTemplateHandler extends AbstractTemplateHandler
