@@ -28,6 +28,12 @@
       //]]>
     };
 
+    {if $integration.consent}
+      window.axeptioSettings.googleConsentMode = {
+          default: {$integration.consent|json_encode nofilter}
+      };
+    {/if}
+
     window.axeptioModuleStep = {$integration.moduleStep|json_encode nofilter};
 
     (function(d, s) {

@@ -46,6 +46,11 @@ class IntegrationModel implements \JsonSerializable
     protected $platform = 'plugin-prestashop';
 
     /**
+     * @var ConsentModel|null
+     */
+    protected $consent;
+
+    /**
      * @return mixed
      */
     public function getClientId()
@@ -185,6 +190,26 @@ class IntegrationModel implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @return ConsentModel|null
+     */
+    public function getConsent()
+    {
+        return $this->consent;
+    }
+
+    /**
+     * @param ConsentModel|null $consent
+     *
+     * @return IntegrationModel
+     */
+    public function setConsent($consent)
+    {
+        $this->consent = $consent;
+
+        return $this;
+    }
+
     public function jsonSerialize()
     {
         return get_object_vars($this);
@@ -200,6 +225,7 @@ class IntegrationModel implements \JsonSerializable
         $obj->setAuthorizedVendorsCookieName($array['authorizedVendorsCookieName']);
         $obj->setModuleStep($array['moduleStep']);
         $obj->setPlatform(empty($array['platform']) ? '' : $array['platform']);
+        $obj->setConsent(empty($array['consent']) ? null : $array['consent']);
 
         return $obj;
     }
@@ -214,6 +240,7 @@ class IntegrationModel implements \JsonSerializable
             'authorizedVendorsCookieName' => $this->getAuthorizedVendorsCookieName(),
             'moduleStep' => empty($this->getModuleStep()) ? [] : $this->getModuleStep()->toArray(),
             'platform' => $this->getPlatform(),
+            'consent' => empty($this->getConsent()) ? null : $this->getConsent()->toArray(),
         ];
     }
 }

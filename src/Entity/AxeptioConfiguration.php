@@ -60,6 +60,31 @@ class AxeptioConfiguration extends \ObjectModel
      */
     public $subtitle;
 
+    /**
+     * @var bool
+     */
+    public $is_consent_v2 = false;
+
+    /**
+     * @var bool
+     */
+    public $analytics_storage = false;
+
+    /**
+     * @var bool
+     */
+    public $ad_storage = false;
+
+    /**
+     * @var bool
+     */
+    public $ad_user_data = false;
+
+    /**
+     * @var bool
+     */
+    public $ad_personalization = false;
+
     public function __construct($id = null, $id_lang = null, $id_shop = null, $translator = null)
     {
         parent::__construct($id, $id_lang, $id_shop, $translator);
@@ -102,6 +127,31 @@ class AxeptioConfiguration extends \ObjectModel
                 'required' => false,
                 'size' => 255,
             ],
+            'is_consent_v2' => [
+                'type' => self::TYPE_BOOL,
+                'required' => false,
+                'validate' => 'isBool',
+            ],
+            'analytics_storage' => [
+                'type' => self::TYPE_BOOL,
+                'required' => false,
+                'validate' => 'isBool',
+            ],
+            'ad_storage' => [
+                'type' => self::TYPE_BOOL,
+                'required' => false,
+                'validate' => 'isBool',
+            ],
+            'ad_user_data' => [
+                'type' => self::TYPE_BOOL,
+                'required' => false,
+                'validate' => 'isBool',
+            ],
+            'ad_personalization' => [
+                'type' => self::TYPE_BOOL,
+                'required' => false,
+                'validate' => 'isBool',
+            ],
         ],
     ];
 
@@ -116,6 +166,11 @@ class AxeptioConfiguration extends \ObjectModel
             'title' => $this->title,
             'subtitle' => $this->subtitle,
             'shops' => $this->getAssociatedShops(),
+            'is_consent_v2' => $this->is_consent_v2,
+            'analytics_storage' => $this->analytics_storage,
+            'ad_storage' => $this->ad_storage,
+            'ad_user_data' => $this->ad_user_data,
+            'ad_personalization' => $this->ad_personalization,
         ];
     }
 }
