@@ -52,7 +52,9 @@
     }
 
     (_axcb = window._axcb || []).push(function (sdk) {
-      var currentCookiesConfig = window.axeptioSDK.userPreferencesManager.choices;
+      var currentCookiesConfig = typeof window.axeptioSDK.userPreferencesManager === "undefined"
+          ? {}
+          : window.axeptioSDK.userPreferencesManager.choices;
       var isCookiesSet = true;
       sdk.on('cookies:complete', function(choices) {
         currentCookiesConfig = Object.assign({
@@ -64,7 +66,10 @@
         }
       });
       sdk.on('ready', function() {
-        if (Object.keys(window.axeptioSDK.userPreferencesManager.choices).length === 0) {
+        var choices = typeof window.axeptioSDK.userPreferencesManager === "undefined"
+            ? {}
+            : window.axeptioSDK.userPreferencesManager.choices;
+        if (Object.keys(choices).length === 0) {
           isCookiesSet = false;
         }
       });
