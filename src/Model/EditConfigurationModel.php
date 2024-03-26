@@ -74,6 +74,31 @@ class EditConfigurationModel implements \JsonSerializable
     protected $subtitle;
 
     /**
+     * @var bool
+     */
+    protected $is_consent_v2 = false;
+
+    /**
+     * @var bool
+     */
+    protected $analytics_storage = false;
+
+    /**
+     * @var bool
+     */
+    protected $ad_storage = false;
+
+    /**
+     * @var bool
+     */
+    protected $ad_user_data = false;
+
+    /**
+     * @var bool
+     */
+    public $ad_personalization = false;
+
+    /**
      * @var array
      */
     protected $modules = [];
@@ -274,6 +299,106 @@ class EditConfigurationModel implements \JsonSerializable
     public function setSubtitle($subtitle)
     {
         $this->subtitle = $subtitle;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsConsentV2()
+    {
+        return $this->is_consent_v2;
+    }
+
+    /**
+     * @param bool $is_consent_v2
+     *
+     * @return EditConfigurationModel
+     */
+    public function setIsConsentV2($is_consent_v2)
+    {
+        $this->is_consent_v2 = $is_consent_v2;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getAnalyticsStorage()
+    {
+        return $this->analytics_storage;
+    }
+
+    /**
+     * @param bool $analytics_storage
+     *
+     * @return EditConfigurationModel
+     */
+    public function setAnalyticsStorage($analytics_storage)
+    {
+        $this->analytics_storage = $analytics_storage;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getAdStorage()
+    {
+        return $this->ad_storage;
+    }
+
+    /**
+     * @param bool $ad_storage
+     *
+     * @return EditConfigurationModel
+     */
+    public function setAdStorage($ad_storage)
+    {
+        $this->ad_storage = $ad_storage;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getAdUserData()
+    {
+        return $this->ad_user_data;
+    }
+
+    /**
+     * @param bool $ad_user_data
+     *
+     * @return EditConfigurationModel
+     */
+    public function setAdUserData($ad_user_data)
+    {
+        $this->ad_user_data = $ad_user_data;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getAdPersonalization()
+    {
+        return $this->ad_personalization;
+    }
+
+    /**
+     * @param bool $ad_personalization
+     *
+     * @return EditConfigurationModel
+     */
+    public function setAdPersonalization($ad_personalization)
+    {
+        $this->ad_personalization = $ad_personalization;
 
         return $this;
     }

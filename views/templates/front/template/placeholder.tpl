@@ -20,7 +20,9 @@
 <script>
   //<![CDATA[
   (_axcb = window._axcb || []).push(function (sdk) {
-    var currentCookiesConfig = window.axeptioSDK.userPreferencesManager.choices;
+    var currentCookiesConfig = typeof window.axeptioSDK.userPreferencesManager === "undefined"
+        ? {}
+        : window.axeptioSDK.userPreferencesManager.choices;
     var currentModule = "{$module|escape:'htmlall':'UTF-8'}";
     sdk.on('cookies:complete', function(choices) {
       currentCookiesConfig = Object.assign({

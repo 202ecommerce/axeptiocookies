@@ -26,6 +26,7 @@ if (!defined('_PS_VERSION_')) {
 use AxeptiocookiesAddon\Cache\CacheParams;
 use AxeptiocookiesAddon\Cache\ProjectCache;
 use AxeptiocookiesAddon\Entity\AxeptioConfiguration;
+use AxeptiocookiesAddon\Model\Integration\ConsentModel;
 use AxeptiocookiesAddon\Model\Integration\IntegrationModel;
 use AxeptiocookiesAddon\Model\Integration\StepModel;
 use AxeptiocookiesAddon\Model\Integration\VendorModel;
@@ -137,6 +138,17 @@ class HookService
             $stepModel->setVendors($vendors);
 
             $integrationModel->setModuleStep($stepModel);
+        }
+        if (!$axeptioConfiguration->is_consent_v2) {
+            $integrationModel->setConsent(null);
+        } else {
+            $integrationModel->setConsent(
+                (new ConsentModel())
+                    ->setAnalyticsStorage($axeptioConfiguration->analytics_storage ? 'granted' : 'denied')
+                    ->setAdStorage($axeptioConfiguration->ad_storage ? 'granted' : 'denied')
+                    ->setAdPersonalization($axeptioConfiguration->ad_personalization ? 'granted' : 'denied')
+                    ->setAdUserData($axeptioConfiguration->ad_user_data ? 'granted' : 'denied')
+            );
         }
 
         $this->projectCache->set($cacheParams, $integrationModel);

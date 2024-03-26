@@ -128,6 +128,7 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                     'tabs' => [
                         'general' => $this->l('General', $this->controller_name),
                         'modules' => $this->l('Modules', $this->controller_name),
+                        'consentv2' => $this->l('Consent Mode V2', $this->controller_name),
                     ],
                     'project_title' => $this->l('Project ID', $this->controller_name),
                     'configuration_title' => $this->l('Configuration', $this->controller_name),
@@ -140,6 +141,25 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                     'recommended' => [
                         'description' => $this->l('Collection of personal data', $this->controller_name),
                         'reset' => $this->l('Check the modules for which consent is recommended by Axeptio', $this->controller_name),
+                    ],
+                    'consent' => [
+                        'enable' => $this->l('Enable Google Consent Mode V2?', $this->controller_name),
+                        'default' => $this->l('Default setting for Consent Mode', $this->controller_name),
+                        'description' => $this->l('These consent signals will be sent on page load to indicate
+                            to Google services how they should process the data before consent is given by the 
+                            user.', $this->controller_name),
+                        'analytics_storage' => $this->l('Analytics storage', $this->controller_name),
+                        'analytics_storage_desc' => $this->l('Allow Google Analytics to measure how visitors 
+                            use the site to improve functionality and service.', $this->controller_name),
+                        'ad_storage' => $this->l('Ad Storage', $this->controller_name),
+                        'ad_storage_desc' => $this->l('Allow Google to save advertising information on visitors
+                            devices for better ad relevance.', $this->controller_name),
+                        'ad_user_data' => $this->l('Ad User Data', $this->controller_name),
+                        'ad_user_data_desc' => $this->l('Share visitor activity data with Google for targeted
+                            advertising.', $this->controller_name),
+                        'ad_personalization' => $this->l('Ad Personalization', $this->controller_name),
+                        'ad_personalization_desc' => $this->l('Personalize the advertising experience by allowing
+                            Google to personalize the ads visitors see.', $this->controller_name),
                     ],
                 ],
                 'example' => [
