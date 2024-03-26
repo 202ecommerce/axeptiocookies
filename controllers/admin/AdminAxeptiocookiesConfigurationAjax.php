@@ -182,7 +182,13 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
                 ->setModules($configuration['modules'])
                 ->setMessage($configuration['message'])
                 ->setTitle($configuration['title'])
-                ->setSubtitle($configuration['subtitle']);
+                ->setSubtitle($configuration['subtitle'])
+                ->setIsConsentV2(!empty($configuration['is_consent_v2']) && $configuration['is_consent_v2'] == 'true')
+                ->setAnalyticsStorage(!empty($configuration['analytics_storage']) && $configuration['analytics_storage'] == 'true')
+                ->setAdStorage(!empty($configuration['ad_storage']) && $configuration['ad_storage'] == 'true')
+                ->setAdUserData(!empty($configuration['ad_user_data']) && $configuration['ad_user_data'] == 'true')
+                ->setAdPersonalization(!empty($configuration['ad_personalization']) && $configuration['ad_personalization'] == 'true')
+            ;
 
             $result = $this->configurationService->editConfiguration($configurationModel);
 

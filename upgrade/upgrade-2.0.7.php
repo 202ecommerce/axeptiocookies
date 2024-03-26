@@ -1,3 +1,4 @@
+<?php
 /**
  * Copyright since 2022 Axeptio
  *
@@ -15,11 +16,23 @@
  * @copyright 2022 Axeptio
  * @license   https://opensource.org/licenses/AFL-3.0  Academic Free License (AFL 3.0)
  */
-
-enum TabItem {
-  GENERAL ='general',
-  MODULES = 'modules',
-  CONSENTV2 = 'consentv2'
+if (!defined('_PS_VERSION_')) {
+    exit;
 }
 
-export default TabItem;
+/**
+ * @param Axeptiocookies $module
+ *
+ * @return bool
+ */
+function upgrade_module_2_0_7($module)
+{
+    try {
+        $installer = new \AxeptiocookiesClasslib\Install\ModuleInstaller($module);
+        $installer->installObjectModel(\AxeptiocookiesAddon\Entity\AxeptioConfiguration::class);
+    } catch (Exception $e) {
+        return false;
+    }
+
+    return true;
+}

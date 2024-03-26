@@ -123,6 +123,20 @@ class ConfigurationService
         $configuration->title = $configurationModel->getTitle();
         $configuration->subtitle = $configurationModel->getSubtitle();
 
+        if ($configurationModel->getIsConsentV2()) {
+            $configuration->is_consent_v2 = $configurationModel->getIsConsentV2();
+            $configuration->analytics_storage = $configurationModel->getAnalyticsStorage();
+            $configuration->ad_user_data = $configurationModel->getAdUserData();
+            $configuration->ad_personalization = $configurationModel->getAdPersonalization();
+            $configuration->ad_storage = $configurationModel->getAdStorage();
+        } else {
+            $configuration->is_consent_v2 = false;
+            $configuration->analytics_storage = false;
+            $configuration->ad_user_data = false;
+            $configuration->ad_personalization = false;
+            $configuration->ad_storage = false;
+        }
+
         $result = $configuration->save();
 
         if (!$result) {
@@ -241,6 +255,11 @@ class ConfigurationService
                 return \Shop::getShop($idShop);
             }, $moduleConfiguration->getAssociatedShops()))
             ->setModules($modules)
-            ->setProject($project);
+            ->setProject($project)
+            ->setIsConsentV2((bool) $moduleConfiguration->is_consent_v2)
+            ->setAnalyticsStorage((bool) $moduleConfiguration->analytics_storage)
+            ->setAdStorage((bool) $moduleConfiguration->ad_storage)
+            ->setAdUserData((bool) $moduleConfiguration->ad_user_data)
+            ->setAdPersonalization((bool) $moduleConfiguration->ad_personalization);
     }
 }

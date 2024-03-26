@@ -20,4 +20,31 @@
   .module-tab-actions {
     min-height: 40px;
   }
+
+  .ps-switch input:last-of-type:checked ~ .slide-button {
+    background: #FCBE2E;
+  }
+
+  .ps-switch {
+    height: unset;
+    display: flex;
+    align-items: center;
+
+    .slide-button {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    label {
+      padding-left: 45px;
+      position: relative;
+      transform: unset;
+    }
+  }
+
+  .ps-switch-lg {
+    label {
+      padding-left: 70px;
+    };
+  }
 }

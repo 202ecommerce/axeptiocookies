@@ -90,6 +90,11 @@ export interface EditableConfiguration {
   shops: Shop[];
   subtitle: string;
   title: string;
+  is_consent_v2: boolean;
+  ad_personalization: boolean;
+  ad_storage: boolean;
+  ad_user_data: boolean;
+  analytics_storage: boolean;
 }
 
 export interface Module {
