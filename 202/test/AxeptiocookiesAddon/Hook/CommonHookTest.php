@@ -43,7 +43,10 @@ class CommonHookTest extends AxeptioBaseTestCase
             return false;
         });
         global $_COOKIE;
-        $_COOKIE[HookService::DEFAULT_COOKIE_NAME] = json_encode([
+        $_COOKIE[HookService::DEFAULT_COOKIE_NAME . '_fr'] = json_encode([
+            HookService::PS_MODULE_PREFIX . 'ps_emailsubscription' => true,
+        ]);
+        $_COOKIE[HookService::DEFAULT_COOKIE_NAME . '_en'] = json_encode([
             HookService::PS_MODULE_PREFIX . 'ps_emailsubscription' => true,
         ]);
 
@@ -53,7 +56,7 @@ class CommonHookTest extends AxeptioBaseTestCase
                 'controller_type' => \Dispatcher::FC_FRONT,
             ]
         );
-        $this->assertEmpty($_COOKIE);
+        $this->assertNotEmpty($_COOKIE);
     }
 
     public function testActionDispatcherBeforeAdminEmpty()
