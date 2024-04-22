@@ -29,12 +29,6 @@ class IntegrationModel implements \JsonSerializable
 
     protected $cookiesVersion;
 
-    protected $jsonCookieName;
-
-    protected $allVendorsCookieName;
-
-    protected $authorizedVendorsCookieName;
-
     /**
      * @var StepModel
      */
@@ -86,66 +80,6 @@ class IntegrationModel implements \JsonSerializable
     public function setCookiesVersion($cookiesVersion)
     {
         $this->cookiesVersion = $cookiesVersion;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getJsonCookieName()
-    {
-        return $this->jsonCookieName;
-    }
-
-    /**
-     * @param mixed $jsonCookieName
-     *
-     * @return IntegrationModel
-     */
-    public function setJsonCookieName($jsonCookieName)
-    {
-        $this->jsonCookieName = $jsonCookieName;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAllVendorsCookieName()
-    {
-        return $this->allVendorsCookieName;
-    }
-
-    /**
-     * @param mixed $allVendorsCookieName
-     *
-     * @return IntegrationModel
-     */
-    public function setAllVendorsCookieName($allVendorsCookieName)
-    {
-        $this->allVendorsCookieName = $allVendorsCookieName;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAuthorizedVendorsCookieName()
-    {
-        return $this->authorizedVendorsCookieName;
-    }
-
-    /**
-     * @param mixed $authorizedVendorsCookieName
-     *
-     * @return IntegrationModel
-     */
-    public function setAuthorizedVendorsCookieName($authorizedVendorsCookieName)
-    {
-        $this->authorizedVendorsCookieName = $authorizedVendorsCookieName;
 
         return $this;
     }
@@ -220,9 +154,6 @@ class IntegrationModel implements \JsonSerializable
         $obj = new IntegrationModel();
         $obj->setClientId($array['clientId']);
         $obj->setCookiesVersion($array['cookiesVersion']);
-        $obj->setJsonCookieName($array['jsonCookieName']);
-        $obj->setAllVendorsCookieName($array['allVendorsCookieName']);
-        $obj->setAuthorizedVendorsCookieName($array['authorizedVendorsCookieName']);
         $obj->setModuleStep($array['moduleStep']);
         $obj->setPlatform(empty($array['platform']) ? '' : $array['platform']);
         $obj->setConsent(empty($array['consent']) ? null : $array['consent']);
@@ -235,9 +166,6 @@ class IntegrationModel implements \JsonSerializable
         return [
             'clientId' => $this->getClientId(),
             'cookiesVersion' => $this->getCookiesVersion(),
-            'jsonCookieName' => $this->getJsonCookieName(),
-            'allVendorsCookieName' => $this->getAllVendorsCookieName(),
-            'authorizedVendorsCookieName' => $this->getAuthorizedVendorsCookieName(),
             'moduleStep' => empty($this->getModuleStep()) ? [] : $this->getModuleStep()->toArray(),
             'platform' => $this->getPlatform(),
             'consent' => empty($this->getConsent()) ? null : $this->getConsent()->toArray(),

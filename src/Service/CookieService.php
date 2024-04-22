@@ -44,9 +44,7 @@ class CookieService
 
     public function getModulesFromContext()
     {
-        $language = \Context::getContext()->language;
-
-        $cookieName = HookService::DEFAULT_COOKIE_NAME . '_' . $language->iso_code;
+        $cookieName = HookService::DEFAULT_COOKIE_NAME;
 
         if (!empty(static::$contextModules[$cookieName])) {
             return static::$contextModules[$cookieName];
