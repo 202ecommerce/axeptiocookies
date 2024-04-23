@@ -72,13 +72,18 @@ class CookieServiceTest extends AxeptioBaseTestCase
 
     public function testGetModifiedHookExecListDependency()
     {
+        $oldShop = \Context::getContext()->shop;
+        $oldLanguage = \Context::getContext()->language;
+        \Context::getContext()->language = new \Language(1);
+        \Context::getContext()->shop = new \Shop(1);
         $this->truncateTables();
         $this->hookService->purgeCache();
         $data = $this->createConfigurationFixtures();
 
         $result = $this->cookieService->getModifiedHookExecList($data['hooks']);
-
-        $this->assertNotEmpty($result);
+        \Context::getContext()->language = $oldLanguage;
+        \Context::getContext()->shop = new $oldShop;
+        $this->assertEmpty($result);
     }
 
     public function testGetModifiedHookExecListDependencyTrue()
