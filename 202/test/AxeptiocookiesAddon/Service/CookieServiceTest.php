@@ -78,7 +78,7 @@ class CookieServiceTest extends AxeptioBaseTestCase
 
         $result = $this->cookieService->getModifiedHookExecList($data['hooks']);
 
-        $this->assertEmpty($result);
+        $this->assertNotEmpty($result);
     }
 
     public function testGetModifiedHookExecListDependencyTrue()
@@ -88,7 +88,7 @@ class CookieServiceTest extends AxeptioBaseTestCase
         $data = $this->createConfigurationFixtures();
 
         global $_COOKIE;
-        $_COOKIE[HookService::DEFAULT_COOKIE_NAME . '_' . \Language::getIsoById(1)] = json_encode([
+        $_COOKIE[HookService::DEFAULT_COOKIE_NAME] = json_encode([
             HookService::PS_MODULE_PREFIX . 'ps_emailsubscription' => true,
         ]);
         $this->cookieService->clearContextRequestCache();

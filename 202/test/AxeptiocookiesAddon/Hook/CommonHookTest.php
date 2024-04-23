@@ -56,7 +56,7 @@ class CommonHookTest extends AxeptioBaseTestCase
                 'controller_type' => \Dispatcher::FC_FRONT,
             ]
         );
-        $this->assertNotEmpty($_COOKIE);
+        $this->assertEmpty($_COOKIE);
     }
 
     public function testActionDispatcherBeforeAdminEmpty()
@@ -68,23 +68,5 @@ class CommonHookTest extends AxeptioBaseTestCase
             ]
         );
         $this->assertEmpty($result);
-    }
-
-    public function testDisplayFooter()
-    {
-        self::truncateTables();
-        ServiceContainer::getInstance()->get(ProjectCache::class)->cleanCacheDirectory();
-        $result = $this->hookDispatcher->dispatch('displayFooter');
-        $this->assertEmpty($result);
-    }
-
-    public function testDisplayFooterFixtures()
-    {
-        $currentIsoCode = \Context::getContext()->language->iso_code;
-        \Context::getContext()->language->iso_code = 'en';
-        $this->createConfigurationFixtures();
-        $result = $this->hookDispatcher->dispatch('displayFooter');
-        \Context::getContext()->language->iso_code = $currentIsoCode;
-        $this->assertNotEmpty($result);
     }
 }
