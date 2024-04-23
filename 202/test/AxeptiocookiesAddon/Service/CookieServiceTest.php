@@ -72,12 +72,17 @@ class CookieServiceTest extends AxeptioBaseTestCase
 
     public function testGetModifiedHookExecListDependency()
     {
+        $oldShop = \Context::getContext()->shop;
+        $oldLanguage = \Context::getContext()->language;
+        \Context::getContext()->language = new \Language(1);
+        \Context::getContext()->shop = new \Shop(1);
         $this->truncateTables();
         $this->hookService->purgeCache();
         $data = $this->createConfigurationFixtures();
 
         $result = $this->cookieService->getModifiedHookExecList($data['hooks']);
-
+        \Context::getContext()->language = $oldLanguage;
+        \Context::getContext()->shop = new $oldShop;
         $this->assertEmpty($result);
     }
 
@@ -88,7 +93,7 @@ class CookieServiceTest extends AxeptioBaseTestCase
         $data = $this->createConfigurationFixtures();
 
         global $_COOKIE;
-        $_COOKIE[HookService::DEFAULT_COOKIE_NAME . '_' . \Language::getIsoById(1)] = json_encode([
+        $_COOKIE[HookService::DEFAULT_COOKIE_NAME] = json_encode([
             HookService::PS_MODULE_PREFIX . 'ps_emailsubscription' => true,
         ]);
         $this->cookieService->clearContextRequestCache();

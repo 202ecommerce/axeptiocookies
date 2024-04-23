@@ -120,15 +120,6 @@ class HookService
         $integrationModel = new IntegrationModel();
         $integrationModel->setClientId($axeptioConfiguration->id_project);
         $integrationModel->setCookiesVersion($configuration->getName());
-        $integrationModel->setJsonCookieName(
-            self::DEFAULT_COOKIE_NAME . '_' . \Language::getIsoById($cacheParams->getIdLang())
-        );
-        $integrationModel->setAllVendorsCookieName(
-            self::DEFAULT_COOKIE_ALL_VENDORS . '_' . \Language::getIsoById($cacheParams->getIdLang())
-        );
-        $integrationModel->setAuthorizedVendorsCookieName(
-            self::DEFAULT_COOKIE_AUTHORIZED_VENDORS . '_' . \Language::getIsoById($cacheParams->getIdLang())
-        );
 
         if (!empty($vendors)) {
             $stepModel = new StepModel();

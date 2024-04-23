@@ -26,6 +26,7 @@ if (!defined('_PS_VERSION_')) {
 use AxeptiocookiesAddon\API\Response\Object\Configuration;
 use AxeptiocookiesAddon\Model\CreateConfigurationModel;
 use AxeptiocookiesAddon\Service\ConfigurationService;
+use AxeptiocookiesAddon\Service\HookService;
 use AxeptiocookiesAddon\Service\ProjectService;
 
 class UpdateHandler
@@ -90,5 +91,53 @@ class UpdateHandler
             ->setIdShops([$idShop]);
 
         return $this->configurationService->createConfiguration($createConfiguration);
+    }
+
+    public function setDefaultCookieFromLangCookies()
+    {
+        $isoCurrentLang = \Context::getContext()->language->iso_code;
+        if (isset($_COOKIE[HookService::DEFAULT_COOKIE_NAME . '_' . $isoCurrentLang])) {
+            setcookie(
+                HookService::DEFAULT_COOKIE_NAME,
+                $_COOKIE[HookService::DEFAULT_COOKIE_NAME . '_' . $isoCurrentLang],
+                strtotime('+1 year'),
+                '/',
+                '',
+                true
+            );
+        }
+        if (isset($_COOKIE[HookService::DEFAULT_COOKIE_AUTHORIZED_VENDORS . '_' . $isoCurrentLang])) {
+            setcookie(
+                HookService::DEFAULT_COOKIE_AUTHORIZED_VENDORS,
+                $_COOKIE[HookService::DEFAULT_COOKIE_AUTHORIZED_VENDORS . '_' . $isoCurrentLang],
+                strtotime('+1 year'),
+                '/',
+                '',
+                true
+            );
+        }
+        if (isset($_COOKIE[HookService::DEFAULT_COOKIE_ALL_VENDORS . '_' . $isoCurrentLang])) {
+            setcookie(
+                HookService::DEFAULT_COOKIE_ALL_VENDORS,
+                $_COOKIE[HookService::DEFAULT_COOKIE_ALL_VENDORS . '_' . $isoCurrentLang],
+                strtotime('+1 year'),
+                '/',
+                '',
+                true
+            );
+        }
+
+        $idShop = \Context::getContext()->shop->id;
+        $languages = \Language::getLanguages(true, $idShop);
+        foreach ($languages as $language) {
+            unset($_COOKIE[HookService::DEFAULT_COOKIE_NAME . '_' . $language['iso_code']]);
+            setcookie(HookService::DEFAULT_COOKIE_NAME . '_' . $language['iso_code'], '', time() - 3600, '/', '', true);
+
+            unset($_COOKIE[HookService::DEFAULT_COOKIE_AUTHORIZED_VENDORS . '_' . $language['iso_code']]);
+            setcookie(HookService::DEFAULT_COOKIE_AUTHORIZED_VENDORS . '_' . $language['iso_code'], '', time() - 3600, '/', '', true);
+
+            unset($_COOKIE[HookService::DEFAULT_COOKIE_ALL_VENDORS . '_' . $language['iso_code']]);
+            setcookie(HookService::DEFAULT_COOKIE_ALL_VENDORS . '_' . $language['iso_code'], '', time() - 3600, '/', '', true);
+        }
     }
 }
