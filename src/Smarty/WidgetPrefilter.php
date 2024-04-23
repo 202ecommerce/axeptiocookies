@@ -16,26 +16,25 @@
  * @copyright 2022 Axeptio
  * @license   https://opensource.org/licenses/AFL-3.0  Academic Free License (AFL 3.0)
  */
+
+namespace AxeptiocookiesAddon\Smarty;
+
 if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-/**
- * @param Axeptiocookies $module
- *
- * @return bool
- */
-function upgrade_module_2_0_8($module)
+class WidgetPrefilter
 {
-    try {
-        $installer = new \AxeptiocookiesClasslib\Install\ModuleInstaller($module);
-        $installer->registerHooks();
-        $cache = new \AxeptiocookiesAddon\Cache\ProjectCache();
-        $cache->cleanCacheDirectory();
-        \Tools::clearCache();
-    } catch (Exception $e) {
-        return false;
-    }
+    public static function addAxeptioWidget($source)
+    {
+        $stringToSearch = '/<\/body>/ims';
+        preg_match($stringToSearch, $source, $matches, PREG_OFFSET_CAPTURE, 0);
+        if (empty($matches)) {
+            return $source;
+        }
 
-    return true;
+        $replace = "{hook h='displayAxeptioWidget'}\r" . '</body>';
+
+        return preg_replace($stringToSearch, $replace, $source);
+    }
 }

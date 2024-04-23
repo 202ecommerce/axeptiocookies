@@ -25,18 +25,23 @@ if (!defined('_PS_VERSION_')) {
 
 use AxeptiocookiesAddon\Service\HookService;
 use AxeptiocookiesAddon\Smarty\CookiesCompletePrefilter;
+use AxeptiocookiesAddon\Smarty\WidgetPrefilter;
 use AxeptiocookiesAddon\Utils\ServiceContainer;
 use AxeptiocookiesClasslib\Hook\AbstractHook;
 
 class CommonHook extends AbstractHook
 {
     const AVAILABLE_HOOKS = [
-        'displayFooter',
         'actionDispatcherBefore',
+        'displayAxeptioWidget',
     ];
 
-    public function displayFooter($params)
+    public function displayAxeptioWidget($params)
     {
+        if (\Tools::getValue('ajax') !== false) {
+            return;
+        }
+
         /** @var HookService $hookService */
         $hookService = ServiceContainer::getInstance()->get(HookService::class);
 
@@ -66,6 +71,14 @@ class CommonHook extends AbstractHook
                     'handleCookiesComplete',
                 ],
                 'handleCookiesComplete'
+            );
+            \Context::getContext()->smarty->registerFilter(
+                'pre',
+                [
+                    WidgetPrefilter::class,
+                    'addAxeptioWidget',
+                ],
+                'addAxeptioWidget'
             );
         }
 
