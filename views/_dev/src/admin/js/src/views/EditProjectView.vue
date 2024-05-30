@@ -22,7 +22,9 @@ import {useTrans} from "../use/useTrans.ts";
 import {useCommonStore} from "../stores/commonStore.ts";
 import {useConfigurationStore} from "../stores/configurationStore.ts";
 import {useConfig} from "../use/useConfig.ts";
-import AxeptioExample from "../components/Edit/AxeptioExample.vue";
+import GeneralTab from "../components/Edit/Tabs/GeneralTab.vue";
+import ModulesTab from "../components/Edit/Tabs/ModulesTab.vue";
+import ConsentTab from "../components/Edit/Tabs/ConsentTab.vue";
 import Routes from "../custom/Router/Routes.ts";
 import {useRouter} from "vue-router";
 import {computed, ref} from "vue";
@@ -52,24 +54,8 @@ const nbModules = computed(() => {
   }).length;
 });
 
-const getPrettyModuleName = (name: string) => {
-  const areaElement = document.createElement('textarea');
-  areaElement.innerHTML = name;
-  const text = areaElement.value;
-  areaElement.remove();
-
-  return text;
-};
-
 const handleSave = () => {
   configurationStore.handleEditConfiguration(configurationStore.editConfiguration as EditableConfiguration);
-};
-
-const handleModuleClick = (index: number) => {
-  if (!configurationStore.editConfiguration?.modules?.[index]) {
-    return;
-  }
-  configurationStore.editConfiguration.modules[index].checked = !configurationStore.editConfiguration.modules[index].checked;
 };
 
 configurationBus.on((event) => {
@@ -77,29 +63,6 @@ configurationBus.on((event) => {
     router.push({name: Routes.LIST});
   }
 });
-
-const isResetBtnVisible = computed(() => {
-  if (!configurationStore.editConfiguration?.modules) {
-    return false;
-  }
-
-  return configurationStore.editConfiguration.modules.filter(module => {
-    return (!(module.recommended !== false && module.recommended.isRequired) && module.checked)
-        || module.recommended !== false && module.recommended.isRequired && !module.checked;
-  }).length > 0;
-});
-
-const handleResetToRecommendedModules = () => {
-  if (!isResetBtnVisible.value) {
-    return;
-  }
-  if (!configurationStore.editConfiguration?.modules) {
-    return false;
-  }
-  configurationStore.editConfiguration.modules.forEach(module => {
-    module.checked = module.recommended !== false && module.recommended.isRequired;
-  });
-};
 
 </script>
 
@@ -210,195 +173,19 @@ const handleResetToRecommendedModules = () => {
                 class="tab-pane fade"
                 :class="{'show active': selectedTab === TabItem.GENERAL}"
             >
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label class="form-control-label"
-                           v-text="trans('edit.step_title')"></label>
-                    <input type="text"
-                           v-model="configurationStore.editConfiguration.title"
-                           :placeholder="trans('edit.step_title')"
-                           class="form-control"/>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-control-label"
-                           v-text="trans('edit.step_subtitle')"></label>
-                    <input type="text"
-                           :placeholder="trans('edit.step_subtitle')"
-                           v-model="configurationStore.editConfiguration.subtitle"
-                           class="form-control"/>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-control-label"
-                           v-text="trans('edit.step_message')"></label>
-                    <input type="text"
-                           :placeholder="trans('edit.step_message')"
-                           v-model="configurationStore.editConfiguration.message"
-                           class="form-control"/>
-                  </div>
-                </div>
-                <div class="col-6 d-flex justify-content-center">
-                  <axeptio-example
-                      :title="configurationStore.editConfiguration.title ? configurationStore.editConfiguration.title : trans('edit.step_title')"
-                      :subtitle="configurationStore.editConfiguration.subtitle ? configurationStore.editConfiguration.subtitle : trans('edit.step_subtitle')"
-                      :message="configurationStore.editConfiguration.message ? configurationStore.editConfiguration.message : trans('edit.step_message')"
-                  />
-                </div>
-              </div>
+              <GeneralTab/>
             </div>
             <div
                 class="tab-pane fade"
                 :class="{'show active': selectedTab === TabItem.MODULES}"
             >
-              <div class="d-inline-flex float-right mb-3 module-tab-actions">
-                <button class="btn btn-lg btn-outline-info"
-                        v-if="isResetBtnVisible"
-                        v-text="trans('edit.recommended.reset')"
-                        type="button"
-                        @click="handleResetToRecommendedModules">
-                </button>
-              </div>
-              <div class="form-group">
-                <div class="modules-wrapper">
-                  <div class="d-flex flex-wrap">
-                    <div v-for="(module, index) of configurationStore.editConfiguration.modules"
-                         :key="module.id_module"
-                         @click="handleModuleClick(index)"
-                         class="md-checkbox col-4 module-item">
-                      <div class="d-flex" v-if="configurationStore.editConfiguration.modules">
-                        <input type="checkbox" v-model="configurationStore.editConfiguration.modules[index].checked"/>
-                        <i class="md-checkbox-control"></i>
-                        <div class="d-flex ml-3">
-                          <div class="img-wrapper img-fluid" v-if="module.image">
-                            <img :src="module.image" :alt="module.name">
-                          </div>
-                          <div class="d-flex flex-column ml-2">
-                            <div class="font-weight-bold"
-                                 v-text="module.displayName ? getPrettyModuleName(module.displayName) : module.name"></div>
-                            <div class="small-text"
-                                 v-text="module.name"></div>
-                          </div>
-                        </div>
-                        <div class="ml-2"
-                             v-if="module.recommended !== false && module.recommended.isRequired">
-                          <img :src="images.recommended"
-                               class="img-fluid"
-                               v-tooltip="trans('edit.recommended.description')"
-                               :alt="trans('edit.recommended.description')">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ModulesTab/>
             </div>
             <div
                 class="tab-pane fade"
                 :class="{'show active': selectedTab === TabItem.CONSENTV2}"
             >
-              <div class="row">
-                <div class="ml-3 mt-4 col-lg-4">
-                  <div class="form-group">
-                    <span class="ps-switch ps-switch-lg">
-                      <input
-                          type="radio"
-                          :value="false"
-                          v-model="configurationStore.editConfiguration.is_consent_v2"
-                      />
-                      <input
-                          type="radio"
-                          :value="true"
-                          v-model="configurationStore.editConfiguration.is_consent_v2"
-                      />
-                      <span class="slide-button"></span>
-                      <label class="font-weight-bold"
-                             v-text="trans('edit.consent.enable')"></label>
-                    </span>
-                  </div>
-                  <div v-if="configurationStore.editConfiguration.is_consent_v2" class="mt-3">
-                    <div class="font-weight-bold"
-                         v-text="trans('edit.consent.default')"></div>
-                    <div class="mt-1 mb-2" v-text="trans('edit.consent.description')"></div>
-
-                    <div class="form-group my-2">
-                      <span class="ps-switch">
-                        <input type="radio"
-                               :value="false"
-                               v-model="configurationStore.editConfiguration.analytics_storage"
-                        />
-                        <input type="radio"
-                               :value="true"
-                               v-model="configurationStore.editConfiguration.analytics_storage"
-                        />
-                        <span class="slide-button"></span>
-                        <label class="d-flex flex-column">
-                          <span class="font-weight-bold" v-text="trans('edit.consent.analytics_storage')"></span>
-                          <span class="" v-text="trans('edit.consent.analytics_storage_desc')"></span>
-                        </label>
-
-                      </span>
-                    </div>
-
-                    <div class="form-group my-2">
-                      <span class="ps-switch">
-                    <input
-                        type="radio"
-                        :value="false"
-                        v-model="configurationStore.editConfiguration.ad_storage"
-                    />
-                    <input
-                        type="radio"
-                        :value="true"
-                        v-model="configurationStore.editConfiguration.ad_storage"
-                    />
-                    <span class="slide-button"></span>
-                    <label class="d-flex flex-column">
-                      <span class="font-weight-bold" v-text="trans('edit.consent.ad_storage')"></span>
-                      <span class="" v-text="trans('edit.consent.ad_storage_desc')"></span>
-                    </label>
-                  </span>
-                    </div>
-                    <div class="form-group my-2">
-                      <span class="ps-switch">
-                    <input
-                        type="radio"
-                        :value="false"
-                        v-model="configurationStore.editConfiguration.ad_user_data"
-                    />
-                    <input
-                        type="radio"
-                        :value="true"
-                        v-model="configurationStore.editConfiguration.ad_user_data"
-                    />
-                    <span class="slide-button"></span>
-                    <label class="d-flex flex-column">
-                      <span class="font-weight-bold" v-text="trans('edit.consent.ad_user_data')"></span>
-                      <span class="" v-text="trans('edit.consent.ad_user_data_desc')"></span>
-                    </label>
-                  </span>
-                    </div>
-                    <div class="form-group my-2">
-                      <span class="ps-switch">
-                    <input
-                        type="radio"
-                        :value="false"
-                        v-model="configurationStore.editConfiguration.ad_personalization"
-                    />
-                    <input
-                        type="radio"
-                        :value="true"
-                        v-model="configurationStore.editConfiguration.ad_personalization"
-                    />
-                    <span class="slide-button"></span>
-                    <label class="d-flex flex-column">
-                      <span class="font-weight-bold" v-text="trans('edit.consent.ad_personalization')"></span>
-                      <span class="" v-text="trans('edit.consent.ad_personalization_desc')"></span>
-                    </label>
-                  </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ConsentTab/>
             </div>
           </div>
         </div>

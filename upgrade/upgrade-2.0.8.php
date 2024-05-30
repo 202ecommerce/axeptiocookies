@@ -29,6 +29,7 @@ function upgrade_module_2_0_8($module)
 {
     try {
         $installer = new \AxeptiocookiesClasslib\Install\ModuleInstaller($module);
+        $installer->installObjectModel(\AxeptiocookiesAddon\Entity\AxeptioConfiguration::class);
         $installer->registerHooks();
         $cache = new \AxeptiocookiesAddon\Cache\ProjectCache();
         $cache->cleanCacheDirectory();

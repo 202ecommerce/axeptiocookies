@@ -34,6 +34,7 @@ services:
       - '@AxeptiocookiesAddon\Service\ModuleService'
       - '@AxeptiocookiesAddon\Validator\ConfigurationValidator'
       - '@AxeptiocookiesAddon\Service\HookService'
+      - '@AxeptiocookiesAddon\Service\ImageService'
 
   AxeptiocookiesAddon\Cache\ProjectCache:
     class: AxeptiocookiesAddon\Cache\ProjectCache
@@ -47,6 +48,7 @@ services:
       - '@AxeptiocookiesAddon\Service\ProjectService'
       - '@AxeptiocookiesAddon\Repository\ConfigurationRepository'
       - '@AxeptiocookiesAddon\Service\ModuleService'
+      - '@AxeptiocookiesAddon\Service\ImageService'
 
   AxeptiocookiesAddon\Service\CookieService:
     class: AxeptiocookiesAddon\Service\CookieService
@@ -56,4 +58,8 @@ services:
 
   AxeptiocookiesAddon\API\Response\Factory\ResponseFactory:
     class: AxeptiocookiesAddon\API\Response\Factory\ResponseFactory
+    public: true
+
+  AxeptiocookiesAddon\Service\ImageService:
+    class: AxeptiocookiesAddon\Service\ImageService
     public: true
