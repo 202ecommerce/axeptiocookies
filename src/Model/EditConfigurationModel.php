@@ -76,7 +76,7 @@ class EditConfigurationModel implements \JsonSerializable
     /**
      * @var string|null
      */
-    protected $illustration = null;
+    protected $illustration;
 
     /**
      * @var bool

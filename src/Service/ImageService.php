@@ -24,6 +24,10 @@
 
 namespace AxeptiocookiesAddon\Service;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use AxeptiocookiesAddon\Entity\AxeptioConfiguration;
 
 class ImageService
@@ -35,7 +39,7 @@ class ImageService
         if (empty($configuration->illustration) || !file_exists(self::IMG_DIR . $configuration->illustration)) {
             return null;
         }
-        $imgData = base64_encode(file_get_contents(self::IMG_DIR . $configuration->illustration));
+        $imgData = base64_encode(\Tools::file_get_contents(self::IMG_DIR . $configuration->illustration));
 
         return 'data: ' . mime_content_type(self::IMG_DIR . $configuration->illustration) . ';base64,' . $imgData;
     }
