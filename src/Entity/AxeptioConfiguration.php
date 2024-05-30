@@ -93,7 +93,7 @@ class AxeptioConfiguration extends \ObjectModel
     /**
      * @var string|null
      */
-    public $illustration = null;
+    public $illustration;
 
     public function __construct($id = null, $id_lang = null, $id_shop = null, $translator = null)
     {
