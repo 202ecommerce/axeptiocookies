@@ -269,7 +269,7 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
         header('Content-Type: application/json');
         if (is_callable('parent::ajaxDie')) {
             parent::ajaxDie($value, $controller, $method);
-        } else {
+        } elseif (method_exists($this, 'ajaxRender')) {
             $this->ajaxRender($value, $controller, $method);
             exit;
         }
