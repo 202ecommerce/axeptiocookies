@@ -478,66 +478,6 @@ class EditConfigurationModel implements \JsonSerializable
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getIllustration()
-    {
-        return $this->illustration;
-    }
-
-    /**
-     * @param string|null $illustration
-     *
-     * @return EditConfigurationModel
-     */
-    public function setIllustration($illustration)
-    {
-        $this->illustration = $illustration;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasIllustration()
-    {
-        return $this->has_illustration;
-    }
-
-    /**
-     * @param bool $has_illustration
-     *
-     * @return EditConfigurationModel
-     */
-    public function setHasIllustration($has_illustration)
-    {
-        $this->has_illustration = $has_illustration;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getPaint()
-    {
-        return $this->paint;
-    }
-
-    /**
-     * @param bool $paint
-     *
-     * @return EditConfigurationModel
-     */
-    public function setPaint($paint)
-    {
-        $this->paint = $paint;
-
-        return $this;
-    }
-
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
