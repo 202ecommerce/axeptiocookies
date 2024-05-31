@@ -170,19 +170,19 @@ configurationBus.on((event) => {
           </ul>
           <div class="tab-content">
             <div
-                class="tab-pane fade"
+                class="tab-pane"
                 :class="{'show active': selectedTab === TabItem.GENERAL}"
             >
               <GeneralTab/>
             </div>
             <div
-                class="tab-pane fade"
+                class="tab-pane"
                 :class="{'show active': selectedTab === TabItem.MODULES}"
             >
               <ModulesTab/>
             </div>
             <div
-                class="tab-pane fade"
+                class="tab-pane"
                 :class="{'show active': selectedTab === TabItem.CONSENTV2}"
             >
               <ConsentTab/>

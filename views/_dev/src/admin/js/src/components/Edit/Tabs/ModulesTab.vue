@@ -67,41 +67,43 @@ const handleModuleClick = (index: number) => {
 </script>
 
 <template>
-  <div class="d-inline-flex float-right mb-3 module-tab-actions">
-    <button class="btn btn-lg btn-outline-info"
-            v-if="isResetBtnVisible"
-            v-text="trans('edit.recommended.reset')"
-            type="button"
-            @click="handleResetToRecommendedModules">
-    </button>
-  </div>
-  <div class="form-group">
-    <div class="modules-wrapper">
-      <div class="d-flex flex-wrap">
-        <div v-for="(module, index) of configurationStore.editConfiguration.modules"
-             :key="module.id_module"
-             @click="handleModuleClick(index)"
-             class="md-checkbox col-4 module-item">
-          <div class="d-flex" v-if="configurationStore.editConfiguration.modules">
-            <input type="checkbox" v-model="configurationStore.editConfiguration.modules[index].checked"/>
-            <i class="md-checkbox-control"></i>
-            <div class="d-flex ml-3">
-              <div class="img-wrapper img-fluid" v-if="module.image">
-                <img :src="module.image" :alt="module.name">
+  <div class="d-flex flex-column">
+    <div class="d-inline-flex justify-content-end mb-3 module-tab-actions" v-if="isResetBtnVisible">
+      <button class="btn btn-lg btn-outline-info"
+              v-if="isResetBtnVisible"
+              v-text="trans('edit.recommended.reset')"
+              type="button"
+              @click="handleResetToRecommendedModules">
+      </button>
+    </div>
+    <div class="form-group" v-if="configurationStore.editConfiguration">
+      <div class="modules-wrapper">
+        <div class="d-flex flex-wrap">
+          <div v-for="(module, index) of configurationStore.editConfiguration.modules"
+               :key="module.id_module"
+               @click="handleModuleClick(index)"
+               class="md-checkbox col-4 module-item">
+            <div class="d-flex" v-if="configurationStore.editConfiguration.modules">
+              <input type="checkbox" v-model="configurationStore.editConfiguration.modules[index].checked"/>
+              <i class="md-checkbox-control"></i>
+              <div class="d-flex ml-3">
+                <div class="img-wrapper img-fluid" v-if="module.image">
+                  <img :src="module.image" :alt="module.name">
+                </div>
+                <div class="d-flex flex-column ml-2">
+                  <div class="font-weight-bold"
+                       v-text="module.displayName ? getPrettyModuleName(module.displayName) : module.name"></div>
+                  <div class="small-text"
+                       v-text="module.name"></div>
+                </div>
               </div>
-              <div class="d-flex flex-column ml-2">
-                <div class="font-weight-bold"
-                     v-text="module.displayName ? getPrettyModuleName(module.displayName) : module.name"></div>
-                <div class="small-text"
-                     v-text="module.name"></div>
+              <div class="ml-2"
+                   v-if="module.recommended !== false && module.recommended.isRequired">
+                <img :src="images.recommended"
+                     class="img-fluid"
+                     v-tooltip="trans('edit.recommended.description')"
+                     :alt="trans('edit.recommended.description')">
               </div>
-            </div>
-            <div class="ml-2"
-                 v-if="module.recommended !== false && module.recommended.isRequired">
-              <img :src="images.recommended"
-                   class="img-fluid"
-                   v-tooltip="trans('edit.recommended.description')"
-                   :alt="trans('edit.recommended.description')">
             </div>
           </div>
         </div>
