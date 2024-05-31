@@ -130,6 +130,12 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                         'modules' => $this->l('Modules', $this->controller_name),
                         'consentv2' => $this->l('Consent Mode V2', $this->controller_name),
                     ],
+                    'illustration' => $this->l('Illustration', $this->controller_name),
+                    'illustration_choose' => $this->l('Choose illustration...', $this->controller_name),
+                    'illustration_custom' => $this->l('I would like a 
+                        personalised illustration', $this->controller_name),
+                    'no_illustration' => $this->l('I don\'t want an illustration', $this->controller_name),
+                    'paint' => $this->l('Activate the paint task', $this->controller_name),
                     'project_title' => $this->l('Project ID', $this->controller_name),
                     'configuration_title' => $this->l('Configuration', $this->controller_name),
                     'shop_title' => $this->l('Shops', $this->controller_name),

@@ -68,6 +68,11 @@ class StepModel implements \JsonSerializable
     protected $subTitle = '';
 
     /**
+     * @var bool
+     */
+    protected $disablePaint = false;
+
+    /**
      * @var array<VendorModel>
      */
     protected $vendors = [];
@@ -272,6 +277,26 @@ class StepModel implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @return bool
+     */
+    public function getDisablePaint()
+    {
+        return $this->disablePaint;
+    }
+
+    /**
+     * @param bool $disablePaint
+     *
+     * @return StepModel
+     */
+    public function setDisablePaint($disablePaint)
+    {
+        $this->disablePaint = $disablePaint;
+
+        return $this;
+    }
+
     public static function __set_state($array)
     {
         $obj = new StepModel();
@@ -285,6 +310,7 @@ class StepModel implements \JsonSerializable
         $obj->setSubTitle($array['subTitle']);
         $obj->setTitle($array['title']);
         $obj->setVendors($array['vendors']);
+        $obj->setDisablePaint(isset($array['disablePaint']) && (bool) $array['disablePaint']);
 
         return $obj;
     }
@@ -301,6 +327,7 @@ class StepModel implements \JsonSerializable
             'showToggleAllSwitch' => $this->isShowToggleAllSwitch(),
             'subTitle' => $this->getSubTitle(),
             'title' => $this->getTitle(),
+            'disablePaint' => $this->getDisablePaint(),
             'vendors' => array_map(function (VendorModel $vendorModel) {
                 return $vendorModel->toArray();
             }, $this->getVendors()),

@@ -33,6 +33,11 @@ $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_9a8b01f67
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_0db377921f4ce762c62526131097968f'] = 'Général';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_bf17ac149e2e7a530c677e9bd51d3fd2'] = 'Modules';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_14ae0ddbc25488fc7156943d97207ccf'] = 'Consent Mode V2	';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_33dca68e340b8d6c21472341130cf45a'] = 'Illustration';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_6c75ce41fb6eca082110d5c95d72022e'] = 'Choisissez l\'illustration...';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_639a20bf067d13fec2238b9e88179582'] = 'Je souhaite une illustration personnalisée';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_c5e79077fda062cf46fd9684e4d843a2'] = 'Je ne souhaite pas d\'illustration';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_883b0ef478d6c9bd7a345c34d9af5c00'] = 'Activer la tâche de peinture';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_6cb2830007af9ceb6ce55b4560dc650a'] = 'ID de projet';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_254f642527b45bc260048e30704edb39'] = 'Configuration';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_12a521af593422cd508f7707662c9eb2'] = 'Boutiques';

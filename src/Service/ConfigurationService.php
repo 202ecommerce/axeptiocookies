@@ -57,6 +57,10 @@ class ConfigurationService
      * @var HookService
      */
     protected $hookService;
+    /**
+     * @var ImageService
+     */
+    protected $imageService;
 
     /**
      * @param ConfigurationRepository $configurationRepository
@@ -64,19 +68,22 @@ class ConfigurationService
      * @param ModuleService $moduleService
      * @param ConfigurationValidator $configurationValidator
      * @param HookService $hookService
+     * @param ImageService $imageService
      */
     public function __construct(
         ConfigurationRepository $configurationRepository,
         ProjectService $projectService,
         ModuleService $moduleService,
         ConfigurationValidator $configurationValidator,
-        HookService $hookService
+        HookService $hookService,
+        ImageService $imageService
     ) {
         $this->configurationRepository = $configurationRepository;
         $this->projectService = $projectService;
         $this->moduleService = $moduleService;
         $this->configurationValidator = $configurationValidator;
         $this->hookService = $hookService;
+        $this->imageService = $imageService;
     }
 
     public function createConfiguration(CreateConfigurationModel $configurationModel)
@@ -122,6 +129,14 @@ class ConfigurationService
         $configuration->message = $configurationModel->getMessage();
         $configuration->title = $configurationModel->getTitle();
         $configuration->subtitle = $configurationModel->getSubtitle();
+        $configuration->paint = $configurationModel->getPaint();
+
+        if (!empty($configuration->illustration)) {
+            $this->imageService->deleteImage($configuration->illustration);
+        }
+        if (!empty($configurationModel->getIllustration()) && $configurationModel->hasIllustration()) {
+            $configuration->illustration = $this->imageService->saveImage($configurationModel->getIllustration());
+        }
 
         if ($configurationModel->getIsConsentV2()) {
             $configuration->is_consent_v2 = $configurationModel->getIsConsentV2();
@@ -243,6 +258,8 @@ class ConfigurationService
             return $carry;
         });
 
+        $illustration = $this->imageService->getIllustration($moduleConfiguration);
+
         return (new EditConfigurationModel())
             ->setIdObject((int) $idObject)
             ->setLanguage(\Language::getLanguage($moduleConfiguration->id_lang))
@@ -256,6 +273,9 @@ class ConfigurationService
             }, $moduleConfiguration->getAssociatedShops()))
             ->setModules($modules)
             ->setProject($project)
+            ->setPaint((bool) $moduleConfiguration->paint)
+            ->setHasIllustration(!empty($illustration))
+            ->setIllustration($this->imageService->getIllustration($moduleConfiguration))
             ->setIsConsentV2((bool) $moduleConfiguration->is_consent_v2)
             ->setAnalyticsStorage((bool) $moduleConfiguration->analytics_storage)
             ->setAdStorage((bool) $moduleConfiguration->ad_storage)

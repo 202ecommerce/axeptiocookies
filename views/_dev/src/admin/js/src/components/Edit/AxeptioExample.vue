@@ -23,10 +23,12 @@ import {useConfig} from "../../use/useConfig.ts";
 const {trans} = useTrans();
 const {images} = useConfig();
 
-defineProps<{
+const props = defineProps<{
   title: string,
   subtitle: string,
-  message: string
+  message: string,
+  illustration: string | null,
+  paint: boolean
 }>();
 </script>
 
@@ -37,10 +39,10 @@ defineProps<{
         <div class="axeptio-card-header-top">
           <div class="axeptio-card-header-top-image-wrapper">
             <img
-                :src="images.people"
+                :src="props.illustration ? props.illustration : images.people"
                 width="140" alt="People" loading="lazy" class="axeptio-header-image">
             <div class="axeptio-card-header-top-image-wrapper-second">
-              <img
+              <img v-if="props.paint"
                   :src="images.sky"
                   width="200" height="134" alt="Sky"></div>
           </div>
