@@ -103,116 +103,123 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
         return [
             'translations' => [
                 'create' => [
-                    'title' => $this->l('Creating a widget for your website', $this->controller_name),
-                    'subtitle' => $this->l('To create a new widget, open your Axeptio interface to retrieve 
-                            the information', $this->controller_name),
-                    'info_axeptio' => $this->l('Info Axeptio', $this->controller_name),
-                    'info_ps' => $this->l('Info Prestashop', $this->controller_name),
-                    'project_title' => $this->l('What is your Axeptio\'s project ID', $this->controller_name),
-                    'project_invalid' => $this->l('The project ID is not valid, remember that it is necessary 
-                            to publish the project in your Axeptio dashboard', $this->controller_name),
-                    'configuration_title' => $this->l('What is your configuration?', $this->controller_name),
-                    'shop_title' => $this->l('To what shop this configuration should be linked 
+                    'title' => $this->module->l('Creating a widget for your website', $this->controller_name),
+                    'subtitle' => $this->module->l('To create a new widget, open your Axeptio interface to
+                            retrieve the information', $this->controller_name),
+                    'info_axeptio' => $this->module->l('Info Axeptio', $this->controller_name),
+                    'info_ps' => $this->module->l('Info Prestashop', $this->controller_name),
+                    'project_title' => $this->module->l('What is your Axeptio\'s project
+                            ID', $this->controller_name),
+                    'project_invalid' => $this->module->l('The project ID is not valid, remember that it is
+                            necessary to publish the project in your Axeptio dashboard', $this->controller_name),
+                    'configuration_title' => $this->module->l('What is your
+                            configuration?', $this->controller_name),
+                    'shop_title' => $this->module->l('To what shop this configuration should be linked
                             to?', $this->controller_name),
-                    'language_title' => $this->l('To what language this configuration should be linked 
+                    'language_title' => $this->module->l('To what language this configuration should be linked
                             to?', $this->controller_name),
-                    'back' => $this->l('To the list', $this->controller_name),
-                    'step_message' => $this->l('Message', $this->controller_name),
-                    'step_title' => $this->l('Title', $this->controller_name),
-                    'step_subtitle' => $this->l('Subtitle', $this->controller_name),
+                    'back' => $this->module->l('To the list', $this->controller_name),
+                    'step_message' => $this->module->l('Message', $this->controller_name),
+                    'step_title' => $this->module->l('Title', $this->controller_name),
+                    'step_subtitle' => $this->module->l('Subtitle', $this->controller_name),
                 ],
                 'edit' => [
-                    'title' => $this->l('Edit your widget', $this->controller_name),
-                    'subtitle' => $this->l('Manage the appearance and modules you want to offer 
+                    'title' => $this->module->l('Edit your widget', $this->controller_name),
+                    'subtitle' => $this->module->l('Manage the appearance and modules you want to offer
                     for user consent', $this->controller_name),
                     'tabs' => [
-                        'general' => $this->l('General', $this->controller_name),
-                        'modules' => $this->l('Modules', $this->controller_name),
-                        'consentv2' => $this->l('Consent Mode V2', $this->controller_name),
+                        'general' => $this->module->l('General', $this->controller_name),
+                        'modules' => $this->module->l('Modules', $this->controller_name),
+                        'consentv2' => $this->module->l('Consent Mode V2', $this->controller_name),
                     ],
-                    'illustration' => $this->l('Illustration', $this->controller_name),
-                    'illustration_choose' => $this->l('Choose illustration...', $this->controller_name),
-                    'illustration_custom' => $this->l('I would like a 
+                    'illustration' => $this->module->l('Illustration', $this->controller_name),
+                    'illustration_choose' => $this->module->l('Choose illustration...', $this->controller_name),
+                    'illustration_custom' => $this->module->l('I would like a
                         personalised illustration', $this->controller_name),
-                    'no_illustration' => $this->l('I don\'t want an illustration', $this->controller_name),
-                    'paint' => $this->l('Activate the paint task', $this->controller_name),
-                    'project_title' => $this->l('Project ID', $this->controller_name),
-                    'configuration_title' => $this->l('Configuration', $this->controller_name),
-                    'shop_title' => $this->l('Shops', $this->controller_name),
-                    'language_title' => $this->l('Languages', $this->controller_name),
-                    'back' => $this->l('To the list', $this->controller_name),
-                    'step_message' => $this->l('Message', $this->controller_name),
-                    'step_title' => $this->l('Title', $this->controller_name),
-                    'step_subtitle' => $this->l('Subtitle', $this->controller_name),
+                    'no_illustration' => $this->module->l('I don\'t want an
+                        illustration', $this->controller_name),
+                    'paint' => $this->module->l('Activate the paint task', $this->controller_name),
+                    'project_title' => $this->module->l('Project ID', $this->controller_name),
+                    'configuration_title' => $this->module->l('Configuration', $this->controller_name),
+                    'shop_title' => $this->module->l('Shops', $this->controller_name),
+                    'language_title' => $this->module->l('Languages', $this->controller_name),
+                    'back' => $this->module->l('To the list', $this->controller_name),
+                    'step_message' => $this->module->l('Message', $this->controller_name),
+                    'step_title' => $this->module->l('Title', $this->controller_name),
+                    'step_subtitle' => $this->module->l('Subtitle', $this->controller_name),
                     'recommended' => [
-                        'description' => $this->l('Collection of personal data', $this->controller_name),
-                        'reset' => $this->l('Check the modules for which consent is recommended by Axeptio', $this->controller_name),
+                        'description' => $this->module->l('Collection of personal data', $this->controller_name),
+                        'reset' => $this->module->l('Check the modules for which consent is recommended
+                            by Axeptio', $this->controller_name),
                     ],
                     'consent' => [
-                        'enable' => $this->l('Enable Google Consent Mode V2?', $this->controller_name),
-                        'default' => $this->l('Default setting for Consent Mode', $this->controller_name),
-                        'description' => $this->l('These consent signals will be sent on page load to indicate
-                            to Google services how they should process the data before consent is given by the 
-                            user.', $this->controller_name),
-                        'analytics_storage' => $this->l('Analytics storage', $this->controller_name),
-                        'analytics_storage_desc' => $this->l('Allow Google Analytics to measure how visitors 
-                            use the site to improve functionality and service.', $this->controller_name),
-                        'ad_storage' => $this->l('Ad Storage', $this->controller_name),
-                        'ad_storage_desc' => $this->l('Allow Google to save advertising information on visitors
-                            devices for better ad relevance.', $this->controller_name),
-                        'ad_user_data' => $this->l('Ad User Data', $this->controller_name),
-                        'ad_user_data_desc' => $this->l('Share visitor activity data with Google for targeted
-                            advertising.', $this->controller_name),
-                        'ad_personalization' => $this->l('Ad Personalization', $this->controller_name),
-                        'ad_personalization_desc' => $this->l('Personalize the advertising experience by allowing
-                            Google to personalize the ads visitors see.', $this->controller_name),
+                        'enable' => $this->module->l('Enable Google Consent Mode V2?', $this->controller_name),
+                        'default' => $this->module->l('Default setting for Consent Mode', $this->controller_name),
+                        'description' => $this->module->l('These consent signals will be sent on page load
+                            to indicate to Google services how they should process the data before consent is given
+                            by the user.', $this->controller_name),
+                        'analytics_storage' => $this->module->l('Analytics storage', $this->controller_name),
+                        'analytics_storage_desc' => $this->module->l('Allow Google Analytics to measure how
+                            visitors use the site to improve functionality and service.', $this->controller_name),
+                        'ad_storage' => $this->module->l('Ad Storage', $this->controller_name),
+                        'ad_storage_desc' => $this->module->l('Allow Google to save advertising information on
+                            visitors devices for better ad relevance.', $this->controller_name),
+                        'ad_user_data' => $this->module->l('Ad User Data', $this->controller_name),
+                        'ad_user_data_desc' => $this->module->l('Share visitor activity data with Google for
+                            targeted advertising.', $this->controller_name),
+                        'ad_personalization' => $this->module->l('Ad Personalization', $this->controller_name),
+                        'ad_personalization_desc' => $this->module->l('Personalize the advertising experience
+                            by allowing Google to personalize the ads visitors see.', $this->controller_name),
                     ],
                 ],
                 'example' => [
-                    'accept' => $this->l('Accept all', $this->controller_name),
-                    'next' => $this->l('Next', $this->controller_name),
-                    'title' => $this->l('Title module', $this->controller_name),
-                    'description' => $this->l('Description module', $this->controller_name),
-                    'certified' => $this->l('Consents certified by', $this->controller_name),
-                    'toggle_all' => $this->l('Toggle all', $this->controller_name),
+                    'accept' => $this->module->l('Accept all', $this->controller_name),
+                    'next' => $this->module->l('Next', $this->controller_name),
+                    'title' => $this->module->l('Title module', $this->controller_name),
+                    'description' => $this->module->l('Description module', $this->controller_name),
+                    'certified' => $this->module->l('Consents certified by', $this->controller_name),
+                    'toggle_all' => $this->module->l('Toggle all', $this->controller_name),
                 ],
                 'common' => [
                     'save' => $this->trans('Save', [], 'Admin.Actions'),
-                    'clear_cache' => $this->l('Clear cache', $this->controller_name),
-                    'cache_title' => $this->l('Cache management', $this->controller_name),
-                    'cache_description' => $this->l('Cache is purged automatically when it needed,
-                                if you have some problems with displaying of Axeptio widget, try to use 
+                    'clear_cache' => $this->module->l('Clear cache', $this->controller_name),
+                    'cache_title' => $this->module->l('Cache management', $this->controller_name),
+                    'cache_description' => $this->module->l('Cache is purged automatically when it needed,
+                                if you have some problems with displaying of Axeptio widget, try to use
                                 this button', $this->controller_name),
                     'description' => [
-                        'title' => $this->l('Important', $this->controller_name),
-                        'desc1' => $this->l('The Axeptio widget allows you to be GDPR compliant and let your 
-                                users choose the consent and cookies they want to activate.', $this->controller_name),
-                        'desc2' => $this->l('To work, your account must be created and you already have a 
+                        'title' => $this->module->l('Important', $this->controller_name),
+                        'desc1' => $this->module->l('The Axeptio widget allows you to be GDPR compliant and
+                                let your users choose the consent and cookies they want to
+                                activate.', $this->controller_name),
+                        'desc2' => $this->module->l('To work, your account must be created and you already have a
                                 project already created.', $this->controller_name),
                         'desc3' => sprintf(
-                            $this->l('If this is not the case %sclick here to create your Axeptio account and 
-                                create your project%s', $this->controller_name),
+                            $this->module->l('If this is not the case %sclick here to create your Axeptio account
+                                and create your project%s', $this->controller_name),
                             '<a target="_blank" href="https://admin.axeptio.eu">', '</a>'),
                     ],
-                    'error_occurred' => $this->l('Error occurred, try to reload this page', $this->controller_name),
+                    'error_occurred' => $this->module->l('Error occurred, try to reload
+                            this page', $this->controller_name),
                 ],
                 'list' => [
-                    'delete' => $this->l('Delete', $this->controller_name),
+                    'delete' => $this->module->l('Delete', $this->controller_name),
                     'delete_no' => $this->trans('No', [], 'Admin.Global'),
                     'delete_yes' => $this->trans('Yes', [], 'Admin.Global'),
-                    'delete_confirmation' => $this->l('Are you sure you want delete this widget?', $this->controller_name),
-                    'new' => $this->l('Create an Axeptio widget', $this->controller_name),
-                    'edit' => $this->l('Edit', $this->controller_name),
-                    'configuration_unavailable' => $this->l('Axeptio widget is unavailable, it is recommended to 
-                            modify this widget', $this->controller_name),
-                    'project_id' => $this->l('Project ID', $this->controller_name),
+                    'delete_confirmation' => $this->module->l('Are you sure you want delete this
+                            widget?', $this->controller_name),
+                    'new' => $this->module->l('Create an Axeptio widget', $this->controller_name),
+                    'edit' => $this->module->l('Edit', $this->controller_name),
+                    'configuration_unavailable' => $this->module->l('Axeptio widget is unavailable, it is
+                            recommended to modify this widget', $this->controller_name),
+                    'project_id' => $this->module->l('Project ID', $this->controller_name),
                     'shop' => $this->trans('Shop', [], 'Admin.Global'),
                     'language' => $this->trans('Language', [], 'Admin.Global'),
                     'table' => [
-                        'widget' => $this->l('Widget', $this->controller_name),
-                        'modification' => $this->l('Modification', $this->controller_name),
-                        'deletion' => $this->l('Deletion', $this->controller_name),
-                        'summary' => $this->l('Summary', $this->controller_name),
+                        'widget' => $this->module->l('Widget', $this->controller_name),
+                        'modification' => $this->module->l('Modification', $this->controller_name),
+                        'deletion' => $this->module->l('Deletion', $this->controller_name),
+                        'summary' => $this->module->l('Summary', $this->controller_name),
                     ],
                 ],
             ],

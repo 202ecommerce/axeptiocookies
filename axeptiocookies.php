@@ -120,7 +120,7 @@ class Axeptiocookies extends Module
 
         $this->__mConstruct();
 
-        $this->secure_key = Tools::encrypt($this->name);
+        $this->secure_key = Tools::hash($this->name);
         $this->confirmUninstall = $this->l('This will delete the Axeptio cookies module, are you sure ?');
         $this->displayName = $this->l('Axeptio - Cookies and personal data management');
         $this->description = $this->l('Axeptio - Cookies and personal data management');
