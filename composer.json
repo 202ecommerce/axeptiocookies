@@ -42,7 +42,7 @@
         ]
     },
     "scripts": {
-        "pre-autoload-dump": "if [ ${TOTPSCLASSLIB_DEV_PATH} ]; then php ${TOTPSCLASSLIB_DEV_PATH}/classlib/refresh.php .; fi; [ -f ./vendor/symfony/config/Tests/Fixtures/ParseError.php ] && echo '}' >> ./vendor/symfony/config/Tests/Fixtures/ParseError.php",
+        "pre-autoload-dump": "if [ ${TOTPSCLASSLIB_DEV_PATH} ]; then php ${TOTPSCLASSLIB_DEV_PATH}/classlib/refresh.php .; fi; [ -f ./vendor/symfony/config/Tests/Fixtures/ParseError.php ] && echo '}' >> ./vendor/symfony/config/Tests/Fixtures/ParseError.php || echo 'No action'",
         "license-header": [
             "vendor/bin/header-stamp --license=202/license/license.txt --exclude=.github,202,config,node_modules,translations,vendor"
         ]
