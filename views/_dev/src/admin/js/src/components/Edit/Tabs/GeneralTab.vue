@@ -25,8 +25,12 @@ const {trans} = useTrans();
 const configurationStore = useConfigurationStore();
 
 const uploadIllustration = async (event: Event) => {
-  if (event.target.files) {
-    const file = event.target.files[0] as File;
+  if ((<HTMLInputElement>event.target).files && (<HTMLInputElement>event.target).files?.length) {
+    const files = (<HTMLInputElement>event.target).files as File[] | null;
+    if (!files?.length) {
+      return;
+    }
+    const file = files[0];
     const imagesType = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp', 'image/svg+xml', 'image/avif'];
     if (!imagesType.includes(file.type)) {
       return;
@@ -35,7 +39,7 @@ const uploadIllustration = async (event: Event) => {
     reader.readAsDataURL(file);
     reader.onload = () => {
       if (configurationStore.editConfiguration) {
-        configurationStore.editConfiguration.illustration = reader.result;
+        configurationStore.editConfiguration.illustration = reader.result as string;
       }
     };
   }
@@ -43,7 +47,7 @@ const uploadIllustration = async (event: Event) => {
 </script>
 
 <template>
-  <div class="row">
+  <div class="row" v-if="configurationStore.editConfiguration">
     <div class="col-6">
       <div class="form-group">
         <label class="form-control-label"
@@ -118,9 +122,9 @@ const uploadIllustration = async (event: Event) => {
     </div>
     <div class="col-6 d-flex justify-content-center">
       <axeptio-example
-          :title="configurationStore.editConfiguration.title ? configurationStore.editConfiguration.title : trans('edit.step_title')"
-          :subtitle="configurationStore.editConfiguration.subtitle ? configurationStore.editConfiguration.subtitle : trans('edit.step_subtitle')"
-          :message="configurationStore.editConfiguration.message ? configurationStore.editConfiguration.message : trans('edit.step_message')"
+          :title="configurationStore.editConfiguration?.title ? configurationStore.editConfiguration.title : trans('edit.step_title')"
+          :subtitle="configurationStore.editConfiguration?.subtitle ? configurationStore.editConfiguration.subtitle : trans('edit.step_subtitle')"
+          :message="configurationStore.editConfiguration?.message ? configurationStore.editConfiguration.message : trans('edit.step_message')"
           :illustration="configurationStore.editConfiguration?.illustration && configurationStore.editConfiguration?.has_illustration ? configurationStore.editConfiguration.illustration : null"
           :paint="configurationStore.editConfiguration?.paint ? configurationStore.editConfiguration.paint : false"
       />

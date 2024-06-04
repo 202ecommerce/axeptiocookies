@@ -75,7 +75,7 @@ const handleModuleClick = (index: number) => {
             @click="handleResetToRecommendedModules">
     </button>
   </div>
-  <div class="form-group">
+  <div class="form-group" v-if="configurationStore.editConfiguration">
     <div class="modules-wrapper">
       <div class="d-flex flex-wrap">
         <div v-for="(module, index) of configurationStore.editConfiguration.modules"
