@@ -166,7 +166,6 @@ class AxeptioConfiguration extends \ObjectModel
                 'type' => self::TYPE_BOOL,
                 'required' => false,
                 'validate' => 'isBool',
-                'default' => '1',
             ],
             'illustration' => [
                 'type' => self::TYPE_STRING,

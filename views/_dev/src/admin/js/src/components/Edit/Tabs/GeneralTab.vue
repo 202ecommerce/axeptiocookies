@@ -20,9 +20,12 @@
 import {useTrans} from "../../../use/useTrans.ts";
 import {useConfigurationStore} from "../../../stores/configurationStore.ts";
 import AxeptioExample from "../AxeptioExample.vue";
+import {ref} from "vue";
 
 const {trans} = useTrans();
 const configurationStore = useConfigurationStore();
+
+const illustrationFileName = ref('');
 
 const uploadIllustration = async (event: Event) => {
   if ((<HTMLInputElement>event.target).files && (<HTMLInputElement>event.target).files?.length) {
@@ -40,6 +43,7 @@ const uploadIllustration = async (event: Event) => {
     reader.onload = () => {
       if (configurationStore.editConfiguration) {
         configurationStore.editConfiguration.illustration = reader.result as string;
+        illustrationFileName.value = file.name as string;
       }
     };
   }
@@ -100,7 +104,7 @@ const uploadIllustration = async (event: Event) => {
               accept="image/png, image/gif, image/jpeg, image/webp, image/svg+xml, image/avif"
               @change="uploadIllustration"
           />
-          <label class="custom-file-label" v-text="trans('edit.illustration_choose')"></label>
+          <label class="custom-file-label" v-text="illustrationFileName && configurationStore.editConfiguration.illustration ? illustrationFileName : trans('edit.illustration_choose')"></label>
         </div>
       </div>
       <div class="form-group">

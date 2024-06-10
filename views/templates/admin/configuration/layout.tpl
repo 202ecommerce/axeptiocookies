@@ -16,7 +16,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0  Academic Free License (AFL 3.0)
  *}
 
-{assign var="vitedev" value=false}
+{assign var="vitedev" value=true}
 
 {if $vitedev}
   <script type="module" src="http://localhost:8000/@vite/client"></script>
