@@ -142,6 +142,8 @@ class HookService
                 if (!empty($illustrationUrl)) {
                     $stepModel->setImage($illustrationUrl);
                 }
+            } elseif (!$axeptioConfiguration->has_illustration) {
+                $stepModel->setImage(null);
             }
             $integrationModel->setModuleStep($stepModel);
         }

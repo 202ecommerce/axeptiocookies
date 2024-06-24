@@ -90,13 +90,28 @@ const uploadIllustration = async (event: Event) => {
               v-model="configurationStore.editConfiguration.has_illustration"
           />
           <span class="slide-button"></span>
-          <label>
-            <span v-if="!configurationStore.editConfiguration.has_illustration" v-text="trans('edit.no_illustration')"></span>
-            <span v-else v-text="trans('edit.illustration_custom')"></span>
+          <label v-text="trans('edit.illustration_active')">
           </label>
         </span>
       </div>
       <div class="form-group" v-if="configurationStore.editConfiguration.has_illustration">
+        <span class="ps-switch">
+          <input
+              type="radio"
+              :value="false"
+              v-model="configurationStore.editConfiguration.has_personalized_illustration"
+          />
+          <input
+              type="radio"
+              :value="true"
+              v-model="configurationStore.editConfiguration.has_personalized_illustration"
+          />
+          <span class="slide-button"></span>
+          <label v-text="trans('edit.illustration_perso')">
+          </label>
+        </span>
+      </div>
+      <div class="form-group" v-if="configurationStore.editConfiguration.has_illustration && configurationStore.editConfiguration.has_personalized_illustration">
         <div class="custom-file">
           <input
               type="file"
@@ -104,7 +119,7 @@ const uploadIllustration = async (event: Event) => {
               accept="image/png, image/gif, image/jpeg, image/webp, image/svg+xml, image/avif"
               @change="uploadIllustration"
           />
-          <label class="custom-file-label" v-text="illustrationFileName && configurationStore.editConfiguration.illustration ? illustrationFileName : trans('edit.illustration_choose')"></label>
+          <label class="custom-file-label" v-text="illustrationFileName && configurationStore.editConfiguration.illustration ? illustrationFileName : trans('edit.illustration_perso')"></label>
         </div>
       </div>
       <div class="form-group">
@@ -129,7 +144,8 @@ const uploadIllustration = async (event: Event) => {
           :title="configurationStore.editConfiguration?.title ? configurationStore.editConfiguration.title : trans('edit.step_title')"
           :subtitle="configurationStore.editConfiguration?.subtitle ? configurationStore.editConfiguration.subtitle : trans('edit.step_subtitle')"
           :message="configurationStore.editConfiguration?.message ? configurationStore.editConfiguration.message : trans('edit.step_message')"
-          :illustration="configurationStore.editConfiguration?.illustration && configurationStore.editConfiguration?.has_illustration ? configurationStore.editConfiguration.illustration : null"
+          :has_illustration="!!configurationStore.editConfiguration?.has_illustration"
+          :illustration="configurationStore.editConfiguration?.illustration && configurationStore.editConfiguration?.has_illustration && configurationStore.editConfiguration?.has_personalized_illustration ? configurationStore.editConfiguration.illustration : null"
           :paint="configurationStore.editConfiguration?.paint ? configurationStore.editConfiguration.paint : false"
       />
     </div>

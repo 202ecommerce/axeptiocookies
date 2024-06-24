@@ -32,7 +32,10 @@ function upgrade_module_2_0_8($module)
         $installer->installObjectModel(\AxeptiocookiesAddon\Entity\AxeptioConfiguration::class);
         Db::getInstance()->update(
             \AxeptiocookiesAddon\Entity\AxeptioConfiguration::$definition['table'],
-            ['paint' => 1],
+            [
+                'paint' => 1,
+                'has_illustration' => 1,
+            ],
             '1'
         );
         $installer->registerHooks();

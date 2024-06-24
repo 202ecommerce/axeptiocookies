@@ -111,6 +111,11 @@ class EditConfigurationModel implements \JsonSerializable
     /**
      * @var bool
      */
+    public $has_personalized_illustration = false;
+
+    /**
+     * @var bool
+     */
     public $paint = true;
 
     /**
@@ -474,6 +479,26 @@ class EditConfigurationModel implements \JsonSerializable
     public function setPaint($paint)
     {
         $this->paint = $paint;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasPersonalizedIllustration()
+    {
+        return $this->has_personalized_illustration;
+    }
+
+    /**
+     * @param bool $has_personalized_illustration
+     *
+     * @return EditConfigurationModel
+     */
+    public function setHasPersonalizedIllustration($has_personalized_illustration)
+    {
+        $this->has_personalized_illustration = $has_personalized_illustration;
 
         return $this;
     }

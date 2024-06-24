@@ -31,7 +31,7 @@ class StepModel implements \JsonSerializable
     protected $hasVendors = true;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $image = 'cookie-bienvenue';
 
@@ -98,7 +98,7 @@ class StepModel implements \JsonSerializable
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getImage()
     {
@@ -106,7 +106,7 @@ class StepModel implements \JsonSerializable
     }
 
     /**
-     * @param string $image
+     * @param string|null $image
      *
      * @return StepModel
      */
