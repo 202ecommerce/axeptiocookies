@@ -36,7 +36,7 @@ class ImageService
 
     public function getIllustration(AxeptioConfiguration $configuration)
     {
-        if (empty($configuration->illustration) || !file_exists(self::IMG_DIR . $configuration->illustration)) {
+        if (empty($configuration->has_illustration) || empty($configuration->illustration) || !file_exists(self::IMG_DIR . $configuration->illustration)) {
             return null;
         }
         $imgData = base64_encode(\Tools::file_get_contents(self::IMG_DIR . $configuration->illustration));

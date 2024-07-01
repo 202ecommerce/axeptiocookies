@@ -30,6 +30,14 @@ function upgrade_module_2_0_8($module)
     try {
         $installer = new \AxeptiocookiesClasslib\Install\ModuleInstaller($module);
         $installer->installObjectModel(\AxeptiocookiesAddon\Entity\AxeptioConfiguration::class);
+        Db::getInstance()->update(
+            \AxeptiocookiesAddon\Entity\AxeptioConfiguration::$definition['table'],
+            [
+                'paint' => 1,
+                'has_illustration' => 1,
+            ],
+            '1'
+        );
         $installer->registerHooks();
         $cache = new \AxeptiocookiesAddon\Cache\ProjectCache();
         $cache->cleanCacheDirectory();

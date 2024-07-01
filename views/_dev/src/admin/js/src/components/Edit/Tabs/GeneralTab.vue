@@ -20,13 +20,20 @@
 import {useTrans} from "../../../use/useTrans.ts";
 import {useConfigurationStore} from "../../../stores/configurationStore.ts";
 import AxeptioExample from "../AxeptioExample.vue";
+import {ref} from "vue";
 
 const {trans} = useTrans();
 const configurationStore = useConfigurationStore();
 
+const illustrationFileName = ref('');
+
 const uploadIllustration = async (event: Event) => {
-  if (event.target.files) {
-    const file = event.target.files[0] as File;
+  if ((<HTMLInputElement>event.target).files && (<HTMLInputElement>event.target).files?.length) {
+    const files = (<HTMLInputElement>event.target).files as File[] | null;
+    if (!files?.length) {
+      return;
+    }
+    const file = files[0];
     const imagesType = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp', 'image/svg+xml', 'image/avif'];
     if (!imagesType.includes(file.type)) {
       return;
@@ -35,7 +42,8 @@ const uploadIllustration = async (event: Event) => {
     reader.readAsDataURL(file);
     reader.onload = () => {
       if (configurationStore.editConfiguration) {
-        configurationStore.editConfiguration.illustration = reader.result;
+        configurationStore.editConfiguration.illustration = reader.result as string;
+        illustrationFileName.value = file.name as string;
       }
     };
   }
@@ -43,7 +51,7 @@ const uploadIllustration = async (event: Event) => {
 </script>
 
 <template>
-  <div class="row">
+  <div class="row" v-if="configurationStore.editConfiguration">
     <div class="col-6">
       <div class="form-group">
         <label class="form-control-label"
@@ -82,13 +90,28 @@ const uploadIllustration = async (event: Event) => {
               v-model="configurationStore.editConfiguration.has_illustration"
           />
           <span class="slide-button"></span>
-          <label>
-            <span v-if="!configurationStore.editConfiguration.has_illustration" v-text="trans('edit.no_illustration')"></span>
-            <span v-else v-text="trans('edit.illustration_custom')"></span>
+          <label v-text="trans('edit.illustration_active')">
           </label>
         </span>
       </div>
       <div class="form-group" v-if="configurationStore.editConfiguration.has_illustration">
+        <span class="ps-switch">
+          <input
+              type="radio"
+              :value="false"
+              v-model="configurationStore.editConfiguration.has_personalized_illustration"
+          />
+          <input
+              type="radio"
+              :value="true"
+              v-model="configurationStore.editConfiguration.has_personalized_illustration"
+          />
+          <span class="slide-button"></span>
+          <label v-text="trans('edit.illustration_perso')">
+          </label>
+        </span>
+      </div>
+      <div class="form-group" v-if="configurationStore.editConfiguration.has_illustration && configurationStore.editConfiguration.has_personalized_illustration">
         <div class="custom-file">
           <input
               type="file"
@@ -96,7 +119,7 @@ const uploadIllustration = async (event: Event) => {
               accept="image/png, image/gif, image/jpeg, image/webp, image/svg+xml, image/avif"
               @change="uploadIllustration"
           />
-          <label class="custom-file-label" v-text="trans('edit.illustration_choose')"></label>
+          <label class="custom-file-label" v-text="illustrationFileName && configurationStore.editConfiguration.illustration ? illustrationFileName : trans('edit.illustration_perso')"></label>
         </div>
       </div>
       <div class="form-group">
@@ -118,10 +141,11 @@ const uploadIllustration = async (event: Event) => {
     </div>
     <div class="col-6 d-flex justify-content-center">
       <axeptio-example
-          :title="configurationStore.editConfiguration.title ? configurationStore.editConfiguration.title : trans('edit.step_title')"
-          :subtitle="configurationStore.editConfiguration.subtitle ? configurationStore.editConfiguration.subtitle : trans('edit.step_subtitle')"
-          :message="configurationStore.editConfiguration.message ? configurationStore.editConfiguration.message : trans('edit.step_message')"
-          :illustration="configurationStore.editConfiguration?.illustration && configurationStore.editConfiguration?.has_illustration ? configurationStore.editConfiguration.illustration : null"
+          :title="configurationStore.editConfiguration?.title ? configurationStore.editConfiguration.title : trans('edit.step_title')"
+          :subtitle="configurationStore.editConfiguration?.subtitle ? configurationStore.editConfiguration.subtitle : trans('edit.step_subtitle')"
+          :message="configurationStore.editConfiguration?.message ? configurationStore.editConfiguration.message : trans('edit.step_message')"
+          :has_illustration="!!configurationStore.editConfiguration?.has_illustration"
+          :illustration="configurationStore.editConfiguration?.illustration && configurationStore.editConfiguration?.has_illustration && configurationStore.editConfiguration?.has_personalized_illustration ? configurationStore.editConfiguration.illustration : null"
           :paint="configurationStore.editConfiguration?.paint ? configurationStore.editConfiguration.paint : false"
       />
     </div>

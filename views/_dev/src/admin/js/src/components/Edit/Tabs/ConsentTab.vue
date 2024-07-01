@@ -25,7 +25,7 @@ const configurationStore = useConfigurationStore();
 </script>
 
 <template>
-  <div class="row">
+  <div class="row" v-if="configurationStore.editConfiguration">
     <div class="ml-3 mt-4 col-lg-4">
       <div class="form-group">
         <span class="ps-switch ps-switch-lg">

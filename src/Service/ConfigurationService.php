@@ -130,11 +130,12 @@ class ConfigurationService
         $configuration->title = $configurationModel->getTitle();
         $configuration->subtitle = $configurationModel->getSubtitle();
         $configuration->paint = $configurationModel->getPaint();
+        $configuration->has_illustration = $configurationModel->hasIllustration();
 
         if (!empty($configuration->illustration)) {
             $this->imageService->deleteImage($configuration->illustration);
         }
-        if (!empty($configurationModel->getIllustration()) && $configurationModel->hasIllustration()) {
+        if (!empty($configurationModel->getIllustration()) && $configurationModel->hasIllustration() && $configurationModel->hasPersonalizedIllustration()) {
             $configuration->illustration = $this->imageService->saveImage($configurationModel->getIllustration());
         }
 
@@ -274,7 +275,8 @@ class ConfigurationService
             ->setModules($modules)
             ->setProject($project)
             ->setPaint((bool) $moduleConfiguration->paint)
-            ->setHasIllustration(!empty($illustration))
+            ->setHasIllustration((bool) $moduleConfiguration->has_illustration)
+            ->setHasPersonalizedIllustration(!empty($illustration))
             ->setIllustration($this->imageService->getIllustration($moduleConfiguration))
             ->setIsConsentV2((bool) $moduleConfiguration->is_consent_v2)
             ->setAnalyticsStorage((bool) $moduleConfiguration->analytics_storage)

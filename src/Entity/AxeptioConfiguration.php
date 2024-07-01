@@ -91,6 +91,11 @@ class AxeptioConfiguration extends \ObjectModel
     public $paint = true;
 
     /**
+     * @var bool
+     */
+    public $has_illustration = false;
+
+    /**
      * @var string|null
      */
     public $illustration;
@@ -175,6 +180,23 @@ class AxeptioConfiguration extends \ObjectModel
                 'validate' => 'isCleanHtml',
                 'allow_null' => true,
             ],
+            'paint' => [
+                'type' => self::TYPE_BOOL,
+                'required' => false,
+                'validate' => 'isBool',
+            ],
+            'has_illustration' => [
+                'type' => self::TYPE_BOOL,
+                'required' => false,
+                'validate' => 'isBool',
+            ],
+            'illustration' => [
+                'type' => self::TYPE_STRING,
+                'required' => false,
+                'size' => 255,
+                'validate' => 'isCleanHtml',
+                'allow_null' => true,
+            ],
         ],
     ];
 
@@ -196,6 +218,7 @@ class AxeptioConfiguration extends \ObjectModel
             'ad_personalization' => $this->ad_personalization,
             'paint' => $this->paint,
             'illustration' => $this->illustration,
+            'has_illustration' => $this->has_illustration,
         ];
     }
 }
