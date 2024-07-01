@@ -63,21 +63,29 @@ class HookService
     protected $moduleService;
 
     /**
+     * @var ImageService
+     */
+    protected $imageService;
+
+    /**
      * @param ProjectCache $projectCache
      * @param ProjectService $projectService
      * @param ConfigurationRepository $configurationRepository
      * @param ModuleService $moduleService
+     * @param ImageService $imageService
      */
     public function __construct(
         ProjectCache $projectCache,
         ProjectService $projectService,
         ConfigurationRepository $configurationRepository,
-        ModuleService $moduleService
+        ModuleService $moduleService,
+        ImageService $imageService
     ) {
         $this->projectCache = $projectCache;
         $this->projectService = $projectService;
         $this->configurationRepository = $configurationRepository;
         $this->moduleService = $moduleService;
+        $this->imageService = $imageService;
     }
 
     public function getIntegrationModelFromContext()
@@ -120,15 +128,6 @@ class HookService
         $integrationModel = new IntegrationModel();
         $integrationModel->setClientId($axeptioConfiguration->id_project);
         $integrationModel->setCookiesVersion($configuration->getName());
-        $integrationModel->setJsonCookieName(
-            self::DEFAULT_COOKIE_NAME . '_' . \Language::getIsoById($cacheParams->getIdLang())
-        );
-        $integrationModel->setAllVendorsCookieName(
-            self::DEFAULT_COOKIE_ALL_VENDORS . '_' . \Language::getIsoById($cacheParams->getIdLang())
-        );
-        $integrationModel->setAuthorizedVendorsCookieName(
-            self::DEFAULT_COOKIE_AUTHORIZED_VENDORS . '_' . \Language::getIsoById($cacheParams->getIdLang())
-        );
 
         if (!empty($vendors)) {
             $stepModel = new StepModel();
@@ -136,7 +135,16 @@ class HookService
             $stepModel->setTitle($axeptioConfiguration->title);
             $stepModel->setSubTitle($axeptioConfiguration->subtitle);
             $stepModel->setVendors($vendors);
-
+            $stepModel->setDisablePaint(empty($axeptioConfiguration->paint));
+            $illustration = $this->imageService->getIllustration($axeptioConfiguration);
+            if (!empty($illustration)) {
+                $illustrationUrl = $this->imageService->getImageUrl($axeptioConfiguration->illustration, \Context::getContext()->shop->id);
+                if (!empty($illustrationUrl)) {
+                    $stepModel->setImage($illustrationUrl);
+                }
+            } elseif (!$axeptioConfiguration->has_illustration) {
+                $stepModel->setImage(null);
+            }
             $integrationModel->setModuleStep($stepModel);
         }
         if (!$axeptioConfiguration->is_consent_v2) {

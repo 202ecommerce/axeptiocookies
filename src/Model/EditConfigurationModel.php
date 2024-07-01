@@ -74,6 +74,11 @@ class EditConfigurationModel implements \JsonSerializable
     protected $subtitle;
 
     /**
+     * @var string|null
+     */
+    protected $illustration;
+
+    /**
      * @var bool
      */
     protected $is_consent_v2 = false;
@@ -97,6 +102,21 @@ class EditConfigurationModel implements \JsonSerializable
      * @var bool
      */
     public $ad_personalization = false;
+
+    /**
+     * @var bool
+     */
+    public $has_illustration = false;
+
+    /**
+     * @var bool
+     */
+    public $has_personalized_illustration = false;
+
+    /**
+     * @var bool
+     */
+    public $paint = true;
 
     /**
      * @var array
@@ -399,6 +419,86 @@ class EditConfigurationModel implements \JsonSerializable
     public function setAdPersonalization($ad_personalization)
     {
         $this->ad_personalization = $ad_personalization;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getIllustration()
+    {
+        return $this->illustration;
+    }
+
+    /**
+     * @param string|null $illustration
+     *
+     * @return EditConfigurationModel
+     */
+    public function setIllustration($illustration)
+    {
+        $this->illustration = $illustration;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasIllustration()
+    {
+        return $this->has_illustration;
+    }
+
+    /**
+     * @param bool $has_illustration
+     *
+     * @return EditConfigurationModel
+     */
+    public function setHasIllustration($has_illustration)
+    {
+        $this->has_illustration = $has_illustration;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getPaint()
+    {
+        return $this->paint;
+    }
+
+    /**
+     * @param bool $paint
+     *
+     * @return EditConfigurationModel
+     */
+    public function setPaint($paint)
+    {
+        $this->paint = $paint;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasPersonalizedIllustration()
+    {
+        return $this->has_personalized_illustration;
+    }
+
+    /**
+     * @param bool $has_personalized_illustration
+     *
+     * @return EditConfigurationModel
+     */
+    public function setHasPersonalizedIllustration($has_personalized_illustration)
+    {
+        $this->has_personalized_illustration = $has_personalized_illustration;
 
         return $this;
     }

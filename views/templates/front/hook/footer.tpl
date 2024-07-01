@@ -21,9 +21,6 @@
       //<![CDATA[
       clientId: "{$integration.clientId|escape:'htmlall':'UTF-8'}",
       cookiesVersion: "{$integration.cookiesVersion|escape:'htmlall':'UTF-8'}",
-      jsonCookieName: "{$integration.jsonCookieName|escape:'htmlall':'UTF-8'}",
-      allVendorsCookieName: "{$integration.allVendorsCookieName|escape:'htmlall':'UTF-8'}",
-      authorizedVendorsCookieName: "{$integration.authorizedVendorsCookieName|escape:'htmlall':'UTF-8'}",
       platform: "{$integration.platform|escape:'htmlall':'UTF-8'}"
       //]]>
     };

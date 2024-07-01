@@ -85,6 +85,21 @@ class AxeptioConfiguration extends \ObjectModel
      */
     public $ad_personalization = false;
 
+    /**
+     * @var bool
+     */
+    public $paint = true;
+
+    /**
+     * @var bool
+     */
+    public $has_illustration = false;
+
+    /**
+     * @var string|null
+     */
+    public $illustration;
+
     public function __construct($id = null, $id_lang = null, $id_shop = null, $translator = null)
     {
         parent::__construct($id, $id_lang, $id_shop, $translator);
@@ -152,6 +167,23 @@ class AxeptioConfiguration extends \ObjectModel
                 'required' => false,
                 'validate' => 'isBool',
             ],
+            'paint' => [
+                'type' => self::TYPE_BOOL,
+                'required' => false,
+                'validate' => 'isBool',
+            ],
+            'has_illustration' => [
+                'type' => self::TYPE_BOOL,
+                'required' => false,
+                'validate' => 'isBool',
+            ],
+            'illustration' => [
+                'type' => self::TYPE_STRING,
+                'required' => false,
+                'size' => 255,
+                'validate' => 'isCleanHtml',
+                'allow_null' => true,
+            ],
         ],
     ];
 
@@ -171,6 +203,9 @@ class AxeptioConfiguration extends \ObjectModel
             'ad_storage' => $this->ad_storage,
             'ad_user_data' => $this->ad_user_data,
             'ad_personalization' => $this->ad_personalization,
+            'paint' => $this->paint,
+            'illustration' => $this->illustration,
+            'has_illustration' => $this->has_illustration,
         ];
     }
 }

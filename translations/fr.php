@@ -29,10 +29,15 @@ $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_4c2a8fe7e
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_b78a3223503896721cca1303f776159b'] = 'Titre';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_035f4e29da2d6d31303f7d7cfa1be13b'] = 'Sous-titre';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_e18aa95042b3e3ba1bd50ce60f23dc55'] = 'Editer votre widget';
-$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_9a8b01f67d076c68dca2ed012197c5ec'] = 'Gérez  l\'apparence et les modules que vous souhaitez proposer poue le consentement utilisateurs';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_9a8b01f67d076c68dca2ed012197c5ec'] = 'Gérez  l\'apparence et les modules que vous souhaitez proposer pour le consentement utilisateurs';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_0db377921f4ce762c62526131097968f'] = 'Général';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_bf17ac149e2e7a530c677e9bd51d3fd2'] = 'Modules';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_14ae0ddbc25488fc7156943d97207ccf'] = 'Consent Mode V2	';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_33dca68e340b8d6c21472341130cf45a'] = 'Illustration';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_6c75ce41fb6eca082110d5c95d72022e'] = 'Choisissez l\'illustration...';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_2c0f5ba5c0e74cd21a122229e197bbd7'] = 'Activer l\'illustration';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_3634dbf7864eb8ce1f0fe884076d4525'] = 'Illustration personnalisée';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_883b0ef478d6c9bd7a345c34d9af5c00'] = 'Activer la tâche de peinture';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_6cb2830007af9ceb6ce55b4560dc650a'] = 'ID de projet';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_254f642527b45bc260048e30704edb39'] = 'Configuration';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_12a521af593422cd508f7707662c9eb2'] = 'Boutiques';

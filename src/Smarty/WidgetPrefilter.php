@@ -1,4 +1,5 @@
-/*!
+<?php
+/**
  * Copyright since 2022 Axeptio
  *
  * NOTICE OF LICENSE
@@ -16,39 +17,24 @@
  * @license   https://opensource.org/licenses/AFL-3.0  Academic Free License (AFL 3.0)
  */
 
-.edit-wrapper {
-  .module-tab-actions {
-    min-height: 40px;
-  }
+namespace AxeptiocookiesAddon\Smarty;
 
-  .ps-switch input:last-of-type:checked ~ .slide-button {
-    background: #FCBE2E;
-  }
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
 
-  .ps-switch {
-    height: unset;
-    display: flex;
-    align-items: center;
+class WidgetPrefilter
+{
+    public static function addAxeptioWidget($source)
+    {
+        $stringToSearch = '/<\/body>/ims';
+        preg_match($stringToSearch, $source, $matches, PREG_OFFSET_CAPTURE, 0);
+        if (empty($matches)) {
+            return $source;
+        }
 
-    .slide-button {
-      top: 50%;
-      transform: translateY(-50%);
+        $replace = "{hook h='displayAxeptioWidget'}\r" . '</body>';
+
+        return preg_replace($stringToSearch, $replace, $source);
     }
-
-    label {
-      padding-left: 45px;
-      position: relative;
-      transform: unset;
-    }
-  }
-
-  .ps-switch-lg {
-    label {
-      padding-left: 70px;
-    };
-  }
-
-  .custom-file-label {
-    padding: 0.375rem 0.4375rem;
-  }
 }

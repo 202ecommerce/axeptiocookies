@@ -95,6 +95,10 @@ export interface EditableConfiguration {
   ad_storage: boolean;
   ad_user_data: boolean;
   analytics_storage: boolean;
+  paint: boolean;
+  has_illustration: boolean;
+  has_personalized_illustration: boolean;
+  illustration: string | null;
 }
 
 export interface Module {

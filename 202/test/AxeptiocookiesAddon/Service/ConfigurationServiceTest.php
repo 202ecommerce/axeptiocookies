@@ -200,6 +200,8 @@ class ConfigurationServiceTest extends AxeptioBaseTestCase
                     ]
                 ]
             ))
+            ->setPaint(false)
+            ->setIllustration('test.png')
             ->setModules([
                 [
                     'name' => 'ps_shoppingcart',
