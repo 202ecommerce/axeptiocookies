@@ -171,19 +171,6 @@ class AxeptioConfiguration extends \ObjectModel
                 'type' => self::TYPE_BOOL,
                 'required' => false,
                 'validate' => 'isBool',
-                'default' => '1',
-            ],
-            'illustration' => [
-                'type' => self::TYPE_STRING,
-                'required' => false,
-                'size' => 255,
-                'validate' => 'isCleanHtml',
-                'allow_null' => true,
-            ],
-            'paint' => [
-                'type' => self::TYPE_BOOL,
-                'required' => false,
-                'validate' => 'isBool',
             ],
             'has_illustration' => [
                 'type' => self::TYPE_BOOL,
