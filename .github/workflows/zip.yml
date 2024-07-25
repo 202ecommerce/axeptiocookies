@@ -64,8 +64,5 @@ jobs:
         with:
           name: ${{ github.event.repository.name }}
           path: |
-            $PROJECT_NAME.zip
-            $PROJECT_NAME.md5
-        run: |
-          ls -la 
-          ls -la ../packages
+            ../$PROJECT_NAME/$PROJECT_NAME.zip
+            ../$PROJECT_NAME/$PROJECT_NAME.md5
