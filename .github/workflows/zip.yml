@@ -29,7 +29,6 @@ jobs:
         run: |
           PROJECT_DIR=$(pwd)
           PROJECT_NAME=axeptiocookies
-          echo $(php -v)
           sudo apt-get update && sudo apt-get install xmlstarlet -y
           MODULE_VERSION=$(xmlstarlet sel -t -v '/project/property[@name="TARGETVERSION"]/@value' 202/build.xml)
           find ./ -type f -exec sed -i "s/@version@/$MODULE_VERSION/g" {} +
@@ -48,7 +47,7 @@ jobs:
           cd ../
           zip -9 -r -q --exclude=\*.DS_Store\* --exclude=\*._.DS_Store\* --exclude=\*__MACOSX\* --exclude=\*.buildpath\*  --exclude=\*.dropbox\* --exclude=\*.git\* --exclude=\*.idea\* --exclude=\*.project\* --exclude=\*.sass-cache\* --exclude=\*.settings\* --exclude=\*.svn\* --exclude=\*config.codekit\* --exclude=\*desktop.ini\* --exclude=\*nbproject\* --exclude=\*.log --exclude=$PROJECT_NAME/config.xml --exclude=$PROJECT_NAME/config_\*.xml $PROJECT_DIR/../packages/$PROJECT_NAME/$PROJECT_NAME.zip ./$PROJECT_NAME
           cd $PROJECT_DIR/../packages/$PROJECT_NAME
-          unzip $PROJECT_NAME.zip
+          unzip -qq $PROJECT_NAME.zip
           cd $PROJECT_DIR/../packages/$PROJECT_NAME/$PROJECT_NAME
           find . -type f -exec md5sum "{}" + > ../$PROJECT_NAME.md5
           cd $PROJECT_DIR/../packages/$PROJECT_NAME
@@ -56,9 +55,11 @@ jobs:
           mkdir $PROJECT_DIR
           cp *.zip $PROJECT_DIR
           cp *.md5 $PROJECT_DIR
+          ls -la
+          ls -la ../
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
           name: ${{ github.event.repository.name }}
-          path: ../
+          path: .
