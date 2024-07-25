@@ -29,7 +29,7 @@ jobs:
         run: |
           PROJECT_DIR=$(pwd)
           PROJECT_NAME=axeptiocookies
-          apt-get update && apt-get install xmlstarlet -y
+          sudo apt-get update && sudo apt-get install xmlstarlet -y
           MODULE_VERSION=$(xmlstarlet sel -t -v '/project/property[@name="TARGETVERSION"]/@value' 202/build.xml)
           find ./ -type f -exec sed -i "s/@version@/$MODULE_VERSION/g" {} +
           php composer.phar global require prestashop/autoindex
