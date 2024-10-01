@@ -106,6 +106,26 @@ class EditConfigurationModel implements \JsonSerializable
     /**
      * @var bool
      */
+    public $functionality_storage = false;
+
+    /**
+     * @var bool
+     */
+    public $personalization_storage = false;
+
+    /**
+     * @var bool
+     */
+    public $security_storage = false;
+
+    /**
+     * @var int
+     */
+    public $trigger_gtm_events = 0;
+
+    /**
+     * @var bool
+     */
     public $has_illustration = false;
 
     /**
@@ -499,6 +519,86 @@ class EditConfigurationModel implements \JsonSerializable
     public function setHasPersonalizedIllustration($has_personalized_illustration)
     {
         $this->has_personalized_illustration = $has_personalized_illustration;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getFunctionalityStorage()
+    {
+        return $this->functionality_storage;
+    }
+
+    /**
+     * @param bool $functionality_storage
+     *
+     * @return EditConfigurationModel
+     */
+    public function setFunctionalityStorage($functionality_storage)
+    {
+        $this->functionality_storage = $functionality_storage;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getPersonalizationStorage()
+    {
+        return $this->personalization_storage;
+    }
+
+    /**
+     * @param bool $personalization_storage
+     *
+     * @return EditConfigurationModel
+     */
+    public function setPersonalizationStorage($personalization_storage)
+    {
+        $this->personalization_storage = $personalization_storage;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getSecurityStorage()
+    {
+        return $this->security_storage;
+    }
+
+    /**
+     * @param bool $security_storage
+     *
+     * @return EditConfigurationModel
+     */
+    public function setSecurityStorage($security_storage)
+    {
+        $this->security_storage = $security_storage;
+
+        return $this;
+    }
+
+    /**
+     * @return bool|int
+     */
+    public function getTriggerGtmEvents()
+    {
+        return $this->trigger_gtm_events;
+    }
+
+    /**
+     * @param bool|int $trigger_gtm_events
+     *
+     * @return EditConfigurationModel
+     */
+    public function setTriggerGtmEvents($trigger_gtm_events)
+    {
+        $this->trigger_gtm_events = $trigger_gtm_events;
 
         return $this;
     }

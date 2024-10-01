@@ -88,6 +88,26 @@ class AxeptioConfiguration extends \ObjectModel
     /**
      * @var bool
      */
+    public $functionality_storage = false;
+
+    /**
+     * @var bool
+     */
+    public $personalization_storage = false;
+
+    /**
+     * @var bool
+     */
+    public $security_storage = false;
+
+    /**
+     * @var int|null
+     */
+    public $trigger_gtm_events = 0;
+
+    /**
+     * @var bool
+     */
     public $paint = true;
 
     /**
@@ -167,6 +187,26 @@ class AxeptioConfiguration extends \ObjectModel
                 'required' => false,
                 'validate' => 'isBool',
             ],
+            'functionality_storage' => [
+                'type' => self::TYPE_BOOL,
+                'required' => false,
+                'validate' => 'isBool',
+            ],
+            'personalization_storage' => [
+                'type' => self::TYPE_BOOL,
+                'required' => false,
+                'validate' => 'isBool',
+            ],
+            'security_storage' => [
+                'type' => self::TYPE_BOOL,
+                'required' => false,
+                'validate' => 'isBool',
+            ],
+            'trigger_gtm_events' => [
+                'type' => self::TYPE_INT,
+                'required' => false,
+                'validate' => 'isUnsignedInt',
+            ],
             'paint' => [
                 'type' => self::TYPE_BOOL,
                 'required' => false,
@@ -203,6 +243,10 @@ class AxeptioConfiguration extends \ObjectModel
             'ad_storage' => $this->ad_storage,
             'ad_user_data' => $this->ad_user_data,
             'ad_personalization' => $this->ad_personalization,
+            'functionality_storage' => $this->functionality_storage,
+            'personalization_storage' => $this->personalization_storage,
+            'security_storage' => $this->security_storage,
+            'trigger_gtm_events' => $this->trigger_gtm_events,
             'paint' => $this->paint,
             'illustration' => $this->illustration,
             'has_illustration' => $this->has_illustration,

@@ -20,6 +20,7 @@
     window.axeptioSettings = {
       //<![CDATA[
       clientId: "{$integration.clientId|escape:'htmlall':'UTF-8'}",
+      triggerGtmEvents: "{$integration.triggerGtmEvents|escape:'htmlall':'UTF-8'}",
       cookiesVersion: "{$integration.cookiesVersion|escape:'htmlall':'UTF-8'}",
       platform: "{$integration.platform|escape:'htmlall':'UTF-8'}"
       //]]>

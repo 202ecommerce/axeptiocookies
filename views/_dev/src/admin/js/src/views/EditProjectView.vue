@@ -33,6 +33,7 @@ import {useEventBus} from "@vueuse/core";
 import ConfigurationEventType from "../custom/Configuration/ConfigurationEventType.ts";
 import type {EditableConfiguration} from "../types/types.ts";
 import VueMultiselect from 'vue-multiselect';
+import AdvancedTab from "../components/Edit/Tabs/AdvancedTab.vue";
 
 const {trans} = useTrans();
 const {images, shops, languages} = useConfig();
@@ -167,6 +168,12 @@ configurationBus.on((event) => {
                  :class="{'active': selectedTab === TabItem.CONSENTV2}"
                  v-text="trans('edit.tabs.consentv2')"></a>
             </li>
+            <li class="nav-item"
+                @click.prevent.stop="selectedTab = TabItem.ADVANCED">
+              <a class="nav-link"
+                 :class="{'active': selectedTab === TabItem.ADVANCED}"
+                 v-text="trans('edit.tabs.advanced')"></a>
+            </li>
           </ul>
           <div class="tab-content">
             <div
@@ -186,6 +193,12 @@ configurationBus.on((event) => {
                 :class="{'show active': selectedTab === TabItem.CONSENTV2}"
             >
               <ConsentTab/>
+            </div>
+            <div
+                class="tab-pane fade"
+                :class="{'show active': selectedTab === TabItem.ADVANCED}"
+            >
+              <AdvancedTab/>
             </div>
           </div>
         </div>

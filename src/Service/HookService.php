@@ -26,6 +26,7 @@ if (!defined('_PS_VERSION_')) {
 use AxeptiocookiesAddon\Cache\CacheParams;
 use AxeptiocookiesAddon\Cache\ProjectCache;
 use AxeptiocookiesAddon\Entity\AxeptioConfiguration;
+use AxeptiocookiesAddon\Model\Constant\TriggerGtmEventType;
 use AxeptiocookiesAddon\Model\Integration\ConsentModel;
 use AxeptiocookiesAddon\Model\Integration\IntegrationModel;
 use AxeptiocookiesAddon\Model\Integration\StepModel;
@@ -128,6 +129,7 @@ class HookService
         $integrationModel = new IntegrationModel();
         $integrationModel->setClientId($axeptioConfiguration->id_project);
         $integrationModel->setCookiesVersion($configuration->getName());
+        $integrationModel->setTriggerGtmEvents(TriggerGtmEventType::transformToValue((int) $axeptioConfiguration->trigger_gtm_events));
 
         if (!empty($vendors)) {
             $stepModel = new StepModel();
@@ -156,6 +158,9 @@ class HookService
                     ->setAdStorage($axeptioConfiguration->ad_storage ? 'granted' : 'denied')
                     ->setAdPersonalization($axeptioConfiguration->ad_personalization ? 'granted' : 'denied')
                     ->setAdUserData($axeptioConfiguration->ad_user_data ? 'granted' : 'denied')
+                    ->setPersonalizationStorage($axeptioConfiguration->personalization_storage ? 'granted' : 'denied')
+                    ->setFunctionalityStorage($axeptioConfiguration->functionality_storage ? 'granted' : 'denied')
+                    ->setSecurityStorage($axeptioConfiguration->security_storage ? 'granted' : 'denied')
             );
         }
 

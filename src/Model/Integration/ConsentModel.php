@@ -51,6 +51,21 @@ class ConsentModel implements \JsonSerializable
     protected $adPersonalization = 'denied';
 
     /**
+     * @var string
+     */
+    protected $functionalityStorage = 'denied';
+
+    /**
+     * @var string
+     */
+    protected $personalizationStorage = 'denied';
+
+    /**
+     * @var string
+     */
+    protected $securityStorage = 'denied';
+
+    /**
      * @var int
      */
     protected $waitForUpdate = 500;
@@ -155,6 +170,66 @@ class ConsentModel implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getFunctionalityStorage()
+    {
+        return $this->functionalityStorage;
+    }
+
+    /**
+     * @param string $functionalityStorage
+     *
+     * @return ConsentModel
+     */
+    public function setFunctionalityStorage($functionalityStorage)
+    {
+        $this->functionalityStorage = $functionalityStorage;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPersonalizationStorage()
+    {
+        return $this->personalizationStorage;
+    }
+
+    /**
+     * @param string $personalizationStorage
+     *
+     * @return ConsentModel
+     */
+    public function setPersonalizationStorage($personalizationStorage)
+    {
+        $this->personalizationStorage = $personalizationStorage;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSecurityStorage()
+    {
+        return $this->securityStorage;
+    }
+
+    /**
+     * @param string $securityStorage
+     *
+     * @return ConsentModel
+     */
+    public function setSecurityStorage($securityStorage)
+    {
+        $this->securityStorage = $securityStorage;
+
+        return $this;
+    }
+
     public function jsonSerialize()
     {
         return get_object_vars($this);
@@ -167,6 +242,9 @@ class ConsentModel implements \JsonSerializable
         $obj->setAdUserData(empty($array['adUserData']) ? 'denied' : $array['adUserData']);
         $obj->setAnalyticsStorage(empty($array['analyticsStorage']) ? 'denied' : $array['analyticsStorage']);
         $obj->setAdPersonalization(empty($array['adPersonalization']) ? 'denied' : $array['adPersonalization']);
+        $obj->setFunctionalityStorage(empty($array['functionalityStorage']) ? 'denied' : $array['functionalityStorage']);
+        $obj->setPersonalizationStorage(empty($array['personalizationStorage']) ? 'denied' : $array['personalizationStorage']);
+        $obj->setSecurityStorage(empty($array['securityStorage']) ? 'denied' : $array['securityStorage']);
         $obj->setWaitForUpdate(empty($array['waitForUpdate']) ? 500 : $array['waitForUpdate']);
 
         return $obj;
@@ -179,6 +257,9 @@ class ConsentModel implements \JsonSerializable
             'ad_storage' => $this->getAdStorage(),
             'ad_user_data' => $this->getAdUserData(),
             'ad_personalization' => $this->getAdPersonalization(),
+            'functionality_storage' => $this->getFunctionalityStorage(),
+            'personalization_storage' => $this->getPersonalizationStorage(),
+            'security_storage' => $this->getSecurityStorage(),
             'wait_for_update' => $this->getWaitForUpdate(),
         ];
     }
