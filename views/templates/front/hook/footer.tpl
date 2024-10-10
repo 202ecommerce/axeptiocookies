@@ -21,7 +21,9 @@
       //<![CDATA[
       clientId: "{$integration.clientId|escape:'htmlall':'UTF-8'}",
       triggerGtmEvents: "{$integration.triggerGtmEvents|escape:'htmlall':'UTF-8'}",
-      cookiesVersion: "{$integration.cookiesVersion|escape:'htmlall':'UTF-8'}",
+      {if !empty($integration.cookiesVersion)}
+        cookiesVersion: "{$integration.cookiesVersion|escape:'htmlall':'UTF-8'}",
+      {/if}
       platform: "{$integration.platform|escape:'htmlall':'UTF-8'}"
       //]]>
     };

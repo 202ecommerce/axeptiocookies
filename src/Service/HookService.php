@@ -128,7 +128,7 @@ class HookService
 
         $integrationModel = new IntegrationModel();
         $integrationModel->setClientId($axeptioConfiguration->id_project);
-        $integrationModel->setCookiesVersion($configuration->getName());
+        $integrationModel->setCookiesVersion(empty($configuration->getId()) ? null : $configuration->getName());
         $integrationModel->setTriggerGtmEvents(TriggerGtmEventType::transformToValue((int) $axeptioConfiguration->trigger_gtm_events));
 
         if (!empty($vendors)) {
