@@ -136,7 +136,8 @@ class AxeptioConfiguration extends \ObjectModel
         'fields' => [
             'id_configuration' => [
                 'type' => self::TYPE_STRING,
-                'required' => true,
+                'required' => false,
+                'allow_null' => true,
             ],
             'id_project' => [
                 'type' => self::TYPE_STRING,

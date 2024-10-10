@@ -89,9 +89,9 @@ $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_8af1f1c08
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_a1998652b01bdc9e7128734efb804780'] = 'Suppression';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_290612199861c31d1036b185b4e69b75'] = 'Résumé';
 $_MODULE['<{axeptiocookies}prestashop>configurationvalidator_9e25aef4cd4c0065122c28fe492e9ddf'] = 'L\'ID de projet n\'est pas valide';
-$_MODULE['<{axeptiocookies}prestashop>configurationvalidator_fa158c18b001191d25193c3810388407'] = 'La configuration n\'est pas valide';
 $_MODULE['<{axeptiocookies}prestashop>configurationvalidator_75fbdb99c8b060fd62eafcc4d62a0956'] = 'Les boutiques ne sont pas sélectionnées';
 $_MODULE['<{axeptiocookies}prestashop>configurationvalidator_d0cf7383e1ee9f02c0fd303fa788dd5a'] = 'La langue n\'est pas sélectionnée';
 $_MODULE['<{axeptiocookies}prestashop>configurationvalidator_f8ea8e282b524773219c163388f9c40c'] = 'L\'association pour la boutique \"%s\" existe déjà';
 $_MODULE['<{axeptiocookies}prestashop>configurationvalidator_f52e14933a97749eda40b8b5054d9af6'] = 'L\'ID d\'objet n\'est pas valide';
 $_MODULE['<{axeptiocookies}prestashop>errorresponse_809c972c8bbb29c808e39ec6e69597c2'] = 'Erreur est survenue';
+$_MODULE['<{axeptiocookies}prestashop>project_ec069574b2c58e587d8d778df425ede5'] = 'Automatique (Géré par Axeptio)';
