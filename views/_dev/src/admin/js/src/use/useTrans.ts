@@ -16,12 +16,6 @@
  * @license   https://opensource.org/licenses/AFL-3.0  Academic Free License (AFL 3.0)
  */
 
-declare global {
-  interface Window {
-    axeptiocookies: any;
-  }
-}
-
 export function useTrans(): {trans: Function} {
   const trans = (key: string) => {
     if (!window.axeptiocookies.translations) {
