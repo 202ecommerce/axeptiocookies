@@ -66,22 +66,20 @@ watch(triggerGtmEventType, (newValue: {name: string; value: number} | null | und
   <div class="row" v-if="configurationStore.editConfiguration">
     <div class="col-6">
       <div class="form-group">
-        <div class="form-group">
-          <label class="form-control-label"
-                 v-text="trans('edit.advanced.event_in_datalayer')"></label>
-          <VueMultiselect v-model="triggerGtmEventType"
-                          tag-placeholder=""
-                          placeholder=""
-                          label="name"
-                          track-by="value"
-                          :searchable="false"
-                          :select-label="''"
-                          :selected-label="''"
-                          :deselect-label="''"
-                          :options="triggerGtmEventsTypes"
-                          :multiple="false"
-                          :allow-empty="false"></VueMultiselect>
-        </div>
+        <label class="form-control-label"
+               v-text="trans('edit.advanced.event_in_datalayer')"></label>
+        <VueMultiselect v-model="triggerGtmEventType"
+                        tag-placeholder=""
+                        placeholder=""
+                        label="name"
+                        track-by="value"
+                        :searchable="false"
+                        :select-label="''"
+                        :selected-label="''"
+                        :deselect-label="''"
+                        :options="triggerGtmEventsTypes"
+                        :multiple="false"
+                        :allow-empty="false"></VueMultiselect>
       </div>
     </div>
   </div>

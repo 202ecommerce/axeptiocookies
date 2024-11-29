@@ -195,7 +195,7 @@ configurationBus.on((event) => {
               <ConsentTab/>
             </div>
             <div
-                class="tab-pane fade"
+                class="tab-pane"
                 :class="{'show active': selectedTab === TabItem.ADVANCED}"
             >
               <AdvancedTab/>

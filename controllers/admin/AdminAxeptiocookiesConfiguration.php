@@ -128,62 +128,62 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                     'subtitle' => $this->module->l('Manage the appearance and modules you want to offer
                     for user consent', $this->controller_name),
                     'tabs' => [
-                        'general' => $this->l('General', $this->controller_name),
-                        'modules' => $this->l('Modules', $this->controller_name),
-                        'consentv2' => $this->l('Consent Mode V2', $this->controller_name),
-                        'advanced' => $this->l('Advanced configuration', $this->controller_name),
+                        'general' => $this->module->l('General', $this->controller_name),
+                        'modules' => $this->module->l('Modules', $this->controller_name),
+                        'consentv2' => $this->module->l('Consent Mode V2', $this->controller_name),
+                        'advanced' => $this->module->l('Advanced configuration', $this->controller_name),
                     ],
-                    'illustration' => $this->l('Illustration', $this->controller_name),
-                    'illustration_active' => $this->l('Activate illustration', $this->controller_name),
-                    'illustration_perso' => $this->l('Personalized illustration', $this->controller_name),
-                    'paint' => $this->l('Activate the paint task', $this->controller_name),
-                    'project_title' => $this->l('Project ID', $this->controller_name),
-                    'configuration_title' => $this->l('Configuration', $this->controller_name),
-                    'shop_title' => $this->l('Shops', $this->controller_name),
-                    'language_title' => $this->l('Languages', $this->controller_name),
-                    'back' => $this->l('To the list', $this->controller_name),
-                    'step_message' => $this->l('Message', $this->controller_name),
-                    'step_title' => $this->l('Title', $this->controller_name),
-                    'step_subtitle' => $this->l('Subtitle', $this->controller_name),
+                    'illustration' => $this->module->l('Illustration', $this->controller_name),
+                    'illustration_active' => $this->module->l('Activate illustration', $this->controller_name),
+                    'illustration_perso' => $this->module->l('Personalized illustration', $this->controller_name),
+                    'paint' => $this->module->l('Activate the paint task', $this->controller_name),
+                    'project_title' => $this->module->l('Project ID', $this->controller_name),
+                    'configuration_title' => $this->module->l('Configuration', $this->controller_name),
+                    'shop_title' => $this->module->l('Shops', $this->controller_name),
+                    'language_title' => $this->module->l('Languages', $this->controller_name),
+                    'back' => $this->module->l('To the list', $this->controller_name),
+                    'step_message' => $this->module->l('Message', $this->controller_name),
+                    'step_title' => $this->module->l('Title', $this->controller_name),
+                    'step_subtitle' => $this->module->l('Subtitle', $this->controller_name),
                     'recommended' => [
                         'description' => $this->module->l('Collection of personal data', $this->controller_name),
                         'reset' => $this->module->l('Check the modules for which consent is recommended
                             by Axeptio', $this->controller_name),
                     ],
                     'consent' => [
-                        'enable' => $this->l('Enable Google Consent Mode V2?', $this->controller_name),
-                        'default' => $this->l('Default setting for Consent Mode', $this->controller_name),
-                        'description' => $this->l('These consent signals will be sent on page load to indicate
+                        'enable' => $this->module->l('Enable Google Consent Mode V2?', $this->controller_name),
+                        'default' => $this->module->l('Default setting for Consent Mode', $this->controller_name),
+                        'description' => $this->module->l('These consent signals will be sent on page load to indicate
                             to Google services how they should process the data before consent is given by the
                             user.', $this->controller_name),
-                        'analytics_storage' => $this->l('Analytics storage', $this->controller_name),
-                        'analytics_storage_desc' => $this->l('Allow Google Analytics to measure how visitors
+                        'analytics_storage' => $this->module->l('Analytics storage', $this->controller_name),
+                        'analytics_storage_desc' => $this->module->l('Allow Google Analytics to measure how visitors
                             use the site to improve functionality and service.', $this->controller_name),
-                        'ad_storage' => $this->l('Ad Storage', $this->controller_name),
-                        'ad_storage_desc' => $this->l('Allow Google to save advertising information on visitors
+                        'ad_storage' => $this->module->l('Ad Storage', $this->controller_name),
+                        'ad_storage_desc' => $this->module->l('Allow Google to save advertising information on visitors
                             devices for better ad relevance.', $this->controller_name),
-                        'ad_user_data' => $this->l('Ad User Data', $this->controller_name),
-                        'ad_user_data_desc' => $this->l('Share visitor activity data with Google for targeted
+                        'ad_user_data' => $this->module->l('Ad User Data', $this->controller_name),
+                        'ad_user_data_desc' => $this->module->l('Share visitor activity data with Google for targeted
                             advertising.', $this->controller_name),
-                        'ad_personalization' => $this->l('Ad Personalization', $this->controller_name),
-                        'ad_personalization_desc' => $this->l('Personalize the advertising experience by allowing
+                        'ad_personalization' => $this->module->l('Ad Personalization', $this->controller_name),
+                        'ad_personalization_desc' => $this->module->l('Personalize the advertising experience by allowing
                             Google to personalize the ads visitors see.', $this->controller_name),
-                        'functionality_storage' => $this->l('Functionality storage', $this->controller_name),
-                        'functionality_storage_desc' => $this->l('Enables storage that supports the functionality
+                        'functionality_storage' => $this->module->l('Functionality storage', $this->controller_name),
+                        'functionality_storage_desc' => $this->module->l('Enables storage that supports the functionality
                             of the website or app, for example, language settings', $this->controller_name),
-                        'personalization_storage' => $this->l('Personalization storage', $this->controller_name),
-                        'personalization_storage_desc' => $this->l('Enables storage related to personalization,
+                        'personalization_storage' => $this->module->l('Personalization storage', $this->controller_name),
+                        'personalization_storage_desc' => $this->module->l('Enables storage related to personalization,
                             for example, video recommendations', $this->controller_name),
-                        'security_storage' => $this->l('Security storage', $this->controller_name),
-                        'security_storage_desc' => $this->l('Enables storage related to security such as
+                        'security_storage' => $this->module->l('Security storage', $this->controller_name),
+                        'security_storage_desc' => $this->module->l('Enables storage related to security such as
                             authentication functionality, fraud prevention, and other
                             user protection', $this->controller_name),
                     ],
                     'advanced' => [
-                        'event_in_datalayer' => $this->l('Event in the datalayer', $this->controller_name),
-                        'send_all_events' => $this->l('Send all events to the datalayer', $this->controller_name),
-                        'no_send_events' => $this->l('Send no events to the datalayer', $this->controller_name),
-                        'send_update_events' => $this->l('Send only axeptio_update to the
+                        'event_in_datalayer' => $this->module->l('Event in the datalayer', $this->controller_name),
+                        'send_all_events' => $this->module->l('Send all events to the datalayer', $this->controller_name),
+                        'no_send_events' => $this->module->l('Send no events to the datalayer', $this->controller_name),
+                        'send_update_events' => $this->module->l('Send only axeptio_update to the
                             datalayer', $this->controller_name),
                     ],
                 ],
