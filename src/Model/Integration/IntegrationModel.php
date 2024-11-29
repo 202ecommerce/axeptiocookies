@@ -19,6 +19,8 @@
 
 namespace AxeptiocookiesAddon\Model\Integration;
 
+use AxeptiocookiesAddon\Model\Constant\TriggerGtmEventType;
+
 if (!defined('_PS_VERSION_')) {
     exit;
 }
@@ -43,6 +45,11 @@ class IntegrationModel implements \JsonSerializable
      * @var ConsentModel|null
      */
     protected $consent;
+
+    /**
+     * @var string
+     */
+    protected $triggerGtmEvents;
 
     /**
      * @return mixed
@@ -144,6 +151,26 @@ class IntegrationModel implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getTriggerGtmEvents()
+    {
+        return $this->triggerGtmEvents;
+    }
+
+    /**
+     * @param string $triggerGtmEvents
+     *
+     * @return IntegrationModel
+     */
+    public function setTriggerGtmEvents($triggerGtmEvents)
+    {
+        $this->triggerGtmEvents = $triggerGtmEvents;
+
+        return $this;
+    }
+
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
@@ -158,6 +185,11 @@ class IntegrationModel implements \JsonSerializable
         $obj->setModuleStep($array['moduleStep']);
         $obj->setPlatform(empty($array['platform']) ? '' : $array['platform']);
         $obj->setConsent(empty($array['consent']) ? null : $array['consent']);
+        $obj->setTriggerGtmEvents(
+            empty($array['triggerGtmEvents'])
+                ? TriggerGtmEventType::transformToValue(TriggerGtmEventType::ALL_EVENTS)
+                : $array['triggerGtmEvents']
+        );
 
         return $obj;
     }
@@ -170,6 +202,9 @@ class IntegrationModel implements \JsonSerializable
             'moduleStep' => empty($this->getModuleStep()) ? [] : $this->getModuleStep()->toArray(),
             'platform' => $this->getPlatform(),
             'consent' => empty($this->getConsent()) ? null : $this->getConsent()->toArray(),
+            'triggerGtmEvents' => empty($this->getTriggerGtmEvents())
+                ? TriggerGtmEventType::transformToValue(TriggerGtmEventType::ALL_EVENTS)
+                : $this->getTriggerGtmEvents(),
         ];
     }
 }

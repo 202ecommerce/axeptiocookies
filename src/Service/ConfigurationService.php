@@ -130,11 +130,13 @@ class ConfigurationService
         $configuration->title = $configurationModel->getTitle();
         $configuration->subtitle = $configurationModel->getSubtitle();
         $configuration->paint = $configurationModel->getPaint();
+        $configuration->has_illustration = $configurationModel->hasIllustration();
+        $configuration->trigger_gtm_events = (int) $configurationModel->getTriggerGtmEvents();
 
         if (!empty($configuration->illustration)) {
             $this->imageService->deleteImage($configuration->illustration);
         }
-        if (!empty($configurationModel->getIllustration()) && $configurationModel->hasIllustration()) {
+        if (!empty($configurationModel->getIllustration()) && $configurationModel->hasIllustration() && $configurationModel->hasPersonalizedIllustration()) {
             $configuration->illustration = $this->imageService->saveImage($configurationModel->getIllustration());
         }
 
@@ -144,12 +146,18 @@ class ConfigurationService
             $configuration->ad_user_data = $configurationModel->getAdUserData();
             $configuration->ad_personalization = $configurationModel->getAdPersonalization();
             $configuration->ad_storage = $configurationModel->getAdStorage();
+            $configuration->functionality_storage = $configurationModel->getFunctionalityStorage();
+            $configuration->personalization_storage = $configurationModel->getPersonalizationStorage();
+            $configuration->security_storage = $configurationModel->getSecurityStorage();
         } else {
             $configuration->is_consent_v2 = false;
             $configuration->analytics_storage = false;
             $configuration->ad_user_data = false;
             $configuration->ad_personalization = false;
             $configuration->ad_storage = false;
+            $configuration->functionality_storage = false;
+            $configuration->personalization_storage = false;
+            $configuration->security_storage = false;
         }
 
         $result = $configuration->save();
@@ -274,12 +282,17 @@ class ConfigurationService
             ->setModules($modules)
             ->setProject($project)
             ->setPaint((bool) $moduleConfiguration->paint)
-            ->setHasIllustration(!empty($illustration))
+            ->setHasIllustration((bool) $moduleConfiguration->has_illustration)
+            ->setHasPersonalizedIllustration(!empty($illustration))
             ->setIllustration($this->imageService->getIllustration($moduleConfiguration))
             ->setIsConsentV2((bool) $moduleConfiguration->is_consent_v2)
             ->setAnalyticsStorage((bool) $moduleConfiguration->analytics_storage)
             ->setAdStorage((bool) $moduleConfiguration->ad_storage)
             ->setAdUserData((bool) $moduleConfiguration->ad_user_data)
-            ->setAdPersonalization((bool) $moduleConfiguration->ad_personalization);
+            ->setAdPersonalization((bool) $moduleConfiguration->ad_personalization)
+            ->setFunctionalityStorage((bool) $moduleConfiguration->functionality_storage)
+            ->setPersonalizationStorage((bool) $moduleConfiguration->personalization_storage)
+            ->setSecurityStorage((bool) $moduleConfiguration->security_storage)
+            ->setTriggerGtmEvents((int) $moduleConfiguration->trigger_gtm_events);
     }
 }

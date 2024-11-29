@@ -51,10 +51,6 @@ class ConfigurationValidator
             throw new ConfigurationValidatorException($this->l('Project ID is not valid', $this->getClassShortName()));
         }
 
-        if (empty($configurationModel->getIdConfiguration())) {
-            throw new ConfigurationValidatorException($this->l('Configuration is not valid', $this->getClassShortName()));
-        }
-
         if (empty($configurationModel->getIdShops())) {
             throw new ConfigurationValidatorException($this->l('Shops are not selected', $this->getClassShortName()));
         }
@@ -85,10 +81,6 @@ class ConfigurationValidator
 
         if (empty($configurationModel->getIdProject())) {
             throw new ConfigurationValidatorException($this->l('Project ID is not valid', $this->getClassShortName()));
-        }
-
-        if (empty($configurationModel->getConfiguration()->getId())) {
-            throw new ConfigurationValidatorException($this->l('Configuration is not valid', $this->getClassShortName()));
         }
 
         if (empty($configurationModel->getShops())) {

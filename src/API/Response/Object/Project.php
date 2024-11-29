@@ -23,8 +23,12 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
+use AxeptiocookiesClasslib\Utils\Translate\TranslateTrait;
+
 class Project extends AbstractObject
 {
+    use TranslateTrait;
+
     /**
      * @var int
      */
@@ -42,6 +46,7 @@ class Project extends AbstractObject
         }
 
         $this->idProject = $json['projectId'];
+        $this->configurations[] = $this->getDefaultConfiguration();
         if (!empty($json['cookies'])) {
             foreach ($json['cookies'] as $cookie) {
                 $configuration = (new Configuration())->build($cookie);
@@ -53,6 +58,19 @@ class Project extends AbstractObject
         }
 
         return $this;
+    }
+
+    protected function getDefaultConfiguration()
+    {
+        $defaultCookieName = $this->l('Automatic (Managed by Axeptio)', 'Project');
+
+        return (new Configuration())
+            ->build([
+                'identifier' => null,
+                'language' => null,
+                'name' => \Tools::str2url($defaultCookieName),
+                'title' => $defaultCookieName,
+            ]);
     }
 
     /**

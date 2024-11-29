@@ -20,6 +20,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
+use AxeptiocookiesAddon\Model\Constant\TriggerGtmEventType;
 use AxeptiocookiesAddon\Model\CreateConfigurationModel;
 use AxeptiocookiesAddon\Model\EditConfigurationModel;
 use AxeptiocookiesAddon\Model\Response\ErrorResponse;
@@ -183,23 +184,22 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
                 ->setMessage($configuration['message'])
                 ->setTitle($configuration['title'])
                 ->setSubtitle($configuration['subtitle'])
-                ->setHasIllustration(!empty($configuration['has_illustration'])
-                    && $configuration['has_illustration'] == 'true')
+                ->setHasIllustration(!empty($configuration['has_illustration']) && $configuration['has_illustration'] == 'true')
+                ->setHasPersonalizedIllustration(!empty($configuration['has_personalized_illustration']) && $configuration['has_personalized_illustration'] == 'true')
                 ->setPaint(!empty($configuration['paint']) && $configuration['paint'] == 'true')
                 ->setIllustration(!empty($configuration['illustration'])
                     && !empty($configuration['has_illustration'])
-                    && $configuration['has_illustration'] == 'true' ? $configuration['illustration'] : null)
-                ->setIsConsentV2(!empty($configuration['is_consent_v2'])
-                    && $configuration['is_consent_v2'] == 'true')
-                ->setAnalyticsStorage(!empty($configuration['analytics_storage'])
-                    && $configuration['analytics_storage'] == 'true')
-                ->setAdStorage(!empty($configuration['ad_storage'])
-                    && $configuration['ad_storage'] == 'true')
-                ->setAdUserData(!empty($configuration['ad_user_data'])
-                    && $configuration['ad_user_data'] == 'true')
-                ->setAdPersonalization(!empty($configuration['ad_personalization'])
-                    && $configuration['ad_personalization'] == 'true')
-            ;
+                    && !empty($configuration['has_personalized_illustration'])
+                    && $configuration['has_illustration'] == 'true' && $configuration['has_personalized_illustration'] == 'true' ? $configuration['illustration'] : null)
+                ->setIsConsentV2(!empty($configuration['is_consent_v2']) && $configuration['is_consent_v2'] == 'true')
+                ->setAnalyticsStorage(!empty($configuration['analytics_storage']) && $configuration['analytics_storage'] == 'true')
+                ->setAdStorage(!empty($configuration['ad_storage']) && $configuration['ad_storage'] == 'true')
+                ->setAdUserData(!empty($configuration['ad_user_data']) && $configuration['ad_user_data'] == 'true')
+                ->setAdPersonalization(!empty($configuration['ad_personalization']) && $configuration['ad_personalization'] == 'true')
+                ->setFunctionalityStorage(!empty($configuration['functionality_storage']) && $configuration['functionality_storage'] == 'true')
+                ->setPersonalizationStorage(!empty($configuration['personalization_storage']) && $configuration['personalization_storage'] == 'true')
+                ->setSecurityStorage(!empty($configuration['security_storage']) && $configuration['security_storage'] == 'true')
+                ->setTriggerGtmEvents(!empty($configuration['trigger_gtm_events']) ? (int) $configuration['trigger_gtm_events'] : TriggerGtmEventType::ALL_EVENTS);
 
             $result = $this->configurationService->editConfiguration($configurationModel);
 

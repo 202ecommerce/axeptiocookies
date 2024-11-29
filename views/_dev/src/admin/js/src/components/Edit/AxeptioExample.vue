@@ -28,6 +28,7 @@ const props = defineProps<{
   subtitle: string,
   message: string,
   illustration: string | null,
+  has_illustration: boolean,
   paint: boolean
 }>();
 </script>
@@ -38,7 +39,7 @@ const props = defineProps<{
       <div class="axeptio-card-header">
         <div class="axeptio-card-header-top">
           <div class="axeptio-card-header-top-image-wrapper">
-            <img
+            <img v-if="props.has_illustration"
                 :src="props.illustration ? props.illustration : images.people"
                 width="140" alt="People" loading="lazy" class="axeptio-header-image">
             <div class="axeptio-card-header-top-image-wrapper-second">

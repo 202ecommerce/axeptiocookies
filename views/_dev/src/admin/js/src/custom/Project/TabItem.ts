@@ -19,7 +19,8 @@
 enum TabItem {
   GENERAL ='general',
   MODULES = 'modules',
-  CONSENTV2 = 'consentv2'
+  CONSENTV2 = 'consentv2',
+  ADVANCED = 'advanced'
 }
 
 export default TabItem;
