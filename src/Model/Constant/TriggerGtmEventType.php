@@ -24,6 +24,10 @@
 
 namespace AxeptiocookiesAddon\Model\Constant;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 class TriggerGtmEventType
 {
     const ALL_EVENTS = 0;
