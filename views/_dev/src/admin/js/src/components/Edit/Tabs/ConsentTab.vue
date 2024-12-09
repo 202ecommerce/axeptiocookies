@@ -123,6 +123,63 @@ const configurationStore = useConfigurationStore();
             </label>
           </span>
         </div>
+        <div class="form-group my-2">
+          <span class="ps-switch">
+            <input
+                type="radio"
+                :value="false"
+                v-model="configurationStore.editConfiguration.functionality_storage"
+            />
+            <input
+                type="radio"
+                :value="true"
+                v-model="configurationStore.editConfiguration.functionality_storage"
+            />
+            <span class="slide-button"></span>
+            <label class="d-flex flex-column">
+              <span class="font-weight-bold" v-text="trans('edit.consent.functionality_storage')"></span>
+              <span class="" v-text="trans('edit.consent.functionality_storage_desc')"></span>
+            </label>
+          </span>
+        </div>
+        <div class="form-group my-2">
+          <span class="ps-switch">
+            <input
+                type="radio"
+                :value="false"
+                v-model="configurationStore.editConfiguration.personalization_storage"
+            />
+            <input
+                type="radio"
+                :value="true"
+                v-model="configurationStore.editConfiguration.personalization_storage"
+            />
+            <span class="slide-button"></span>
+            <label class="d-flex flex-column">
+              <span class="font-weight-bold" v-text="trans('edit.consent.personalization_storage')"></span>
+              <span class="" v-text="trans('edit.consent.personalization_storage_desc')"></span>
+            </label>
+          </span>
+        </div>
+        <div class="form-group my-2">
+          <span class="ps-switch">
+            <input
+                type="radio"
+                :value="false"
+                v-model="configurationStore.editConfiguration.security_storage"
+            />
+            <input
+                type="radio"
+                :value="true"
+                v-model="configurationStore.editConfiguration.security_storage"
+            />
+            <span class="slide-button"></span>
+            <label class="d-flex flex-column">
+              <span class="font-weight-bold" v-text="trans('edit.consent.security_storage')"></span>
+              <span class="" v-text="trans('edit.consent.security_storage_desc')"></span>
+            </label>
+          </span>
+        </div>
       </div>
     </div>
   </div>

@@ -26,12 +26,12 @@ if (!defined('_PS_VERSION_')) {
 class Configuration extends AbstractObject
 {
     /**
-     * @var string
+     * @var string|null
      */
     protected $id;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $language;
 
@@ -48,8 +48,8 @@ class Configuration extends AbstractObject
     public function build($json)
     {
         if (empty($json)
-            || empty($json['identifier'])
-            || empty($json['language'])
+            || !array_key_exists('identifier', $json)
+            || !array_key_exists('language', $json)
             || empty($json['name'])
             || empty($json['title'])) {
             return null;
@@ -64,7 +64,7 @@ class Configuration extends AbstractObject
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getId()
     {
@@ -72,7 +72,7 @@ class Configuration extends AbstractObject
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getLanguage()
     {

@@ -20,6 +20,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
+use AxeptiocookiesAddon\Model\Constant\TriggerGtmEventType;
 use AxeptiocookiesAddon\Model\CreateConfigurationModel;
 use AxeptiocookiesAddon\Model\EditConfigurationModel;
 use AxeptiocookiesAddon\Model\Response\ErrorResponse;
@@ -195,7 +196,10 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
                 ->setAdStorage(!empty($configuration['ad_storage']) && $configuration['ad_storage'] == 'true')
                 ->setAdUserData(!empty($configuration['ad_user_data']) && $configuration['ad_user_data'] == 'true')
                 ->setAdPersonalization(!empty($configuration['ad_personalization']) && $configuration['ad_personalization'] == 'true')
-            ;
+                ->setFunctionalityStorage(!empty($configuration['functionality_storage']) && $configuration['functionality_storage'] == 'true')
+                ->setPersonalizationStorage(!empty($configuration['personalization_storage']) && $configuration['personalization_storage'] == 'true')
+                ->setSecurityStorage(!empty($configuration['security_storage']) && $configuration['security_storage'] == 'true')
+                ->setTriggerGtmEvents(!empty($configuration['trigger_gtm_events']) ? (int) $configuration['trigger_gtm_events'] : TriggerGtmEventType::ALL_EVENTS);
 
             $result = $this->configurationService->editConfiguration($configurationModel);
 

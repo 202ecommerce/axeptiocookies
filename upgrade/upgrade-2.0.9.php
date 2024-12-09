@@ -1,3 +1,4 @@
+<?php
 /**
  * Copyright since 2022 Axeptio
  *
@@ -15,25 +16,30 @@
  * @copyright 2022 Axeptio
  * @license   https://opensource.org/licenses/AFL-3.0  Academic Free License (AFL 3.0)
  */
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
 
-export function useTrans(): {trans: Function} {
-  const trans = (key: string) => {
-    if (!window.axeptiocookies.translations) {
-      return key;
+/**
+ * @param Axeptiocookies $module
+ *
+ * @return bool
+ */
+function upgrade_module_2_0_9($module)
+{
+    try {
+        $installer = new \AxeptiocookiesClasslib\Install\ModuleInstaller($module);
+        $installer->installObjectModel(\AxeptiocookiesAddon\Entity\AxeptioConfiguration::class);
+        Db::getInstance()->update(
+            \AxeptiocookiesAddon\Entity\AxeptioConfiguration::$definition['table'],
+            [
+                'trigger_gtm_events' => 0,
+            ],
+            '1'
+        );
+    } catch (Exception $e) {
+        return false;
     }
 
-    const keys: string[] = key.split('.');
-    let translation = window.axeptiocookies.translations;
-    keys.forEach(keyItem => {
-      if (translation[keyItem]) {
-        translation = translation[keyItem];
-      }
-    });
-
-    return translation;
-  };
-
-  return {
-    trans,
-  };
+    return true;
 }

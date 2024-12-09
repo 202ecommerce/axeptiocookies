@@ -334,6 +334,7 @@ class StepModel implements \JsonSerializable
         ];
     }
 
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return get_object_vars($this);

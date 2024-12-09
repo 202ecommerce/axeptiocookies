@@ -129,6 +129,7 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                         'general' => $this->l('General', $this->controller_name),
                         'modules' => $this->l('Modules', $this->controller_name),
                         'consentv2' => $this->l('Consent Mode V2', $this->controller_name),
+                        'advanced' => $this->l('Advanced configuration', $this->controller_name),
                     ],
                     'illustration' => $this->l('Illustration', $this->controller_name),
                     'illustration_active' => $this->l('Activate illustration', $this->controller_name),
@@ -164,6 +165,23 @@ class AdminAxeptiocookiesConfigurationController extends ModuleAdminController
                         'ad_personalization' => $this->l('Ad Personalization', $this->controller_name),
                         'ad_personalization_desc' => $this->l('Personalize the advertising experience by allowing
                             Google to personalize the ads visitors see.', $this->controller_name),
+                        'functionality_storage' => $this->l('Functionality storage', $this->controller_name),
+                        'functionality_storage_desc' => $this->l('Enables storage that supports the functionality
+                            of the website or app, for example, language settings', $this->controller_name),
+                        'personalization_storage' => $this->l('Personalization storage', $this->controller_name),
+                        'personalization_storage_desc' => $this->l('Enables storage related to personalization, 
+                            for example, video recommendations', $this->controller_name),
+                        'security_storage' => $this->l('Security storage', $this->controller_name),
+                        'security_storage_desc' => $this->l('Enables storage related to security such as 
+                            authentication functionality, fraud prevention, and other 
+                            user protection', $this->controller_name),
+                    ],
+                    'advanced' => [
+                        'event_in_datalayer' => $this->l('Event in the datalayer', $this->controller_name),
+                        'send_all_events' => $this->l('Send all events to the datalayer', $this->controller_name),
+                        'no_send_events' => $this->l('Send no events to the datalayer', $this->controller_name),
+                        'send_update_events' => $this->l('Send only axeptio_update to the 
+                            datalayer', $this->controller_name),
                     ],
                 ],
                 'example' => [

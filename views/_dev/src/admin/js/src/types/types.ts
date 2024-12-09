@@ -95,6 +95,10 @@ export interface EditableConfiguration {
   ad_storage: boolean;
   ad_user_data: boolean;
   analytics_storage: boolean;
+  functionality_storage: boolean;
+  personalization_storage: boolean;
+  security_storage: boolean;
+  trigger_gtm_events: number;
   paint: boolean;
   has_illustration: boolean;
   has_personalized_illustration: boolean;

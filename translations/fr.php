@@ -33,8 +33,8 @@ $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_9a8b01f67
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_0db377921f4ce762c62526131097968f'] = 'Général';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_bf17ac149e2e7a530c677e9bd51d3fd2'] = 'Modules';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_14ae0ddbc25488fc7156943d97207ccf'] = 'Consent Mode V2	';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_119dd5a342e981b13bf0024d5c6a6933'] = 'Configuration avancée';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_33dca68e340b8d6c21472341130cf45a'] = 'Illustration';
-$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_6c75ce41fb6eca082110d5c95d72022e'] = 'Choisissez l\'illustration...';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_2c0f5ba5c0e74cd21a122229e197bbd7'] = 'Activer l\'illustration';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_3634dbf7864eb8ce1f0fe884076d4525'] = 'Illustration personnalisée';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_883b0ef478d6c9bd7a345c34d9af5c00'] = 'Activer la tâche de peinture';
@@ -55,6 +55,16 @@ $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_f2bb7f6b0
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_ec3adcb26051eb6d591e4b4bc1f4bb60'] = 'Partager les données d\'activité des visiteurs avec Google pour une publicité ciblée.';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_2c5043f32e8a13bb5f6727d0daf6aaae'] = 'Ad Personalization';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_819f8b14d6a8772d77e19d8890dc47ae'] = 'Personnaliser l\'expérience publicitaire en permettant à Google de personnaliser les annonces que les visiteurs voient.';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_9b07117ae21f86bae2cf5af106ea61e1'] = 'Stockage des fonctionnalités';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_8ab811dd4f6d4791875c92ff5994ab91'] = 'Active le stockage qui prend en charge les fonctionnalités du site web ou de l\'application, par exemple, les paramètres de langue';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_5143081a72ee4494033e850a9e664fb7'] = 'Stockage de personnalisation';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_61ec9ed420e3550bf62a5b9422b3de50'] = 'Active le stockage lié à la personnalisation, par exemple, les recommandations de vidéos';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_4d5aa2af375d36f87783d94efc8e9fbb'] = 'Stockage sécurisé';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_b10f864f05c19813b8f5687102e6d821'] = 'Active le stockage lié à la sécurité, tel que les fonctionnalités d\'authentification, la prévention de la fraude et d\'autres protections des utilisateurs';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_d5944cdd984c42bc23b77d8ce5c09ee3'] = 'Evenement dans le datalayer';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_1d764efe569f6ead37c89f94f8d6fda2'] = 'Envoyer tous les événements dans le datalayer';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_211d8e19c1d8fbeb09703239780f2f74'] = 'Envoyer aucun événement dans le datalayer';
+$_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_1d0b265318dc9b7927e8cbcc33ab1896'] = 'Envoyer uniquement axeptio_update dans le datalayer';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_3d0238bf1643e39636b1f5040af3bf6f'] = 'J\'accepte tout';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_10ac3d04253ef7e1ddc73e6091c0cd55'] = 'Au suivant';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_30d48f625495562ef108c4d31135ca1f'] = 'Titre du module';
@@ -79,9 +89,9 @@ $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_8af1f1c08
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_a1998652b01bdc9e7128734efb804780'] = 'Suppression';
 $_MODULE['<{axeptiocookies}prestashop>adminaxeptiocookiesconfiguration_290612199861c31d1036b185b4e69b75'] = 'Résumé';
 $_MODULE['<{axeptiocookies}prestashop>configurationvalidator_9e25aef4cd4c0065122c28fe492e9ddf'] = 'L\'ID de projet n\'est pas valide';
-$_MODULE['<{axeptiocookies}prestashop>configurationvalidator_fa158c18b001191d25193c3810388407'] = 'La configuration n\'est pas valide';
 $_MODULE['<{axeptiocookies}prestashop>configurationvalidator_75fbdb99c8b060fd62eafcc4d62a0956'] = 'Les boutiques ne sont pas sélectionnées';
 $_MODULE['<{axeptiocookies}prestashop>configurationvalidator_d0cf7383e1ee9f02c0fd303fa788dd5a'] = 'La langue n\'est pas sélectionnée';
 $_MODULE['<{axeptiocookies}prestashop>configurationvalidator_f8ea8e282b524773219c163388f9c40c'] = 'L\'association pour la boutique \"%s\" existe déjà';
 $_MODULE['<{axeptiocookies}prestashop>configurationvalidator_f52e14933a97749eda40b8b5054d9af6'] = 'L\'ID d\'objet n\'est pas valide';
 $_MODULE['<{axeptiocookies}prestashop>errorresponse_809c972c8bbb29c808e39ec6e69597c2'] = 'Erreur est survenue';
+$_MODULE['<{axeptiocookies}prestashop>project_ec069574b2c58e587d8d778df425ede5'] = 'Automatique (Géré par Axeptio)';

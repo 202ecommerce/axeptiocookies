@@ -32,6 +32,7 @@ abstract class AbstractObject implements \JsonSerializable
      */
     abstract public function build($json);
 
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return get_object_vars($this);
