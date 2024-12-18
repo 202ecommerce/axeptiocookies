@@ -1,3 +1,7 @@
+# This repository has been moved
+
+This repository has been moved to [https://github.com/axeptio/prestashop-plugin](https://github.com/axeptio/prestashop-plugin).
+
 ## Axeptio Official Module for PrestaShop
 
 [![Coding Standart](https://github.com/202ecommerce/axeptiocookies/actions/workflows/php.yml/badge.svg?branch=develop)](https://github.com/202ecommerce/axeptiocookies/actions/workflows/php.yml)
