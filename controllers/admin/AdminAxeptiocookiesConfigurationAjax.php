@@ -74,7 +74,7 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
             $this->ajaxDie(json_encode($response));
         } catch (Exception $e) {
             $response = (new ErrorResponse())
-                ->setMessage($this->l('Failed to load configurations', $this->controller_name));
+                ->setMessage($this->module->l('Failed to load configurations', $this->controller_name));
             $this->ajaxDie(json_encode($response));
         }
     }
@@ -90,7 +90,7 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
             $this->ajaxDie(json_encode($response));
         } catch (Exception $e) {
             $response = (new ErrorResponse())
-                ->setMessage($this->l('Failed to load your configurations', $this->controller_name));
+                ->setMessage($this->module->l('Failed to load your configurations', $this->controller_name));
 
             $this->ajaxDie(json_encode($response));
         }
@@ -105,14 +105,14 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
 
             if ($deleteResult) {
                 $response = (new SuccessNotificationResponse())
-                    ->setMessage($this->l('Your association successfully deleted', $this->controller_name));
+                    ->setMessage($this->module->l('Your association successfully deleted', $this->controller_name));
                 $this->ajaxDie(json_encode($response));
             } else {
                 throw new PrestaShopException('Error while deleting');
             }
         } catch (Exception $e) {
             $response = (new ErrorResponse())
-                ->setMessage($this->l('Failed while deleting your configuration'));
+                ->setMessage($this->module->l('Failed while deleting your configuration'));
             $this->ajaxDie(json_encode($response));
         }
     }
@@ -139,7 +139,7 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
 
             if ($result) {
                 $response = (new SuccessNotificationResponse())
-                    ->setMessage($this->l('Association is created successfully', $this->controller_name))
+                    ->setMessage($this->module->l('Association is created successfully', $this->controller_name))
                     ->setData((int) $result);
                 $this->ajaxDie(json_encode($response));
             } else {
@@ -151,7 +151,7 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
             $this->ajaxDie(json_encode($response));
         } catch (Exception $e) {
             $response = (new ErrorResponse())
-                ->setMessage($this->l('Failed to create configuration', $this->controller_name));
+                ->setMessage($this->module->l('Failed to create configuration', $this->controller_name));
             $this->ajaxDie(json_encode($response));
         }
     }
@@ -205,7 +205,7 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
 
             if ($result) {
                 $response = (new SuccessNotificationResponse())
-                    ->setMessage($this->l('Configuration saved successfully', $this->controller_name));
+                    ->setMessage($this->module->l('Configuration saved successfully', $this->controller_name));
                 $this->ajaxDie(json_encode($response));
             } else {
                 throw new PrestaShopException('Failed to save configuration');
@@ -216,7 +216,7 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
             $this->ajaxDie(json_encode($response));
         } catch (Exception $e) {
             $response = (new ErrorResponse())
-                ->setMessage($this->l('Error occurred while editing your configuration'));
+                ->setMessage($this->module->l('Error occurred while editing your configuration'));
             $this->ajaxDie(json_encode($response));
         }
     }
@@ -237,7 +237,7 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
             $this->ajaxDie(json_encode($response));
         } catch (Exception $e) {
             $response = (new ErrorResponse())
-                ->setMessage($this->l('Failed while retrieving configuration', $this->controller_name));
+                ->setMessage($this->module->l('Failed while retrieving configuration', $this->controller_name));
             $this->ajaxDie(json_encode($response));
         }
     }
@@ -249,14 +249,14 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
 
             if ($clearCacheResult) {
                 $response = (new SuccessNotificationResponse())
-                    ->setMessage($this->l('All caches successfully purged', $this->controller_name));
+                    ->setMessage($this->module->l('All caches successfully purged', $this->controller_name));
                 $this->ajaxDie(json_encode($response));
             } else {
                 throw new PrestaShopException('Error while purging cache');
             }
         } catch (Exception $e) {
             $response = (new ErrorResponse())
-                ->setMessage($this->l('Failed while purging cache', $this->controller_name));
+                ->setMessage($this->module->l('Failed while purging cache', $this->controller_name));
             $this->ajaxDie(json_encode($response));
         }
     }
@@ -267,6 +267,11 @@ class AdminAxeptiocookiesConfigurationAjaxController extends ModuleAdminControll
     protected function ajaxDie($value = null, $controller = null, $method = null)
     {
         header('Content-Type: application/json');
-        parent::ajaxDie($value, $controller, $method);
+        if (is_callable('parent::ajaxDie')) {
+            parent::ajaxDie($value, $controller, $method);
+        } elseif (method_exists($this, 'ajaxRender')) {
+            $this->ajaxRender($value, $controller, $method);
+            exit;
+        }
     }
 }

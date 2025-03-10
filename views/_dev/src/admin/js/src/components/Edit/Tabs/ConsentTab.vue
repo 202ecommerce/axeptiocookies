@@ -62,7 +62,7 @@ const configurationStore = useConfigurationStore();
             <span class="slide-button"></span>
             <label class="d-flex flex-column">
               <span class="font-weight-bold" v-text="trans('edit.consent.analytics_storage')"></span>
-              <span class="" v-text="trans('edit.consent.analytics_storage_desc')"></span>
+              <span class="font-weight-normal" v-text="trans('edit.consent.analytics_storage_desc')"></span>
             </label>
           </span>
         </div>
@@ -81,7 +81,7 @@ const configurationStore = useConfigurationStore();
             <span class="slide-button"></span>
             <label class="d-flex flex-column">
               <span class="font-weight-bold" v-text="trans('edit.consent.ad_storage')"></span>
-              <span class="" v-text="trans('edit.consent.ad_storage_desc')"></span>
+              <span class="font-weight-normal" v-text="trans('edit.consent.ad_storage_desc')"></span>
             </label>
           </span>
         </div>
@@ -100,7 +100,7 @@ const configurationStore = useConfigurationStore();
             <span class="slide-button"></span>
             <label class="d-flex flex-column">
               <span class="font-weight-bold" v-text="trans('edit.consent.ad_user_data')"></span>
-              <span class="" v-text="trans('edit.consent.ad_user_data_desc')"></span>
+              <span class="font-weight-normal" v-text="trans('edit.consent.ad_user_data_desc')"></span>
             </label>
           </span>
         </div>
@@ -119,7 +119,7 @@ const configurationStore = useConfigurationStore();
             <span class="slide-button"></span>
             <label class="d-flex flex-column">
               <span class="font-weight-bold" v-text="trans('edit.consent.ad_personalization')"></span>
-              <span class="" v-text="trans('edit.consent.ad_personalization_desc')"></span>
+              <span class="font-weight-normal" v-text="trans('edit.consent.ad_personalization_desc')"></span>
             </label>
           </span>
         </div>
